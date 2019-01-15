@@ -20,5 +20,5 @@ def contact_view(request, *args, **kwargs):
 
 
 class TransactionsListView(ListView):
-    template_name = 'transactions/transactions_list.html'
+    template_name = 'transactions/transaction_list.html'
     queryset = Transactions.objects.all() # <blog>/<modelname>_list.html
