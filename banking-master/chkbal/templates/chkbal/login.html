@@ -1,0 +1,36 @@
+{% extends 'chkbal/base.html' %}
+
+{% block body %}
+    <!-- Slider Start -->
+        <section id="global-header">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="block">
+                  <h1>Login Here</h1>
+                  <p>To start using our premium and secured services.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+       <section id="contact-form">
+          <div class="container" style="padding-bottom: 60px">
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <div class="block">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Login</button>
+                </form>
+                    <a title="Facebook" class="socialaccount_provider facebook" href="/accounts/facebook/login/?process=login&amp;next=%2Fchkbal%2Fprofile%2F"><i class="fa fa-facebook" style="font-size:48px;color:#3b5998;padding-top: 20px" title="Facebook" href="/accounts/facebook/login/?process=login"></i></a>
+        <h1>{{ myname }}</h1>
+                    <a href="/chkbal/reset-password">forgot password</a>
+        </div>
+        </div>
+        </div>
+        </div>
+
+{% endblock %}

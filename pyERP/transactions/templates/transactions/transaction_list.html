@@ -2,11 +2,8 @@
 
 {% block content %}
 
-
-
-{% for instance in object_list %}
-     <p>{{ instance.id }} - {{ instance.title }}</p>
+{% for transactions in object_list %}
+     <p>{{ transactions.amount }} - {{ transactions.payment_details }}</p>
 {% endfor %}
-
 
 {% endblock %}
