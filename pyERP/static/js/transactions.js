@@ -1,16 +1,19 @@
+var arr = new DevExpress.data.DataSource()
+arr = 'api/'
+
 $(function(){
     $("#gridContainer").dxDataGrid({
-        dataSource: '/static/json/arr.json',
-        columns: [{
-                    dataField: "db_client_id",
-                  },
-                  {
-                    dataField: "amount",
-                  },
-                  {
-                    dataField: "payment_details",
-                  },
-                 ],
+        dataSource: arr["data"][2]["attributes"],
+        // columns: [{
+        //             dataField: "db_client_id",
+        //           },
+        //           {
+        //             dataField: "amount",
+        //           },
+        //           {
+        //             dataField: "payment_details",
+        //           },
+        //          ],
         showBorders: true,
         editing: {
             allowAdding: true,
