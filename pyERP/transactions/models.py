@@ -107,7 +107,7 @@ class Clients(models.Model):
     add_info = models.CharField(max_length=300, blank=True, null=True)
     attracted_by = models.ForeignKey('self', related_name='attracted_by_client', on_delete=models.CASCADE, null=True)
     status_id = models.BooleanField()
-    user = models.ForeignKey('Users', on_delete=models.PROTECT)
+    user = models.ForeignKey('Users', on_delete=models.SET_NULL, blank=True, null=True)
     handle_time = models.DateTimeField(auto_now=True)
 
 class Clientpartitions(models.Model):

@@ -1,6 +1,6 @@
 $(function(){
+
  var arr = new DevExpress.data.DataSource()
- // cli = 'clients/api/'
  arr = 'api/'
 
  var cli = {
@@ -16,8 +16,28 @@ $(function(){
      sort: "name"
  }
 
+ var curr = {
+     store: new DevExpress.data.CustomStore({
+         key: "id",
+         loadMode: "raw",
+         load: function() {
+             return $.getJSON('currency/api/');
+         }
+     }),
+     sort: "ISO_char"
+ }
+
     $("#gridContainer").dxDataGrid({
         dataSource: arr,
+        allowColumnResizing: true,
+        // columnResizingMode: "nextColumn",
+        columnMinWidth: 50,
+        rowAlternationEnabled: true,
+        allowColumnReordering: true,
+        columnChooser: {
+            enabled: true,
+            mode: "select"
+        },
         columns: [{
                     dataField: "db_client_id",
                     caption: "Клиент Дт",
@@ -29,8 +49,37 @@ $(function(){
                     }
                   },
                   {
+                    dataField: "cr_client_id",
+                    caption: "Клиент Кт",
+                    width: 125,
+                    lookup: {
+                        dataSource: cli,
+                        displayExpr: "name",
+                        valueExpr: "id"
+                      }
+                    },
+                  {
                     dataField: "amount",
                     caption: "Сумма",
+                    alignment: 'right',
+                    dataType: "number",
+                    format: "#,##0.00"
+                  },
+                  {
+                    dataField: "currency_id",
+                    caption: "Валюта",
+                    lookup: {
+                      dataSource: curr,
+                      displayExpr: "ISO_char",
+                      valueExpr: "id"
+                    }
+                  },
+                  {
+                    dataField: "amount_e",
+                    caption: "Экв.",
+                    alignment: 'right',
+                    dataType: "number",
+                    format: "#,##0.00"
                   },
                   {
                     dataField: "payment_details",
@@ -64,17 +113,39 @@ $(function(){
         },
         summary: {
             totalItems: [{
-                column: "amount",
-                summaryType: "sum",
-                valueFormat: "currency",
-                // displayFormat: ',0.00;-,0.00'
-            }],
+                    column: "amount",
+                    summaryType: "sum",
+                    valueFormat: "#,##0.00",
+                    displayFormat: "{0}"
+                }, {
+                    column: "amount_e",
+                    summaryType: "sum",
+                    valueFormat: "#,##0.00",
+                    displayFormat: "{0}"
+                }, {
+                    column: "payment_details",
+                    summaryType: "count",
+                    displayFormat: "Всего: {0}"
+                }
+              ],
             groupItems: [{
                     column: "amount",
                     summaryType: "sum",
-                    valueFormat: "currency",
+                    valueFormat: "#,##0.00",
+                    displayFormat: "{0}",
+                    alignByColumn: true
                 }, {
-                    summaryType: "count"
+                    column: "amount_e",
+                    summaryType: "sum",
+                    valueFormat: "#,##0.00",
+                    displayFormat: "{0}",
+                    alignByColumn: true
+                  },
+                 {
+                    column: "payment_details",
+                    summaryType: "count",
+                    displayFormat: "Всего: {0}",
+                    alignByColumn: true
                 }
             ]
         }

@@ -1,0 +1,6 @@
+DevExpress.config(
+  {
+    decimalSeparator: ',',
+    thousandsSeparator: ' '
+  }
+);

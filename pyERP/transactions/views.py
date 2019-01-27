@@ -11,8 +11,8 @@ from django.views.generic import (
     ListView,
     DeleteView
 )
-from .models import Transactions, Clients
-from .serializers import TransactionsSerializers, ClientsSerializers
+from .models import Transactions, Clients, Currency
+from .serializers import TransactionsSerializers, ClientsSerializers, CurrencySerializers
 
 def home_view(request, *args, **kwargs): # *args, **kwargs
     print(args, kwargs)
@@ -31,6 +31,16 @@ class ClientsAPI(APIView):
     def get(self,request):
         queryset = Clients.objects.all()
         serializer = ClientsSerializers(queryset, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+class ClientsListView(ListView):
+    template_name = 'transactions/transaction_list.html'
+    queryset = Clients.objects.all()
+
+class CurrencyAPI(APIView):
+    def get(self,request):
+        queryset = Currency.objects.all()
+        serializer = CurrencySerializers(queryset, many=True)
         return JsonResponse(serializer.data, safe=False)
 
 class TransactionsListView(ListView):
