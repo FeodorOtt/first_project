@@ -157,3 +157,6 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_METADATA_CLASS': 'rest_framework_json_api.metadata.JSONAPIMetadata',
 }
+
+
+CORS_ORIGIN_ALLOW_ALL = True
