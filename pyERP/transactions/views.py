@@ -50,5 +50,6 @@ class TransactionsListView(ListView):
 class TransactionsAPI(APIView):
     def get(self,request):
         queryset = Transactions.objects.all()
+        # queryset = Transactions.objects.filter(db_client_id = 0)
         serializer = TransactionsSerializers(queryset, many=True)
         return JsonResponse(serializer.data, safe=False)

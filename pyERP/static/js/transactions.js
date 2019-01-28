@@ -29,11 +29,27 @@ $(function(){
 
     $("#gridContainer").dxDataGrid({
         dataSource: arr,
+        export: {
+            enabled: true,
+            fileName: "Transactions",
+            allowExportSelectedData: true
+        },
         allowColumnResizing: true,
+        cacheEnabled: true,
         // columnResizingMode: "nextColumn",
         columnMinWidth: 50,
         rowAlternationEnabled: true,
         allowColumnReordering: true,
+        // hoverStateEnabled: true,
+        stateStoring: {
+            enabled: true,
+            type: "localStorage",
+            storageKey: "storage"
+        },
+        loadPanel: {
+          shading: true,
+          height: 120
+        },
         columnChooser: {
             enabled: true,
             mode: "select"
@@ -87,18 +103,23 @@ $(function(){
                   },
                  ],
         filterRow: {
+            filterEnabled: true,
+            visible: true
+        },
+        filterPanel: {
             visible: true
         },
         headerFilter: {
-            visible: true
+            visible: true,
+            allowSearch: true
         },
         groupPanel: {
-            visible: true
+            visible: true,
         },
         scrolling: {
             mode: "virtual"
         },
-        height: 600,
+        // height: 600,
         showBorders: true,
         selection: {
             mode: "multiple"
@@ -109,7 +130,9 @@ $(function(){
             allowDeleting: true
         },
         grouping: {
-            autoExpandAll: false
+            // autoExpandAll: false,
+            expandMode: 'rowClick',
+            contextMenuEnabled: true,
         },
         summary: {
             totalItems: [{
