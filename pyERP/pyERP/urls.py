@@ -20,7 +20,7 @@ from transactions.views import home_view, contact_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name='home'),
-    path('transactions/', include('transactions.urls')),
+    path('transaction/', include('transactions.urls')),
     # path('about/<int:id>/', about_view, name='product-detail'),
     path('contact/', contact_view),
 ]

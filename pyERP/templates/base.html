@@ -3,7 +3,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Пуэр</title>
+    <title>pyERP</title>
     <!-- jQuery -->
     <script
       src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -19,24 +19,36 @@
     <!-- A CDN link -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
     <!-- DevExtreme themes -->
-    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.2.5/css/dx.common.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.2.5/css/dx.light.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.2.5/css/dx.common.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.2.5/css/dx.light.css">
      <!-- DevExtreme library -->
     <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/18.2.5/js/dx.all.js"></script>
     <script src="https://cdn3.devexpress.com/jslib/18.2.5/js/localization/dx.messages.ru.js"></script>
+    <script src="https://cdn3.devexpress.com/jslib/18.2.5/js/localization/dx.messages.de.js"></script>
+    <script src={% static 'js/dx.messages.ua.js' %}></script>
     <!-- Some settings -->
-    <script src="{% static "js/settings.js"%}"></script>
-    </script>
+    <link rel="stylesheet" type="text/css" href={% static 'css/master.css'%}>
   </head>
 
   <body>
-    <script>DevExpress.localization.locale('ru' || 'ru')</script>
-    <div class="container mycontent">
-      {% block content %}
+    <!-- <script>DevExpress.localization.locale('ru' || 'ru')</script> -->
 
-      {% endblock %}
-    </div>
-    <!-- <canvas id="canvas"></canvas>
-    <script src="{% static "js/master.js"%}"></script> -->
+      {# <div class="dx-viewport"> #}
+      <div class="container mycontent">
+
+        {% block content %}
+        {% endblock %}
+
+        <div class="option">
+          <label for="selectInput">Language</label>
+          <div id="selectBox"></div>
+        </div>
+
+      </div>
+
+      <script src="{% static "js/settings.js"%}"></script>
+
+    {# <canvas id="canvas"></canvas> #}
+    {# <script src="{% static "js/master.js"%}"></script> #}
   </body>
 </html>

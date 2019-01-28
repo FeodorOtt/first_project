@@ -1,19 +1,19 @@
 from django.urls import path
 from .views import *
 # (
-#     # TransactionsView,
-#     TransactionsListView,
-#     # TransactionsCreateView,
-#     # TransactionsUpdateView,
-#     # TransactionsDeleteView
+#     # TransactionView,
+#     TransactionListView,
+#     # TransactionCreateView,
+#     # TransactionUpdateView,
+#     # TransactionDeleteView
 # )
 
 app_name = 'transactions'
 urlpatterns = [
-    path('', TransactionsListView.as_view(), name='transactions-list'),
-    path('api/', TransactionsAPI.as_view(), name='transactions-list-json'),
-    path('clients/', ClientsListView.as_view(), name='clients-list'),
-    path('clients/api/', ClientsAPI.as_view(), name='clients-list-json'),
+    path('', TransactionListView.as_view(), name='transaction-list'),
+    path('api/', TransactionAPI.as_view(), name='transaction-list-json'),
+    path('client/', ClientListView.as_view(), name='client-list'),
+    path('client/api/', ClientAPI.as_view(), name='client-list-json'),
     path('currency/api/', CurrencyAPI.as_view(), name='currency-list-json'),
     # path('create/', CourseCreateView.as_view(), name='courses-create'),
     # path('<int:id>/', CourseView.as_view(), name='courses-detail'),

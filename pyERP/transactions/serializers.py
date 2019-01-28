@@ -1,17 +1,17 @@
 from rest_framework import serializers
-from .models import Transactions, Clients, Currency
+from .models import Transaction, Client, Currency
 
-class TransactionsSerializers(serializers.ModelSerializer):
+class TransactionSerializers(serializers.ModelSerializer):
 
     class Meta:
-        model = Transactions
+        model = Transaction
         fields = ('db_client_id', 'cr_client_id', 'amount', 'currency_id', 'amount_e', 'payment_details')
         # fields = ('__all__')
 
-class ClientsSerializers(serializers.ModelSerializer):
+class ClientSerializers(serializers.ModelSerializer):
 
     class Meta:
-        model = Clients
+        model = Client
         # fields = ('db_client_id', 'amount','payment_details')
         fields = ('__all__')
 

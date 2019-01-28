@@ -11,8 +11,8 @@ from django.views.generic import (
     ListView,
     DeleteView
 )
-from .models import Transactions, Clients, Currency
-from .serializers import TransactionsSerializers, ClientsSerializers, CurrencySerializers
+from .models import Transaction, Client, Currency
+from .serializers import TransactionSerializers, ClientSerializers, CurrencySerializers
 
 def home_view(request, *args, **kwargs): # *args, **kwargs
     print(args, kwargs)
@@ -23,19 +23,19 @@ def contact_view(request, *args, **kwargs):
     return render(request, "contact.html", {})
 
 
-class ClientsListView(ListView):
+class ClientListView(ListView):
     template_name = 'transactions/transaction_list.html'
-    queryset = Clients.objects.all()
+    queryset = Client.objects.all()
 
-class ClientsAPI(APIView):
+class ClientAPI(APIView):
     def get(self,request):
-        queryset = Clients.objects.all()
-        serializer = ClientsSerializers(queryset, many=True)
+        queryset = Client.objects.all()
+        serializer = ClientSerializers(queryset, many=True)
         return JsonResponse(serializer.data, safe=False)
 
-class ClientsListView(ListView):
+class ClientListView(ListView):
     template_name = 'transactions/transaction_list.html'
-    queryset = Clients.objects.all()
+    queryset = Client.objects.all()
 
 class CurrencyAPI(APIView):
     def get(self,request):
@@ -43,13 +43,13 @@ class CurrencyAPI(APIView):
         serializer = CurrencySerializers(queryset, many=True)
         return JsonResponse(serializer.data, safe=False)
 
-class TransactionsListView(ListView):
+class TransactionListView(ListView):
     template_name = 'transactions/transaction_list.html'
-    queryset = Transactions.objects.all()
+    queryset = Transaction.objects.all()
 
-class TransactionsAPI(APIView):
+class TransactionAPI(APIView):
     def get(self,request):
-        queryset = Transactions.objects.all()
-        # queryset = Transactions.objects.filter(db_client_id = 0)
-        serializer = TransactionsSerializers(queryset, many=True)
+        queryset = Transaction.objects.all()
+        # queryset = Transaction.objects.filter(db_client_id = 0)
+        serializer = TransactionSerializers(queryset, many=True)
         return JsonResponse(serializer.data, safe=False)

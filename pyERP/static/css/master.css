@@ -1,6 +1,20 @@
-body {
-  margin: 0;
-  overflow: hidden;
-  background-color: black;
-  color:white;
+.option {
+    padding: 10px;
+    background-color: rgba(191, 191, 191, 0.15);
+    margin-top: 10px;
+    float: right;
+}
+
+.caption {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.option > label {
+  margin-right: 10px;
+}
+
+.option > .dx-selectbox {
+    display: inline-block;
+    vertical-align: middle;
 }
