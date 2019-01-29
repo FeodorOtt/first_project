@@ -81,7 +81,7 @@ $(function(){
       stateStoring: {
           enabled: true,
           type: "localStorage",
-          storageKey: "storage"
+          storageKey: "transaction"
       },
       loadPanel: {
         shading: true,

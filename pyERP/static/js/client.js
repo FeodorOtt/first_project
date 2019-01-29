@@ -31,10 +31,10 @@ $(function(){
 
   var formatMessage = DevExpress.localization.formatMessage;
 
-  // var client = new DevExpress.data.DataSource()
-  // client = 'api/'
+  var client = new DevExpress.data.DataSource()
+  client = 'api/'
 
-  var client = {
+  var client_lu = {
     store: new DevExpress.data.CustomStore({
       key: "id",
       loadMode: "raw",
@@ -62,7 +62,7 @@ $("#gridContainer").dxDataGrid({
       stateStoring: {
           enabled: true,
           type: "localStorage",
-          storageKey: "storage"
+          storageKey: "client"
       },
       loadPanel: {
         shading: true,
@@ -86,7 +86,7 @@ $("#gridContainer").dxDataGrid({
                   dataField: "responsible_client",
                   caption: formatMessage("responsible_client"),
                   lookup: {
-                    dataSource: client,
+                    dataSource: client_lu,
                     displayExpr: "name",
                     valueExpr: "id"
                   }
