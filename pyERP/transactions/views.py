@@ -23,20 +23,6 @@ def contact_view(request, *args, **kwargs):
     return render(request, "contact.html", {})
 
 
-class ClientListView(ListView):
-    template_name = 'transactions/transaction_list.html'
-    queryset = Client.objects.all()
-
-class ClientAPI(APIView):
-    def get(self,request):
-        queryset = Client.objects.all()
-        serializer = ClientSerializers(queryset, many=True)
-        return JsonResponse(serializer.data, safe=False)
-
-class ClientListView(ListView):
-    template_name = 'transactions/transaction_list.html'
-    queryset = Client.objects.all()
-
 class CurrencyAPI(APIView):
     def get(self,request):
         queryset = Currency.objects.all()
@@ -52,4 +38,14 @@ class TransactionAPI(APIView):
         queryset = Transaction.objects.all()
         # queryset = Transaction.objects.filter(db_client_id = 0)
         serializer = TransactionSerializers(queryset, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+class ClientListView(ListView):
+    template_name = 'client/client_list.html'
+    queryset = Client.objects.all()
+
+class ClientAPI(APIView):
+    def get(self,request):
+        queryset = Client.objects.all()
+        serializer = ClientSerializers(queryset, many=True)
         return JsonResponse(serializer.data, safe=False)

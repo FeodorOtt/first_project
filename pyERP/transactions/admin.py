@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Transaction, Client, Currency
+from .models import Transaction, Currency, Client
 
 class CurrencyAdmin(admin.ModelAdmin):
     """

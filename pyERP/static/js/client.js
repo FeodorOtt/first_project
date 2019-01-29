@@ -47,7 +47,7 @@ $(function(){
       key: "id",
       loadMode: "raw",
       load: function() {
-      return $.getJSON('../client/api/');
+      return $.getJSON('client/api/');
       }
     }),
     sort: "name"
@@ -58,7 +58,7 @@ $(function(){
          key: "id",
          loadMode: "raw",
          load: function() {
-             return $.getJSON('../currency/api/');
+             return $.getJSON('currency/api/');
          }
      }),
      sort: "ISO_char"
