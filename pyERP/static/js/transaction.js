@@ -201,7 +201,11 @@ $(function(){
                   summaryType: "sum",
                   valueFormat: "#,##0.00",
                   displayFormat: "{0}",
-                  alignByColumn: true
+                  alignByColumn: true,
+                  // customizeText: function(cellInfo) {
+                  //     $(cellInfo).css('background-color','red')
+                  //     return cellInfo.value
+                  // }
                 },
                {
                   column: "payment_details",

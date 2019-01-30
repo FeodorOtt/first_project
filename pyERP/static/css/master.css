@@ -18,3 +18,18 @@
     display: inline-block;
     vertical-align: middle;
 }
+
+
+/*.dx-datagrid-rowsview .dx-row.dx-group-row:not(.dx-row-focused)*/
+/*{*/
+    /*!*color: #c56363;*!*/
+    /*background-color: #e7f4ff;*/
+/*}*/
+
+/*[aria-colindex="5"] .dx-datagrid-summary-item {*/
+    /*color: #c56363*/
+/*}*/
+[aria-describedby="dx-col-15"] {
+    color: #c56363
+}
+
