@@ -220,8 +220,8 @@ class Transaction(models.Model):
     handle_time = models.DateTimeField(auto_now=True)
 
 class TransactionDetail(models.Model):
-    # transaction = models.ForeignKey('Transactions', on_delete=models.CASCADE)
-    transaction = models.IntegerField()
+    transaction = models.ForeignKey('Transaction', on_delete=models.CASCADE)
+    # transaction = models.IntegerField()
     order_id = models.SmallIntegerField()
     partition = models.ForeignKey('Partition', on_delete=models.PROTECT)
     db_client = models.ForeignKey('Client', related_name='db_client', on_delete=models.PROTECT)

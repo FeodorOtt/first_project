@@ -29,7 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'transactions.apps.TransactionsConfig',
+    'funds.apps.FundsConfig',
     'rest_framework'
 ]
 

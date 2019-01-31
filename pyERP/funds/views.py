@@ -14,7 +14,7 @@ from django.views.generic import (
 from .models import Transaction, Client, Currency
 from .serializers import TransactionSerializers, ClientSerializers, CurrencySerializers
 
-def home_view(request, *args, **kwargs): # *args, **kwargs
+def index_view(request, *args, **kwargs): # *args, **kwargs
     print(args, kwargs)
     print(request.user)
     return render(request, "index.html", {})
@@ -30,8 +30,9 @@ class CurrencyAPI(APIView):
         return JsonResponse(serializer.data, safe=False)
 
 class TransactionListView(ListView):
-    template_name = 'transactions/transaction_list.html'
+    template_name = 'funds/transaction_list.html'
     queryset = Transaction.objects.all()
+
 
 class TransactionAPI(APIView):
     def get(self,request):
@@ -41,7 +42,7 @@ class TransactionAPI(APIView):
         return JsonResponse(serializer.data, safe=False)
 
 class ClientListView(ListView):
-    template_name = 'client/client_list.html'
+    template_name = 'funds/client_list.html'
     queryset = Client.objects.all()
 
 class ClientAPI(APIView):

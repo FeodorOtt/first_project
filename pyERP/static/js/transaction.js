@@ -169,7 +169,7 @@ $(function(){
           allowSelectAll: true
       },
       grouping: {
-          // autoExpandAll: false,
+          autoExpandAll: false,
           expandMode: 'rowClick',
           contextMenuEnabled: true,
       },
