@@ -71,7 +71,7 @@ $(function(){
           fileName: "Transactions",
           allowExportSelectedData: true
       },
-      allowColumnResizing: true,
+      allowColumnResizing: false,
       cacheEnabled: true,
       // columnResizingMode: "nextColumn",
       columnMinWidth: 50,
@@ -156,9 +156,6 @@ $(function(){
           visible: true,
           allowSearch: true
       },
-      groupPanel: {
-          visible: true,
-      },
       scrolling: {
           mode: "virtual"
       },
@@ -167,6 +164,9 @@ $(function(){
       selection: {
           mode: "multiple",
           allowSelectAll: true
+      },
+      groupPanel: {
+          visible: true,
       },
       grouping: {
           autoExpandAll: false,
@@ -216,4 +216,7 @@ $(function(){
           ]
       }
   });
+  // refresh();
+  //   $('.dx-datagrid-summary-item');
 });
+    // $('#Column Amount').attr("style", "text-align: left; color: red");

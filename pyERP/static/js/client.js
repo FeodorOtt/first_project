@@ -5,25 +5,45 @@ $(function(){
       'name': 'Name',
       'type': 'Type',
       'is_resident': 'Resident',
-      'responsible_client': 'Responsible'
+      'responsible_client': 'Responsible',
+      'cr_client_id': 'Ct Client',
+      'amount': 'Amount',
+      'currency_id': 'Currency',
+      'payment_details': 'Details',
+      'transactions_of': 'Transactions of '
     },
     'de': {
       'name': 'Name',
       'type': 'Type',
       'is_resident': 'Resident',
-      'responsible_client': 'Responsible'
+      'responsible_client': 'Responsible',
+      'cr_client_id': 'Ct Client',
+      'amount': 'Betrag',
+      'currency_id': 'Währung',
+      'payment_details': 'Zahlungszweck',
+      'transactions_of': 'Transaktionen '
     },
     'ru': {
       'name': 'Имя',
       'type': 'Тип',
       'is_resident': 'Резидент',
-      'responsible_client': 'Ответственный'
+      'responsible_client': 'Ответственный',
+      'cr_client_id': 'Клиент Кт',
+      'amount': 'Сумма',
+      'currency_id': 'Валюта',
+      'payment_details': 'Примечание',
+      'transactions_of': 'Транзакции '
     },
     'ua': {
       'name': "Ім'я",
       'type': 'Тип',
       'is_resident': 'Резидент',
-      'responsible_client': 'Відповідальний'
+      'responsible_client': 'Відповідальний',
+      'cr_client_id': 'Клієнт Кт',
+      'amount': 'Сума',
+      'currency_id': 'Валюта',
+      'payment_details': 'Призначення',
+      'transactions_of': 'Транзакції '
     }
   };
 
@@ -45,8 +65,31 @@ $(function(){
     sort: "name"
   }
 
+ var currency = {
+     store: new DevExpress.data.CustomStore({
+         key: "id",
+         loadMode: "raw",
+         load: function() {
+             return $.getJSON('../currency/api/');
+         }
+     }),
+     sort: "ISO_char"
+ }
+
+ var transaction = {
+     store: new DevExpress.data.CustomStore({
+         key: "db_client_id",
+         loadMode: "raw",
+         load: function() {
+             return $.getJSON('../transaction/api/');
+         }
+     }),
+     sort: "ISO_char"
+ }
+
 $("#gridContainer").dxDataGrid({
       dataSource: client,
+      keyExpr: "id",
       export: {
           enabled: true,
           fileName: "Clients",
@@ -91,6 +134,65 @@ $("#gridContainer").dxDataGrid({
                     valueExpr: "id"
                   }
                 }],
+        masterDetail: {
+            enabled: true,
+            template: function(container, options) {
+                var currentClientData = options.data;
+
+                $("<div>")
+                    .addClass("master-detail-caption")
+                    .text(formatMessage("transactions_of") + currentClientData.name + ':')
+                    .appendTo(container);
+
+                $("<div>")
+                    .dxDataGrid({
+                        columnAutoWidth: true,
+                        showBorders: true,
+                        columns: [
+                        {
+                          dataField: "cr_client_id",
+                          caption: formatMessage("cr_client_id"),
+                          width: 125,
+                          lookup: {
+                              dataSource: client_lu,
+                              displayExpr: "name",
+                              valueExpr: "id"
+                            }
+                          },
+                        {
+                          dataField: "amount",
+                          caption: formatMessage("amount"),
+                          alignment: 'right',
+                          dataType: "number",
+                          format: "#,##0.00"
+                        },
+                        {
+                          dataField: "currency_id",
+                          caption: formatMessage("currency_id"),
+                          lookup: {
+                            dataSource: currency,
+                            displayExpr: "ISO_char",
+                            valueExpr: "id"
+                          }
+                        },
+                        {
+                          dataField: "payment_details",
+                          caption: formatMessage("payment_details"),
+                        },
+                        ],
+                        dataSource: new DevExpress.data.DataSource({
+                             store: new DevExpress.data.CustomStore({
+                                 key: "db_client_id",
+                                 loadMode: "raw",
+                                 load: function() {
+                                     return $.getJSON('../transaction/api/');
+                                 }
+                             }),
+                             filter: ["db_client_id", "=", currentClientData.id]
+                        })
+                    }).appendTo(container);
+            }
+        },
       editing: {
           allowAdding: true,
           allowUpdating: true,
@@ -108,9 +210,6 @@ $("#gridContainer").dxDataGrid({
           visible: true,
           allowSearch: true
       },
-      groupPanel: {
-          visible: false,
-      },
       scrolling: {
           mode: "virtual"
       },
@@ -119,10 +218,14 @@ $("#gridContainer").dxDataGrid({
           mode: "multiple",
           allowSelectAll: true
       },
+      // groupPanel: {
+      //     visible: false,
+      // },
       // grouping: {
           // autoExpandAll: false,
       //     expandMode: 'rowClick',
       //     contextMenuEnabled: true,
       // },
   });
+  // refresh();
 });

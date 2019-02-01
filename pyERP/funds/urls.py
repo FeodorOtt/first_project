@@ -17,5 +17,6 @@ urlpatterns = [
     path('transaction/api/', TransactionAPI.as_view(), name='transaction-json'),
     path('client/', ClientListView.as_view(), name='client'),
     path('client/api/', ClientAPI.as_view(), name='client-json'),
+    path('currency/', CurrencyListView.as_view(), name='currency'),
     path('currency/api/', CurrencyAPI.as_view(), name='currency-json'),
 ]

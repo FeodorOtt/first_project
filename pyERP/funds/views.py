@@ -29,10 +29,13 @@ class CurrencyAPI(APIView):
         serializer = CurrencySerializers(queryset, many=True)
         return JsonResponse(serializer.data, safe=False)
 
+class CurrencyListView(ListView):
+    template_name = 'funds/currency_list.html'
+    queryset = Currency.objects.all()
+
 class TransactionListView(ListView):
     template_name = 'funds/transaction_list.html'
     queryset = Transaction.objects.all()
-
 
 class TransactionAPI(APIView):
     def get(self,request):
