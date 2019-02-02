@@ -216,7 +216,9 @@ $(function(){
           ]
       }
   });
-  // refresh();
-  //   $('.dx-datagrid-summary-item');
+//    $('div[aria-label="Column Amount"]').attr("style", "text-align: left; color: red");
+
+    // var ci = $("[aria-label='Column Amount']").attr("aria-colindex");
+    // var cid = $("[aria-label='Column Amount']").attr("id");
 });
-    // $('#Column Amount').attr("style", "text-align: left; color: red");
+
