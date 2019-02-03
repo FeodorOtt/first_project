@@ -14,16 +14,10 @@
   margin-right: 10px;
 }
 
+
 .option > .dx-selectbox {
     display: inline-block;
     vertical-align: middle;
-}
-
-
-.dx-datagrid-rowsview .dx-row.dx-group-row:not(.dx-row-focused)
-{
-    /*color: #c56363;*/
-    background-color: #e7f4ff;
 }
 
 .master-detail-caption {

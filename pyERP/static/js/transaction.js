@@ -169,10 +169,30 @@ $(function(){
           visible: true,
       },
       grouping: {
-          autoExpandAll: false,
+          autoExpandAll: true,
           expandMode: 'rowClick',
           contextMenuEnabled: true,
       },
+      onContentReady: function () {
+            var ColName = formatMessage("dxDataGrid-ariaColumn") + ' ' + formatMessage("amount");
+            var ci = $("[aria-label='" + ColName + "']").attr("aria-colindex");
+            var cid = $("[aria-label='" + ColName + "']").attr("id");
+
+            $('[aria-colindex='+ci+'] .dx-datagrid-summary-item').css("color", "#c56363");
+            $('[aria-describedby='+cid+']').css("color", "#c56363");
+
+            ColName = formatMessage("dxDataGrid-ariaColumn") + ' ' + formatMessage("amount_e");
+            ci = $("[aria-label='" + ColName + "']").attr("aria-colindex");
+            cid = $("[aria-label='" + ColName + "']").attr("id");
+
+            $('[aria-colindex='+ci+'] .dx-datagrid-summary-item').css("color", "rgb(53, 62, 183)");
+            $('[aria-describedby='+cid+']').css("color", "rgb(53, 62, 183)");
+
+            // $('.dx-datagrid-rowsview .dx-row.dx-group-row').css({
+            //     'background-color': '#e7f4ff'
+            // });
+
+        },
       summary: {
           totalItems: [{
                   column: "amount",
@@ -216,9 +236,5 @@ $(function(){
           ]
       }
   });
-//    $('div[aria-label="Column Amount"]').attr("style", "text-align: left; color: red");
-
-    // var ci = $("[aria-label='Column Amount']").attr("aria-colindex");
-    // var cid = $("[aria-label='Column Amount']").attr("id");
 });
 

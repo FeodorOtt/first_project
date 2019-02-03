@@ -20,7 +20,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
     <!-- DevExtreme themes -->
     <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.2.5/css/dx.common.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.2.5/css/dx.greenmist.compact.css">
+    {% include "dx-themes-links.html" %}
      <!-- DevExtreme library -->
     <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/18.2.5/js/dx.all.js"></script>
     <script src="https://cdn3.devexpress.com/jslib/18.2.5/js/localization/dx.messages.ru.js"></script>
@@ -40,6 +40,11 @@
         {% endblock %}
 
         <div class="option">
+          <label for="selectThemeInput">Theme</label>
+          <div id="selectThemeBox"></div>
+        </div>
+
+        <div class="option">
           <label for="selectInput">Language</label>
           <div id="selectBox"></div>
         </div>
@@ -48,6 +53,6 @@
 
       <script src="{% static "js/settings.js"%}"></script>
 
-    <script src={% static 'js/master.js' %}></script>
+{#    <script src={% static 'js/master.js' %}></script>#}
   </body>
 </html>
