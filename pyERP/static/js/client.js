@@ -1,56 +1,5 @@
 $(function(){
 
-  var dictionary = {
-    'en': {
-      'name': 'Name',
-      'type': 'Type',
-      'is_resident': 'Resident',
-      'responsible_client': 'Responsible',
-      'cr_client_id': 'Ct Client',
-      'amount': 'Amount',
-      'currency_id': 'Currency',
-      'payment_details': 'Details',
-      'transactions_of': 'Transactions of '
-    },
-    'de': {
-      'name': 'Name',
-      'type': 'Type',
-      'is_resident': 'Resident',
-      'responsible_client': 'Responsible',
-      'cr_client_id': 'Ct Client',
-      'amount': 'Betrag',
-      'currency_id': 'Währung',
-      'payment_details': 'Zahlungszweck',
-      'transactions_of': 'Transaktionen '
-    },
-    'ru': {
-      'name': 'Имя',
-      'type': 'Тип',
-      'is_resident': 'Резидент',
-      'responsible_client': 'Ответственный',
-      'cr_client_id': 'Клиент Кт',
-      'amount': 'Сумма',
-      'currency_id': 'Валюта',
-      'payment_details': 'Примечание',
-      'transactions_of': 'Транзакции '
-    },
-    'ua': {
-      'name': "Ім'я",
-      'type': 'Тип',
-      'is_resident': 'Резидент',
-      'responsible_client': 'Відповідальний',
-      'cr_client_id': 'Клієнт Кт',
-      'amount': 'Сума',
-      'currency_id': 'Валюта',
-      'payment_details': 'Призначення',
-      'transactions_of': 'Транзакції '
-    }
-  };
-
-  DevExpress.localization.loadMessages(dictionary);
-
-  var formatMessage = DevExpress.localization.formatMessage;
-
   var client = new DevExpress.data.DataSource()
   client = 'api/'
 
@@ -89,7 +38,7 @@ $(function(){
 
 $("#gridContainer").dxDataGrid({
       dataSource: client,
-      keyExpr: "id",
+      // keyExpr: "id",
       export: {
           enabled: true,
           fileName: "Clients",

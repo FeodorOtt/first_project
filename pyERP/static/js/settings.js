@@ -7,16 +7,16 @@ DevExpress.config(
 
 ///////////////////////////////////////////////Language Switch/////////////////////////////////////////////////////////////////////////
 var locales = [
-    { name: "English", value: "en", lang: "Language" },
-    { name: "Deutsch", value: "de", lang: "Language" },
-    { name: "Русский", value: "ru", lang: "Язык" },
-    { name: "Українська", value: "ua", lang: "Мова" }
+    { name: "English", value: "en" },
+    { name: "Deutsch", value: "de" },
+    { name: "Русский", value: "ru" },
+    { name: "Українська", value: "ua" }
 ];
 var locale = getLocale();
 DevExpress.localization.locale(locale);
 
-var selectBoxOptions = {
-    inputAttr: { id: "selectInput" },
+var selectLangBoxOptions = {
+    inputAttr: { id: "selectLangInput" },
     dataSource: locales,
     displayExpr: "name",
     valueExpr: "value",
@@ -30,45 +30,45 @@ function changeLocale(data) {
 }
 
 function getLocale() {
-    var locale = sessionStorage.getItem("locale");
+    var locale = localStorage.getItem("locale");
     return locale != null ? locale : "en";
 }
 
 function setLocale(locale) {
-    sessionStorage.setItem("locale", locale);
+    localStorage.setItem("locale", locale);
 }
 
-$("#selectBox").dxSelectBox(selectBoxOptions);
+$("#selectLangBox").dxSelectBox(selectLangBoxOptions);
 
 /////////////////////////////////////////////////Theme Switch///////////////////////////////////////////////////////////////////////
 var themes = [
-    { name: "Light", value: "generic.light" },
-    { name: "Light compact", value: "generic.light.compact" },
-    { name: "Dark", value: "generic.dark" },
-    { name: "Dark compact", value: "generic.dark.compact" },
-    { name: "Carmine", value: "generic.carmine" },
-    { name: "Carmine compact", value: "generic.carmine.compact" },
-    { name: "Softblue", value: "generic.softblue" },
-    { name: "Softblue compact", value: "generic.softblue.compact" },
-    { name: "Darkmoon", value: "generic.darkmoon" },
-    { name: "Darkmoon compact", value: "generic.darkmoon.compact" },
-    { name: "Darkviolet", value: "generic.darkviolet" },
-    { name: "Darkviolet compact", value: "generic.darkviolet.compact" },
-    { name: "Greenmist", value: "generic.greenmist" },
+    // { name: "Greenmist", value: "generic.greenmist" },
     { name: "Greenmist compact", value: "generic.greenmist.compact" },
-    { name: "Contrast", value: "generic.contrast" },
+    // { name: "Light", value: "generic.light" },
+    { name: "Light compact", value: "generic.light.compact" },
+    // { name: "Dark", value: "generic.dark" },
+    { name: "Dark compact", value: "generic.dark.compact" },
+    // { name: "Carmine", value: "generic.carmine" },
+    { name: "Carmine compact", value: "generic.carmine.compact" },
+    // { name: "Softblue", value: "generic.softblue" },
+    // { name: "Softblue compact", value: "generic.softblue.compact" },
+    // { name: "Darkmoon", value: "generic.darkmoon" },
+    { name: "Darkmoon compact", value: "generic.darkmoon.compact" },
+    // { name: "Darkviolet", value: "generic.darkviolet" },
+    { name: "Darkviolet compact", value: "generic.darkviolet.compact" },
+    // { name: "Contrast", value: "generic.contrast" },
     { name: "Contrast compact", value: "generic.contrast.compact" },
 
-    { name: "Blue light", value: "material.blue.light" },
-    { name: "Blue dark", value: "material.blue.dark" },
-    { name: "Lime light", value: "material.lime.light" },
-    { name: "Lime dark", value: "material.lime.dark" },
-    { name: "Orange light", value: "material.orange.light" },
-    { name: "Orange dark", value: "material.orange.dark" },
-    { name: "Purple light", value: "material.purple.light" },
-    { name: "Purple dark", value: "material.purple.dark" },
-    { name: "Teal", value: "material.teal.light" },
-    { name: "Teal dark", value: "material.teal.dark" },
+    // { name: "Blue light", value: "material.blue.light" },
+    // { name: "Blue dark", value: "material.blue.dark" },
+    // { name: "Lime light", value: "material.lime.light" },
+    // { name: "Lime dark", value: "material.lime.dark" },
+    // { name: "Orange light", value: "material.orange.light" },
+    // { name: "Orange dark", value: "material.orange.dark" },
+    // { name: "Purple light", value: "material.purple.light" },
+    // { name: "Purple dark", value: "material.purple.dark" },
+    // { name: "Teal", value: "material.teal.light" },
+    // { name: "Teal dark", value: "material.teal.dark" },
 ];
 var theme = getTheme();
 DevExpress.ui.themes.current(theme);

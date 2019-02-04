@@ -33,26 +33,45 @@
   <body>
     <!-- <script>DevExpress.localization.locale('ru' || 'ru')</script> -->
 
+    <nav class="navbar  mynav" role="navigation" id="navbar">
+        <div class="container">
+            <a class="navbar-brand mynav" href="{% url 'index' %}">pyERP</a>
+    			<ul class="nav navbar-nav navbar-right">
+    				{% if user.is_authenticated %}
+                      <li><a href="{% url 'funds:index' %}" class="btn btn-simple" id="idMain">Main</a></li>
+                      <li><a href="{% url 'funds:transaction' %}" class="btn btn-simple" id="idTransaction">Transactions</a></li>
+                      <li><a href="{% url 'funds:client' %}" class="btn btn-simple" id="idClient">Clients</a></li>
+                      <li><a href="{% url 'funds:currency' %}" class="btn btn-simple" id="idCurrency">Currency</a></li>
+                      <li><a href="{% url 'logout' %}" class="btn btn-simple" id="idLogout">Logout</a></li>
+    				{% else %}
+    			      <li><a href="{% url 'about' %}" class="btn btn-simple" id="idAbout">About</a></li>
+                      <li><a href="{% url 'login' %}" class="btn btn-simple idLogin">Login</a></li>
+{#                      <li><a href="{% url 'signup' %}" class="btn btn-simple">Регистрация</a></li>#}
+    				{% endif %}
+    			</ul>
+
+    	</div>
+	</nav>
 {#       <div class="dx-viewport">#}
-      <div class="container mycontent">
+    <div class="container mycontent">
 
-        {% block content %}
-        {% endblock %}
+    {% block content %}
+    {% endblock %}
 
-        <div class="option">
-          <label for="selectThemeInput">Theme</label>
-          <div id="selectThemeBox"></div>
-        </div>
+    <div class="option">
+      <label for="selectThemeInput" id="idTheme">Theme</label>
+      <div id="selectThemeBox"></div>
+    </div>
 
-        <div class="option">
-          <label for="selectInput">Language</label>
-          <div id="selectBox"></div>
-        </div>
+    <div class="option">
+      <label for="selectLangInput" id="idLang">Language</label>
+      <div id="selectLangBox"></div>
+    </div>
 
-      </div>
+    </div>
 
-      <script src="{% static "js/settings.js"%}"></script>
+    <script src="{% static "js/settings.js"%}"></script>
 
-{#    <script src={% static 'js/master.js' %}></script>#}
+    <script src={% static 'js/captions.js' %}></script>
   </body>
 </html>

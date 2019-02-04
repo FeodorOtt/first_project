@@ -1,44 +1,5 @@
 $(function(){
 
-  var dictionary = {
-    'en': {
-      'db_client_id': 'Dt Client',
-      'cr_client_id': 'Ct Client',
-      'amount': 'Amount',
-      'currency_id': 'Currency',
-      'amount_e': 'Equivalent',
-      'payment_details': 'Details'
-    },
-    'de': {
-      'db_client_id': 'Dt Client',
-      'cr_client_id': 'Ct Client',
-      'amount': 'Betrag',
-      'currency_id': 'Währung',
-      'amount_e': 'gleichwertig',
-      'payment_details': 'Zahlungszweck'
-    },
-    'ru': {
-      'db_client_id': 'Клиент Дт',
-      'cr_client_id': 'Клиент Кт',
-      'amount': 'Сумма',
-      'currency_id': 'Валюта',
-      'amount_e': 'Эквивалент',
-      'payment_details': 'Примечание'
-    },
-    'ua': {
-      'db_client_id': 'Клієнт Дт',
-      'cr_client_id': 'Клієнт Кт',
-      'amount': 'Сума',
-      'currency_id': 'Валюта',
-      'amount_e': 'Еквивалент',
-      'payment_details': 'Призначення'
-    }
-  };
-
-  DevExpress.localization.loadMessages(dictionary);
-
-  var formatMessage = DevExpress.localization.formatMessage;
-
   var transaction = new DevExpress.data.DataSource()
   transaction = 'api/'
 
@@ -173,7 +134,7 @@ $(function(){
           expandMode: 'rowClick',
           contextMenuEnabled: true,
       },
-      onContentReady: function () {
+      onContentReady: function() {
             var ColName = formatMessage("dxDataGrid-ariaColumn") + ' ' + formatMessage("amount");
             var ci = $("[aria-label='" + ColName + "']").attr("aria-colindex");
             var cid = $("[aria-label='" + ColName + "']").attr("id");

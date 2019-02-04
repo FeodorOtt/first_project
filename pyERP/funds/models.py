@@ -200,7 +200,7 @@ class Transaction(models.Model):
     parent = models.ForeignKey('self', on_delete=models.SET_NULL, blank=True, null=True)
     pattern = models.ForeignKey('TransactionPattern', blank=True, null=True, on_delete=models.PROTECT)
     oper_date = models.DateField()
-    db_client = models.ForeignKey('Client', related_name='transaction_db_client', on_delete=models.PROTECT)
+    db_client = models.ForeignKey('Client', related_name='transaction_db_client', on_delete=models.PROTECT, verbose_name='-Дт Клиент-')
     db_account = models.ForeignKey('Account', related_name='transaction_db_account', on_delete=models.PROTECT, blank=True, null=True)
     cr_client = models.ForeignKey('Client', related_name='transaction_cr_client', on_delete=models.PROTECT)
     cr_account = models.ForeignKey('Account', related_name='transaction_cr_account', on_delete=models.PROTECT, blank=True, null=True)
