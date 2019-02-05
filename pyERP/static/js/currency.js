@@ -1,53 +1,68 @@
 $(function(){
 
-    var json_url = 'api'
+    var json_url = '../api/currency/'
 
     var currency = new DevExpress.data.CustomStore({
+        key: "id",
         load: function(loadOptions) {
-            var d = $.Deferred()
-            return $.getJSON(json_url, {
-            // Passing settings to the server
-
-            // filter: loadOptions.filter ? JSON.stringify(loadOptions.filter) : "", // Pass if filtering is remote
-            // sort: loadOptions.sort ? JSON.stringify(loadOptions.sort) : "",       // Pass if sorting is remote
-            // // Pass if paging is remote
-            // skip: loadOptions.skip,     // The number of records to skip
-            // take: loadOptions.take,     // The number of records to take
-            // requireTotalCount: loadOptions.requireTotalCount,   // A flag telling the server whether
-            //                                                     // the total count of records (totalCount) is required
-            // group: loadOptions.group ? JSON.stringify(loadOptions.group) : "", // Pass if grouping is remote
-            // totalSummary: loadOptions.totalSummary ? JSON.stringify(loadOptions.totalSummary) : "", // Pass if summary is calculated remotely
-            // groupSummary: loadOptions.groupSummary ? JSON.stringify(loadOptions.groupSummary) : "" // Pass if grouping is remote and summary is calculated remotely
-            }).done(function (result) {
-                // You can process the received data here
-                d.resolve(result.data, {
-                    totalCount: result.totalCount, // The count of received records; needed if paging is enabled
-                    // summary: result.summary        // Needed if summary is calculated remotely
-                });
-            });
+            // var d = $.Deferred()
+            return $.getJSON(json_url+'8/')//, {
+            // // Passing settings to the server
+            //
+            // // filter: loadOptions.filter ? JSON.stringify(loadOptions.filter) : "", // Pass if filtering is remote
+            // // sort: loadOptions.sort ? JSON.stringify(loadOptions.sort) : "",       // Pass if sorting is remote
+            // // // Pass if paging is remote
+            // // skip: loadOptions.skip,     // The number of records to skip
+            // // take: loadOptions.take,     // The number of records to take
+            // // requireTotalCount: loadOptions.requireTotalCount,   // A flag telling the server whether
+            // //                                                     // the total count of records (totalCount) is required
+            // // group: loadOptions.group ? JSON.stringify(loadOptions.group) : "", // Pass if grouping is remote
+            // // totalSummary: loadOptions.totalSummary ? JSON.stringify(loadOptions.totalSummary) : "", // Pass if summary is calculated remotely
+            // // groupSummary: loadOptions.groupSummary ? JSON.stringify(loadOptions.groupSummary) : "" // Pass if grouping is remote and summary is calculated remotely
+            // }).done(function (result) {
+            //     // You can process the received data here
+            //     d.resolve(result.data, {
+            //         totalCount: result.totalCount, // The count of received records; needed if paging is enabled
+            //         // summary: result.summary        // Needed if summary is calculated remotely
+            //     });
+            // });
             // return d.promise();
         },
 
         byKey: function(key) {
-            return $.getJSON(json_url + "/" + encodeURIComponent(key));
+            return $.getJSON(json_url + encodeURIComponent(key) + '/');
         },
 
         insert: function(values) {
-            return $.post(json_url, values);
+            // return $.post(json_url, values);
+            var d = $.Deferred()
+            return $.ajax({
+//                headers: { "X-CSRFToken": $.cookie("csrftoken") },
+                url: json_url,
+                method: "POST",
+                contentType: 'application/json',
+                data: JSON.stringify(values)
+            }).done(function () {
+                d.resolve(values)
+            })
         },
 
         update: function(key, values) {
+            var d = $.Deferred()
             return $.ajax({
-                url: json_url + "/" + encodeURIComponent(key),
+                // headers: { "X-CSRFToken": Cookies.get('csrftoken') },
+                url: json_url + encodeURIComponent(key) + '/',
                 method: "PUT",
                 data: values
+            }).done(function () {
+                d.resolve(key)
             });
         },
 
         remove: function(key) {
             var d = $.Deferred()
             return $.ajax({
-                url: json_url + "/" + encodeURIComponent(key),
+                url: json_url + encodeURIComponent(key) + '/',
                 method: "DELETE",
             }).done(function () {
                 d.resolve(key)
@@ -60,7 +75,9 @@ $(function(){
 //   currency = 'api/'
 
 $("#gridContainer").dxDataGrid({
-    dataSource: currency,
+    dataSource: {
+        store: currency
+    },
     export: {
         enabled: true,
         fileName: "Currency",
@@ -82,6 +99,8 @@ $("#gridContainer").dxDataGrid({
         height: 120
     },
     columns: [{
+        // dataField: "id",
+        // }, {
         dataField: "name",
         caption: formatMessage("name"),
         width: '45%'

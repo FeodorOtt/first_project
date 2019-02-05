@@ -17,8 +17,10 @@ SECRET_KEY = '52+lp645p37s%-l)qu7u6^td@=ngf@_f4n!l3kz3b1d%7nu(tb'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', 'http://176.104.46.2:8000/']
+ALLOWED_HOSTS = ['*']
 
+# CSRF_HEADER_NAME = 'HTTP_X_XSRF_TOKEN'
+# CSRF_TRUSTED_ORIGINS = ['*']
 
 # Application definition
 
@@ -154,3 +156,5 @@ REST_FRAMEWORK = {
 
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+TASTYPIE_DEFAULT_FORMATS = ['json', 'jsonp']

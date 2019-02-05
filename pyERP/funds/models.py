@@ -43,7 +43,7 @@ class Currency(models.Model):
     short_name = models.CharField(max_length=5, null=True)
     ISO_digit = models.CharField(max_length=3)
     ISO_char = models.CharField(max_length=3)
-    status_id = models.SmallIntegerField()
+    status_id = models.SmallIntegerField(default=1)
 
 class AccountClass(models.Model):
     name = models.CharField(max_length=100)

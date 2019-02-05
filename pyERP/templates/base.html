@@ -3,6 +3,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="_token" content="mytoken">
     <title>pyERP</title>
     <!-- jQuery -->
     <script
@@ -18,6 +19,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- A CDN link -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <!-- DevExtreme themes -->
     <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.2.5/css/dx.common.css">
     {% include "dx-themes-links.html" %}
@@ -28,6 +31,7 @@
     <script src={% static 'js/dx.messages.ua.js' %}></script>
     <!-- Some settings -->
     <link rel="stylesheet" type="text/css" href={% static 'css/master.css'%}>
+    <script> $(function () { $.ajaxSetup({ headers: { 'X-CSRFToken': $('meta[name="_token"]').attr('content') } }); }); </script>
   </head>
 
   <body>

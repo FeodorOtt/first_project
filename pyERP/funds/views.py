@@ -1,5 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.parsers import JSONParser
+from rest_framework.response import Response
 from django.http import JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from rest_framework import permissions
@@ -32,6 +33,15 @@ class CurrencyAPI(LoginRequiredMixin, APIView):
         queryset = Currency.objects.all()
         serializer = CurrencySerializers(queryset, many=True)
         return JsonResponse(serializer.data, safe=False)
+        # return Response({"data": serializer.data})
+
+    def post(self, request):
+        currency = CurrencySerializers(data=request.data)
+        if currency.is_valid():
+            currency.save()
+            return Response({"status": "Add"})
+        else:
+            return Response({"status": "Error"})
 
 
 class CurrencyListView(LoginRequiredMixin, ListView):
@@ -39,13 +49,18 @@ class CurrencyListView(LoginRequiredMixin, ListView):
     queryset = Currency.objects.all()
 
 
-class CurrencyDeleteViev(LoginRequiredMixin, DeleteView):
-    success_url = reverse_lazy("transaction")
+class CurrencyDeleteView(LoginRequiredMixin, DeleteView):
+    model = Currency
+    success_url = reverse_lazy("funds:currency")
 
     def delete(self, *args, **kwargs):
         messages.success(self.request, "Post Deleted")
         return super().delete(*args, **kwargs)
 
+
+class CurrencyUpdateView(LoginRequiredMixin,UpdateView):
+    model = Currency
+    fields = ('name', 'ISO_char',)
 
 class TransactionListView(LoginRequiredMixin, ListView):
     template_name = 'funds/transaction_list.html'

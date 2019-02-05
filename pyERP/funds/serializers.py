@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Transaction, Client, Currency
+from tastypie.serializers import Serializer
 
 class TransactionSerializers(serializers.ModelSerializer):
 
