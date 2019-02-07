@@ -1,17 +1,77 @@
 $(function(){
 
-  var client = new DevExpress.data.DataSource()
-  client = 'api/'
+    var json_url = '../api/client/'
+
+    var client1 = new DevExpress.data.CustomStore()
+    client1 = 'api/'
+
+    var client = new DevExpress.data.CustomStore({
+        key: "id",
+        // loadMode: "raw",
+        load: function() {
+            var d = $.Deferred();
+            $.getJSON(json_url).done(function(result) {
+                        d.resolve(result["objects"]);
+                        console.log(result["objects"][0])
+                    }
+            );
+            return d.promise();
+        },
+
+        byKey: function(key) {
+            return $.getJSON(json_url + encodeURIComponent(key) + '/');
+        },
+
+        insert: function(values) {
+            var d = $.Deferred()
+            $.ajax({
+                url: json_url,
+                method: "POST",
+                contentType: 'application/json',
+                data: JSON.stringify(values)
+            }).done(function () {
+                      d.resolve(values)
+                    })
+            return d.promise();
+        },
+
+        update: function(key, values) {
+            var d = $.Deferred()
+            $.ajax({
+                url: json_url + encodeURIComponent(key) + '/',
+                method: "PUT",
+                contentType: 'application/json',
+                data: JSON.stringify(values)
+            });
+            return d.promise();
+        },
+
+        remove: function(key) {
+            var d = $.Deferred()
+            $.ajax({
+                url: json_url + encodeURIComponent(key) + '/',
+                method: "DELETE",
+            }).done(function () {
+                      d.resolve(key)
+                    });
+            return d.promise();
+        }
+
+    });
 
   var client_lu = {
-    store: new DevExpress.data.CustomStore({
-      key: "id",
-      loadMode: "raw",
-      load: function() {
-      return $.getJSON('api/');
-      }
-    }),
-    sort: "name"
+      store: new DevExpress.data.CustomStore({
+              key: "id",
+              loadMode: "raw",
+              load: function() {
+                  var d = $.Deferred();
+                  $.getJSON('../api/client/').done(function(result) {
+                      return d.resolve(result["objects"]);
+                  });
+                  return d.promise();
+              }
+          }),
+     sort: "ISO_char"
   }
 
  var currency = {
@@ -65,6 +125,8 @@ $("#gridContainer").dxDataGrid({
           mode: "select"
       },
       columns: [{
+                  dataField: "id",
+                }, {
                   dataField: "name",
                   caption: formatMessage("name"),
                   width: 125

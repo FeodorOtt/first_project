@@ -3,6 +3,7 @@ from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from django.http import JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from rest_framework import permissions
 from django.shortcuts import render
 from django.views import View
@@ -44,23 +45,15 @@ class CurrencyAPI(LoginRequiredMixin, APIView):
             return Response({"status": "Error"})
 
 
-class CurrencyListView(LoginRequiredMixin, ListView):
-    template_name = 'funds/currency_list.html'
-    queryset = Currency.objects.all()
+@login_required
+def currency_list_view(request, *args, **kwargs):
+    return render(request, 'funds/currency_list.html', {})
 
 
-class CurrencyDeleteView(LoginRequiredMixin, DeleteView):
-    model = Currency
-    success_url = reverse_lazy("funds:currency")
+@login_required
+def client_list_view(request, *args, **kwargs):
+    return render(request, 'funds/client_list.html', {})
 
-    def delete(self, *args, **kwargs):
-        messages.success(self.request, "Post Deleted")
-        return super().delete(*args, **kwargs)
-
-
-class CurrencyUpdateView(LoginRequiredMixin,UpdateView):
-    model = Currency
-    fields = ('name', 'ISO_char',)
 
 class TransactionListView(LoginRequiredMixin, ListView):
     template_name = 'funds/transaction_list.html'
@@ -82,9 +75,6 @@ class TransactionAPI(LoginRequiredMixin, APIView):
             return JsonResponse(serializer.data)
         return JsonResponse(serializer.errors, status=400)
 
-class ClientListView(LoginRequiredMixin, ListView):
-    template_name = 'funds/client_list.html'
-    queryset = Client.objects.all()
 
 class ClientAPI(LoginRequiredMixin, APIView):
     def get(self,request):

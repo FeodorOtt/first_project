@@ -1,25 +1,88 @@
 $(function(){
 
-  var transaction = new DevExpress.data.DataSource()
-  transaction = 'api/'
+    var json_url = '../api/transaction/'
+
+    var transaction = {
+        store: new DevExpress.data.CustomStore({
+            key: "id",
+            // loadMode: "raw",
+            load: function (loadOptions) {
+                var d = $.Deferred();
+                $.getJSON(json_url).done(function (result) {
+                        d.resolve(result["objects"])
+                        console.log(result["objects"][0]);
+                    }
+                );
+                return d.promise();
+            },
+
+            byKey: function (key) {
+                return $.getJSON(json_url + encodeURIComponent(key) + '/');
+            },
+
+            insert: function (values) {
+                var d = $.Deferred()
+                $.ajax({
+                    url: json_url,
+                    method: "POST",
+                    contentType: 'application/json',
+                    data: JSON.stringify(values)
+                }).done(function () {
+                    d.resolve(values)
+                })
+                return d.promise();
+            },
+
+            update: function (key, values) {
+                var d = $.Deferred()
+                $.ajax({
+                    url: json_url + encodeURIComponent(key) + '/',
+                    method: "PUT",
+                    contentType: 'application/json',
+                    data: JSON.stringify(values)
+                });
+                return d.promise();
+            },
+
+            remove: function (key) {
+                var d = $.Deferred()
+                $.ajax({
+                    url: json_url + encodeURIComponent(key) + '/',
+                    method: "DELETE",
+                }).done(function () {
+                    d.resolve(key)
+                });
+                return d.promise();
+            }
+
+        })
+    }
 
   var client = {
-    store: new DevExpress.data.CustomStore({
-      key: "id",
-      loadMode: "raw",
-      load: function() {
-      return $.getJSON('../client/api/');
-      }
-    }),
-    sort: "name"
-  }
+      store: new DevExpress.data.CustomStore({
+              key: "id",
+              loadMode: "raw",
+              load: function() {
+                  var d = $.Deferred();
+                  $.getJSON('../api/client/').done(function(result) {
+                      return d.resolve(result["objects"]);
+                  });
+                  return d.promise();
+              }
+          }),
+      sort: "name"
+}
 
  var currency = {
      store: new DevExpress.data.CustomStore({
          key: "id",
          loadMode: "raw",
          load: function() {
-             return $.getJSON('../currency/api/');
+             var d = $.Deferred();
+             $.getJSON('../api/currency/').done(function(result) {
+                      return d.resolve(result["objects"]);
+                    });
+             return d.promise();
          }
      }),
      sort: "ISO_char"
@@ -134,26 +197,26 @@ $(function(){
           expandMode: 'rowClick',
           contextMenuEnabled: true,
       },
-      onContentReady: function() {
-            var ColName = formatMessage("dxDataGrid-ariaColumn") + ' ' + formatMessage("amount");
-            var ci = $("[aria-label='" + ColName + "']").attr("aria-colindex");
-            var cid = $("[aria-label='" + ColName + "']").attr("id");
-
-            $('[aria-colindex='+ci+'] .dx-datagrid-summary-item').css("color", "#c56363");
-            $('[aria-describedby='+cid+']').css("color", "#c56363");
-
-            ColName = formatMessage("dxDataGrid-ariaColumn") + ' ' + formatMessage("amount_e");
-            ci = $("[aria-label='" + ColName + "']").attr("aria-colindex");
-            cid = $("[aria-label='" + ColName + "']").attr("id");
-
-            $('[aria-colindex='+ci+'] .dx-datagrid-summary-item').css("color", "rgb(53, 62, 183)");
-            $('[aria-describedby='+cid+']').css("color", "rgb(53, 62, 183)");
-
-            // $('.dx-datagrid-rowsview .dx-row.dx-group-row').css({
-            //     'background-color': '#e7f4ff'
-            // });
-
-        },
+      // onContentReady: function() {
+      //       var ColName = formatMessage("dxDataGrid-ariaColumn") + ' ' + formatMessage("amount");
+      //       var ci = $("[aria-label='" + ColName + "']").attr("aria-colindex");
+      //       var cid = $("[aria-label='" + ColName + "']").attr("id");
+      //
+      //       $('[aria-colindex='+ci+'] .dx-datagrid-summary-item').css("color", "#c56363");
+      //       $('[aria-describedby='+cid+']').css("color", "#c56363");
+      //
+      //       ColName = formatMessage("dxDataGrid-ariaColumn") + ' ' + formatMessage("amount_e");
+      //       ci = $("[aria-label='" + ColName + "']").attr("aria-colindex");
+      //       cid = $("[aria-label='" + ColName + "']").attr("id");
+      //
+      //       $('[aria-colindex='+ci+'] .dx-datagrid-summary-item').css("color", "rgb(53, 62, 183)");
+      //       $('[aria-describedby='+cid+']').css("color", "rgb(53, 62, 183)");
+      //
+      //       // $('.dx-datagrid-rowsview .dx-row.dx-group-row').css({
+      //       //     'background-color': '#e7f4ff'
+      //       // });
+      //
+      //   },
       summary: {
           totalItems: [{
                   column: "amount",
