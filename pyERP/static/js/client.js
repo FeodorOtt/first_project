@@ -2,9 +2,6 @@ $(function(){
 
     var json_url = '../api/client/'
 
-    var client1 = new DevExpress.data.CustomStore()
-    client1 = 'api/'
-
     var client = new DevExpress.data.CustomStore({
         key: "id",
         // loadMode: "raw",
@@ -12,7 +9,7 @@ $(function(){
             var d = $.Deferred();
             $.getJSON(json_url).done(function(result) {
                         d.resolve(result["objects"]);
-                        console.log(result["objects"][0])
+                        // console.log(result["objects"][0])
                     }
             );
             return d.promise();
@@ -42,7 +39,9 @@ $(function(){
                 method: "PUT",
                 contentType: 'application/json',
                 data: JSON.stringify(values)
-            });
+            }).done(function () {
+                      d.resolve(key)
+                    });;
             return d.promise();
         },
 
@@ -79,25 +78,37 @@ $(function(){
          key: "id",
          loadMode: "raw",
          load: function() {
-             return $.getJSON('../currency/api/');
+             var d = $.Deferred();
+             $.getJSON('../api/currency/').done(function(result) {
+                      return d.resolve(result["objects"]);
+                    });
+             return d.promise();
          }
      }),
      sort: "ISO_char"
  }
 
- var transaction = {
+  var transaction = {
      store: new DevExpress.data.CustomStore({
-         key: "db_client_id",
+         key: "id",
          loadMode: "raw",
          load: function() {
-             return $.getJSON('../transaction/api/');
+             var d = $.Deferred();
+             $.getJSON('../api/transaction/').done(function(result) {
+                      return d.resolve(result["objects"]);
+                    });
+             return d.promise();
          }
      }),
-     sort: "ISO_char"
+     sort: "ISO_char",
+     // filter: ["db_client_id", "=", currentClientData.id]
+
  }
 
 $("#gridContainer").dxDataGrid({
-      dataSource: client,
+        dataSource: {
+            store: client
+        },
       // keyExpr: "id",
       export: {
           enabled: true,
@@ -125,8 +136,8 @@ $("#gridContainer").dxDataGrid({
           mode: "select"
       },
       columns: [{
-                  dataField: "id",
-                }, {
+                  // dataField: "id",
+                // }, {
                   dataField: "name",
                   caption: formatMessage("name"),
                   width: 125
@@ -142,7 +153,7 @@ $("#gridContainer").dxDataGrid({
                   lookup: {
                     dataSource: client_lu,
                     displayExpr: "name",
-                    valueExpr: "id"
+                    valueExpr: "resource_uri"
                   }
                 }],
         masterDetail: {
@@ -165,9 +176,9 @@ $("#gridContainer").dxDataGrid({
                           caption: formatMessage("cr_client_id"),
                           width: 125,
                           lookup: {
-                              dataSource: client_lu,
+                              dataSource: client,
                               displayExpr: "name",
-                              valueExpr: "id"
+                              valueExpr: "resource_uri"
                             }
                           },
                         {
@@ -178,12 +189,12 @@ $("#gridContainer").dxDataGrid({
                           format: "#,##0.00"
                         },
                         {
-                          dataField: "currency_id",
+                          dataField: "currency",
                           caption: formatMessage("currency_id"),
                           lookup: {
                             dataSource: currency,
                             displayExpr: "ISO_char",
-                            valueExpr: "id"
+                            valueExpr: "resource_uri"
                           }
                         },
                         {
@@ -191,16 +202,22 @@ $("#gridContainer").dxDataGrid({
                           caption: formatMessage("payment_details"),
                         },
                         ],
-                        dataSource: new DevExpress.data.DataSource({
+                        dataSource: {
                              store: new DevExpress.data.CustomStore({
                                  key: "db_client_id",
                                  loadMode: "raw",
                                  load: function() {
-                                     return $.getJSON('../transaction/api/');
-                                 }
+                                          var d = $.Deferred();
+                                          $.getJSON('../api/transaction/').done(function(result) {
+                                                      d.resolve(result["objects"]);
+                                                      // console.log(result["objects"][0])
+                                                  }
+                                          );
+                                          return d.promise();
+                                       }
                              }),
-                             filter: ["db_client_id", "=", currentClientData.id]
-                        })
+                             filter: ["db_client_id", "=", currentClientData.resource_uri]
+                        }
                     }).appendTo(container);
             }
         },

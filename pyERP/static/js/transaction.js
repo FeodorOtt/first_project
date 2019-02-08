@@ -10,7 +10,7 @@ $(function(){
                 var d = $.Deferred();
                 $.getJSON(json_url).done(function (result) {
                         d.resolve(result["objects"])
-                        console.log(result["objects"][0]);
+                        // console.log(result["objects"][0]);
                     }
                 );
                 return d.promise();
@@ -40,7 +40,9 @@ $(function(){
                     method: "PUT",
                     contentType: 'application/json',
                     data: JSON.stringify(values)
-                });
+                }).done(function () {
+                          d.resolve(key)
+                        });;
                 return d.promise();
             },
 
@@ -95,7 +97,7 @@ $(function(){
           fileName: "Transactions",
           allowExportSelectedData: true
       },
-      allowColumnResizing: false,
+      allowColumnResizing: true,
       cacheEnabled: true,
       // columnResizingMode: "nextColumn",
       columnMinWidth: 50,
@@ -116,51 +118,132 @@ $(function(){
           mode: "select"
       },
       columns: [{
+                  dataField: "id",
+                  caption: formatMessage("transaction_id"),
+                  width: 100
+                }, {
+                  dataField: "parent_id",
+                  caption: formatMessage("parent_id"),
+                  width: 100
+                }, {
+                  dataField: "pattern_id",
+                  caption: formatMessage("pattern_id"),
+                  width: 100
+                }, {
+                  dataField: "oper_date",
+                  dataType: "date",
+                  caption: formatMessage("oper_date")
+                }, {
+                  dataField: "currency_rate",
+                  caption: formatMessage("currency_rate"),
+                  alignment: 'right',
+                  dataType: "number",
+                  format: "#,##0.00#"
+                }, {
                   dataField: "db_client_id",
                   caption: formatMessage("db_client_id"),
                   width: 125,
                   lookup: {
                     dataSource: client,
                     displayExpr: "name",
-                    valueExpr: "id"
+                    valueExpr: "resource_uri"
                   }
-                },
-                {
+                }, {
+                  dataField: "db_account_id",
+                  caption: formatMessage("db_account_id"),
+                  width: 125,
+                  // lookup: {
+                  //   dataSource: client,
+                  //   displayExpr: "name",
+                  //   valueExpr: "resource_uri"
+                  // }
+                }, {
                   dataField: "cr_client_id",
                   caption: formatMessage("cr_client_id"),
                   width: 125,
                   lookup: {
                       dataSource: client,
                       displayExpr: "name",
-                      valueExpr: "id"
+                      valueExpr: "resource_uri"
                     }
-                  },
-                {
+                }, {
+                  dataField: "cr_account_id",
+                  caption: formatMessage("cr_account_id"),
+                  width: 125,
+                  // lookup: {
+                  //   dataSource: client,
+                  //   displayExpr: "name",
+                  //   valueExpr: "resource_uri"
+                  // }
+                }, {
                   dataField: "amount",
                   caption: formatMessage("amount"),
                   alignment: 'right',
                   dataType: "number",
                   format: "#,##0.00"
-                },
-                {
-                  dataField: "currency_id",
+                }, {
+                  dataField: "currency",
                   caption: formatMessage("currency_id"),
                   lookup: {
                     dataSource: currency,
                     displayExpr: "ISO_char",
-                    valueExpr: "id"
+                    valueExpr: "resource_uri"
                   }
-                },
-                {
+                }, {
                   dataField: "amount_e",
                   caption: formatMessage("amount_e"),
                   alignment: 'right',
                   dataType: "number",
                   format: "#,##0.00"
-                },
-                {
+                }, {
+                  dataField: "exchange_income",
+                  caption: formatMessage("exchange_income"),
+                  alignment: 'right',
+                  dataType: "number",
+                  format: "#,##0.00"
+                }, {
+                  dataField: "exchange_amount",
+                  caption: formatMessage("exchange_amount"),
+                  alignment: 'right',
+                  dataType: "number",
+                  format: "#,##0.00"
+                }, {
+                  dataField: "exchange_currency",
+                  caption: formatMessage("exchange_currency_id"),
+                  lookup: {
+                    dataSource: currency,
+                    displayExpr: "ISO_char",
+                    valueExpr: "resource_uri"
+                  }
+                }, {
+                  dataField: "exchange_amount_e",
+                  caption: formatMessage("exchange_amount_e"),
+                  alignment: 'right',
+                  dataType: "number",
+                  format: "#,##0.00"
+                }, {
+                  dataField: "partition_id",
+                  caption: formatMessage("partition_id")
+                }, {
+                  dataField: "bankimport_id",
+                  caption: formatMessage("bankimport_id")
+                }, {
                   dataField: "payment_details",
                   caption: formatMessage("payment_details"),
+                }, {
+                  dataField: "addinfo",
+                  caption: formatMessage("addinfo"),
+                }, {
+                  dataField: "handle_time",
+                  dataType: "datetime",
+                  caption: formatMessage("handle_time"),
+                  width: 50,
+                }, {
+                  dataField: "user_id",
+                  caption: formatMessage("user_id")
+                }, {
+                  dataField: "status_id",
+                  caption: formatMessage("status_id")
                 }
                ],
       editing: {

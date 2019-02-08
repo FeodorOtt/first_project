@@ -1,24 +1,23 @@
-from rest_framework.views import APIView
-from rest_framework.parsers import JSONParser
-from rest_framework.response import Response
-from django.http import JsonResponse
+# from rest_framework.views import APIView
+# from rest_framework.parsers import JSONParser
+# from rest_framework.response import Response
+# from django.http import JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from rest_framework import permissions
+# from rest_framework import permissions
 from django.shortcuts import render
 from django.views import View
-from django.contrib import messages
-from django.urls import reverse_lazy
-from django.views.generic import (
-    CreateView,
-    DetailView,
-    ListView,
-    UpdateView,
-    ListView,
-    DeleteView
-)
+# from django.urls import reverse_lazy
+# from django.views.generic import (
+#     CreateView,
+#     DetailView,
+#     ListView,
+#     UpdateView,
+#     ListView,
+#     DeleteView
+# )
 from .models import Transaction, Client, Currency
-from .serializers import TransactionSerializers, ClientSerializers, CurrencySerializers
+# from .serializers import TransactionSerializers, ClientSerializers, CurrencySerializers
 
 def index_view(request, *args, **kwargs): # *args, **kwargs
     print(args, kwargs)
@@ -29,20 +28,20 @@ def about_view(request, *args, **kwargs):
     return render(request, "about.html", {})
 
 
-class CurrencyAPI(LoginRequiredMixin, APIView):
-    def get(self,request):
-        queryset = Currency.objects.all()
-        serializer = CurrencySerializers(queryset, many=True)
-        return JsonResponse(serializer.data, safe=False)
-        # return Response({"data": serializer.data})
-
-    def post(self, request):
-        currency = CurrencySerializers(data=request.data)
-        if currency.is_valid():
-            currency.save()
-            return Response({"status": "Add"})
-        else:
-            return Response({"status": "Error"})
+# class CurrencyAPI(LoginRequiredMixin, APIView):
+#     def get(self,request):
+#         queryset = Currency.objects.all()
+#         serializer = CurrencySerializers(queryset, many=True)
+#         return JsonResponse(serializer.data, safe=False)
+#         # return Response({"data": serializer.data})
+#
+#     def post(self, request):
+#         currency = CurrencySerializers(data=request.data)
+#         if currency.is_valid():
+#             currency.save()
+#             return Response({"status": "Add"})
+#         else:
+#             return Response({"status": "Error"})
 
 
 @login_required
@@ -55,29 +54,36 @@ def client_list_view(request, *args, **kwargs):
     return render(request, 'funds/client_list.html', {})
 
 
-class TransactionListView(LoginRequiredMixin, ListView):
-    template_name = 'funds/transaction_list.html'
-    queryset = Transaction.objects.all()
-
-class TransactionAPI(LoginRequiredMixin, APIView):
-    def get(self,request):
-        queryset = Transaction.objects.all()
-        # queryset = Transaction.objects.filter(db_client_id = 0)
-        serializer = TransactionSerializers(queryset, many=True)
-        return JsonResponse(serializer.data, safe=False)
-
-    def post(self, request, pk):
-        queryset = Transaction.objects.get(pk=pk)
-        data = JSONParser().parse(request)
-        serializer = TransactionSerializers(queryset, data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data)
-        return JsonResponse(serializer.errors, status=400)
+@login_required
+def transaction_list_view(request, *args, **kwargs):
+    return render(request, 'funds/transaction_list.html', {})
 
 
-class ClientAPI(LoginRequiredMixin, APIView):
-    def get(self,request):
-        queryset = Client.objects.all()
-        serializer = ClientSerializers(queryset, many=True)
-        return JsonResponse(serializer.data, safe=False)
+# class ClientAPI(LoginRequiredMixin, APIView):
+#     def get(self,request):
+#         queryset = Client.objects.all()
+#         serializer = ClientSerializers(queryset, many=True)
+#         return JsonResponse(serializer.data, safe=False)
+
+
+# class TransactionListView(LoginRequiredMixin, ListView):
+#     template_name = 'funds/transaction_list.html'
+#     queryset = Transaction.objects.all()
+
+# class TransactionAPI(LoginRequiredMixin, APIView):
+#     def get(self,request):
+#         queryset = Transaction.objects.all()
+#         # queryset = Transaction.objects.filter(db_client_id = 0)
+#         serializer = TransactionSerializers(queryset, many=True)
+#         return JsonResponse(serializer.data, safe=False)
+#
+#     def post(self, request, pk):
+#         queryset = Transaction.objects.get(pk=pk)
+#         data = JSONParser().parse(request)
+#         serializer = TransactionSerializers(queryset, data=data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return JsonResponse(serializer.data)
+#         return JsonResponse(serializer.errors, status=400)
+
+

@@ -1,10 +1,3 @@
-DevExpress.config(
-  {
-    decimalSeparator: ',',
-    thousandsSeparator: ' '
-  }
-);
-
 ///////////////////////////////////////////////Language Switch/////////////////////////////////////////////////////////////////////////
 var locales = [
     { name: "English", value: "en" },
@@ -14,6 +7,51 @@ var locales = [
 ];
 var locale = getLocale();
 DevExpress.localization.locale(locale);
+
+// switch (locale) {
+//   case "en":
+//     DevExpress.config(
+//       {
+//         decimalSeparator: '.',
+//         thousandsSeparator: ',',
+//         forceIsoDateParsing: true
+//       }
+//     );
+//     break;
+//   case "de":
+//     DevExpress.config(
+//       {
+//         decimalSeparator: ',',
+//         thousandsSeparator: "'"
+//       }
+//     );
+//     break;
+//   case "ru":
+//     DevExpress.config(
+//       {
+//         decimalSeparator: ',',
+//         thousandsSeparator: ' '
+//       }
+//     );
+//     break;
+//   case "ua":
+//     DevExpress.config(
+//       {
+//         decimalSeparator: ',',
+//         thousandsSeparator: ' '
+//       }
+//     );
+//     break;
+//   default:
+//     DevExpress.config(
+//       {
+//         decimalSeparator: '.',
+//         thousandsSeparator: ','
+//       }
+//     );
+// }
+
+
 
 var selectLangBoxOptions = {
     inputAttr: { id: "selectLangInput" },

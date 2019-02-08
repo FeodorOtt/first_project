@@ -1,6 +1,5 @@
 from django.urls import path, include
-# from funds.views import home_view
-from tastypie.api import Api
+# from tastypie.api import Api
 from .views import *
 # (
 #     # TransactionView,
@@ -10,30 +9,30 @@ from .views import *
 #     # TransactionDeleteView
 # )
 
-from .resources import CurrencyResource, ClientResourse, TransactionResourse
+# from .resources import CurrencyResource, ClientResource, TransactionResource
 
-# funds_api = Api(api_name='funds')
-# funds_api.register(CurrencyResource())
-# funds_api.register(ClientResourse())
-# funds_api.register(TransactionResourse())
+# api = Api(api_name='api')
+# api.register(CurrencyResource())
+# api.register(ClientResource())
+# api.register(TransactionResource())
 
-currency_resource = CurrencyResource()
-client_resource = ClientResourse()
-transaction_resource = TransactionResourse()
+# currency_resource = CurrencyResource()
+# client_resource = ClientResource()
+# transaction_resource = TransactionResource()
 
 
 app_name = 'funds'
 
 urlpatterns = [
     path('', index_view, name='index'),
-    path('transaction/', TransactionListView.as_view(), name='transaction'),
-    path('transaction/api/', TransactionAPI.as_view(), name='transaction-json'),
+    path('transaction/', transaction_list_view, name='transaction'),
+    # path('transaction/api/', TransactionAPI.as_view(), name='transaction-json'),
     path('client/', client_list_view, name='client'),
-    path('client/api/', ClientAPI.as_view(), name='client-json'),
+    # path('client/api/', ClientAPI.as_view(), name='client-json'),
     path('currency/', currency_list_view, name='currency'),
-    path('currency/api/', CurrencyAPI.as_view(), name='currency-json'),
-    # path('api/', include(funds_api.urls)),
-    path('api/', include(currency_resource.urls)),
-    path('api/', include(client_resource.urls)),
-    path('api/', include(transaction_resource.urls)),
+    # path('currency/api/', CurrencyAPI.as_view(), name='currency-json'),
+    # path('', include(api.urls), name='api'),
+    # path('api/', include(currency_resource.urls)),
+    # path('api/', include(client_resource.urls)),
+    # path('api/', include(transaction_resource.urls)),
 ]
