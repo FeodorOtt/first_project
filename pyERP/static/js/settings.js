@@ -8,48 +8,12 @@ var locales = [
 var locale = getLocale();
 DevExpress.localization.locale(locale);
 
-// switch (locale) {
-//   case "en":
-//     DevExpress.config(
-//       {
-//         decimalSeparator: '.',
-//         thousandsSeparator: ',',
-//         forceIsoDateParsing: true
-//       }
-//     );
-//     break;
-//   case "de":
-//     DevExpress.config(
-//       {
-//         decimalSeparator: ',',
-//         thousandsSeparator: "'"
-//       }
-//     );
-//     break;
-//   case "ru":
-//     DevExpress.config(
-//       {
-//         decimalSeparator: ',',
-//         thousandsSeparator: ' '
-//       }
-//     );
-//     break;
-//   case "ua":
-//     DevExpress.config(
-//       {
-//         decimalSeparator: ',',
-//         thousandsSeparator: ' '
-//       }
-//     );
-//     break;
-//   default:
-//     DevExpress.config(
-//       {
-//         decimalSeparator: '.',
-//         thousandsSeparator: ','
-//       }
-//     );
-// }
+// DevExpress.config(
+//   {
+//     decimalSeparator: '.',
+//     thousandsSeparator: ',',
+//     forceIsoDateParsing: true
+//   });
 
 
 
@@ -80,9 +44,9 @@ $("#selectLangBox").dxSelectBox(selectLangBoxOptions);
 
 /////////////////////////////////////////////////Theme Switch///////////////////////////////////////////////////////////////////////
 var themes = [
-    // { name: "Greenmist", value: "generic.greenmist" },
+    { name: "Greenmist", value: "generic.greenmist" },
     { name: "Greenmist compact", value: "generic.greenmist.compact" },
-    // { name: "Light", value: "generic.light" },
+    { name: "Light", value: "generic.light" },
     { name: "Light compact", value: "generic.light.compact" },
     // { name: "Dark", value: "generic.dark" },
     { name: "Dark compact", value: "generic.dark.compact" },
@@ -135,3 +99,4 @@ function setTheme(theme) {
 }
 
 $("#selectThemeBox").dxSelectBox(selectThemeBoxOptions);
+

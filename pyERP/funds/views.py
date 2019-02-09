@@ -28,22 +28,6 @@ def about_view(request, *args, **kwargs):
     return render(request, "about.html", {})
 
 
-# class CurrencyAPI(LoginRequiredMixin, APIView):
-#     def get(self,request):
-#         queryset = Currency.objects.all()
-#         serializer = CurrencySerializers(queryset, many=True)
-#         return JsonResponse(serializer.data, safe=False)
-#         # return Response({"data": serializer.data})
-#
-#     def post(self, request):
-#         currency = CurrencySerializers(data=request.data)
-#         if currency.is_valid():
-#             currency.save()
-#             return Response({"status": "Add"})
-#         else:
-#             return Response({"status": "Error"})
-
-
 @login_required
 def currency_list_view(request, *args, **kwargs):
     return render(request, 'funds/currency_list.html', {})
@@ -57,13 +41,6 @@ def client_list_view(request, *args, **kwargs):
 @login_required
 def transaction_list_view(request, *args, **kwargs):
     return render(request, 'funds/transaction_list.html', {})
-
-
-# class ClientAPI(LoginRequiredMixin, APIView):
-#     def get(self,request):
-#         queryset = Client.objects.all()
-#         serializer = ClientSerializers(queryset, many=True)
-#         return JsonResponse(serializer.data, safe=False)
 
 
 # class TransactionListView(LoginRequiredMixin, ListView):

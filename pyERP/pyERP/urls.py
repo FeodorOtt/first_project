@@ -4,12 +4,14 @@ from django.urls import path, include
 from funds.views import index_view, about_view
 from tastypie.api import Api
 
-from funds.resources import CurrencyResource, ClientResource, TransactionResource
+from funds.resources import CurrencyResource, ClientResource, TransactionResource, UserResource, PartitionResource
 
 funds_api = Api(api_name='funds/api')
+funds_api.register(UserResource())
 funds_api.register(CurrencyResource())
 funds_api.register(ClientResource())
 funds_api.register(TransactionResource())
+funds_api.register(PartitionResource())
 
 urlpatterns = [
     path('', index_view, name='index'),

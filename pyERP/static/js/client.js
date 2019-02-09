@@ -140,6 +140,7 @@ $("#gridContainer").dxDataGrid({
                 // }, {
                   dataField: "name",
                   caption: formatMessage("name"),
+//                  cssClass: 'ClientName',
                   width: 125
                 }, {
                   dataField: "type",
@@ -189,7 +190,7 @@ $("#gridContainer").dxDataGrid({
                           format: "#,##0.00"
                         },
                         {
-                          dataField: "currency",
+                          dataField: "currency_id",
                           caption: formatMessage("currency_id"),
                           lookup: {
                             dataSource: currency,

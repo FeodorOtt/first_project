@@ -1,6 +1,9 @@
 from django.contrib import auth
 from django.db import models
 
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
 class UsersInfo(models.Model):
     user = models.OneToOneField('auth.User', on_delete=models.CASCADE,)
     client = models.ForeignKey('Client', on_delete=models.SET_NULL, null=True)
@@ -199,14 +202,14 @@ class TransactionPatternField(models.Model):
 class Transaction(models.Model):
     parent = models.ForeignKey('self', on_delete=models.SET_NULL, blank=True, null=True)
     pattern = models.ForeignKey('TransactionPattern', blank=True, null=True, on_delete=models.PROTECT)
-    oper_date = models.DateField()
+    oper_date = models.DateField(auto_now=True)
     db_client = models.ForeignKey('Client', related_name='transaction_db_client', on_delete=models.PROTECT, verbose_name='-Дт Клиент-')
     db_account = models.ForeignKey('Account', related_name='transaction_db_account', on_delete=models.PROTECT, blank=True, null=True)
     cr_client = models.ForeignKey('Client', related_name='transaction_cr_client', on_delete=models.PROTECT)
     cr_account = models.ForeignKey('Account', related_name='transaction_cr_account', on_delete=models.PROTECT, blank=True, null=True)
     currency_rate = models.DecimalField(max_digits=15, decimal_places=10, blank=True, null=True)
     exchange_income = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True)
-    partition = models.ForeignKey('Partition', on_delete=models.PROTECT)
+    partition = models.ForeignKey('Partition', on_delete=models.PROTECT, default=1)
     amount = models.DecimalField(max_digits=15, decimal_places=2)
     amount_e = models.DecimalField(max_digits=15, decimal_places=2)
     exchange_amount = models.DecimalField(max_digits=15, decimal_places=2, blank=True, null=True)
@@ -216,8 +219,8 @@ class Transaction(models.Model):
     payment_details = models.CharField(max_length=1000, blank=True, null=True)
     addinfo = models.CharField(max_length=200, blank=True, null=True)
     bankimport = models.ForeignKey('Bankimport', on_delete=models.SET_NULL, blank=True, null=True)
-    status_id = models.SmallIntegerField()
-    user = models.ForeignKey('auth.User', on_delete=models.SET_NULL, blank=True, null=True)
+    status_id = models.SmallIntegerField(choices=(('1', 'проведена'), ('2', 'отложена'), ('3', 'сторно')), default=1)
+    user = models.ForeignKey('auth.User', on_delete=models.SET_NULL, blank=True, null=True, default=User)
     handle_time = models.DateTimeField(auto_now=True)
 
 class TransactionDetail(models.Model):

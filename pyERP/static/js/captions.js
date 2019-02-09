@@ -13,6 +13,10 @@
             'idAppName': '<b>pyERP</b>',
             'idLang': 'Language',
             'idTheme': 'Theme',
+            //Common for all grids
+            'collapse_all': 'Collapse All',
+            'expand_all': 'Expand All',
+            'refresh': 'Refresh',
             //Transaction
             'transaction_id': 'Transaction #',
             'parent_id': 'Parent #',
@@ -66,6 +70,10 @@
             'idAppName': '<b>pyERP</b>',
             'idLang': 'Sprache',
             'idTheme': 'Thema',
+            //Common for all grids
+            'collapse_all': 'Alles einklappen\n',
+            'expand_all': 'Alle erweitern',
+            'refresh': 'Aktualisierung',
             //Transactions
             'transaction_id': 'Transaktion #',
             'parent_id': 'Parent #',
@@ -120,6 +128,10 @@
             'idAppName': '<b>pyERP</b>',
             'idLang': 'Язык',
             'idTheme': 'Тема',
+            //Common for all grids
+            'collapse_all': 'Свернуть всё',
+            'expand_all': 'Развернуть всё',
+            'refresh': 'Обновить',
             //Transactions
             'transaction_id': 'Транзакция №',
             'parent_id': 'Parent #',
@@ -174,6 +186,10 @@
             'idAppName': '<b>pyERP</b>',
             'idLang': 'Мова',
             'idTheme': 'Тема',
+            //Common for all grids
+            'collapse_all': 'Згорнути все',
+            'expand_all': 'Розгорнути все',
+            'refresh': 'Оновити',
             //Transactions
             'transaction_id': 'Транзакція №',
             'parent_id': 'Parent #',

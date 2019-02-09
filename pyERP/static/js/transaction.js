@@ -31,6 +31,7 @@ $(function(){
                     d.resolve(values)
                 })
                 return d.promise();
+                // dataGrid.option("focusedRowKey", d.promise);
             },
 
             update: function (key, values) {
@@ -60,6 +61,21 @@ $(function(){
         })
     }
 
+  var user_ = {
+      store: new DevExpress.data.CustomStore({
+              key: "id",
+              loadMode: "raw",
+              load: function() {
+                  var d = $.Deferred();
+                  $.getJSON('../api/user/').done(function(result) {
+                      return d.resolve(result["objects"]);
+                  });
+                  return d.promise();
+              }
+          }),
+      sort: "name"
+}
+
   var client = {
       store: new DevExpress.data.CustomStore({
               key: "id",
@@ -67,6 +83,21 @@ $(function(){
               load: function() {
                   var d = $.Deferred();
                   $.getJSON('../api/client/').done(function(result) {
+                      return d.resolve(result["objects"]);
+                  });
+                  return d.promise();
+              }
+          }),
+      sort: "name"
+}
+
+  var partition = {
+      store: new DevExpress.data.CustomStore({
+              key: "id",
+              loadMode: "raw",
+              load: function() {
+                  var d = $.Deferred();
+                  $.getJSON('../api/partition/').done(function(result) {
                       return d.resolve(result["objects"]);
                   });
                   return d.promise();
@@ -117,9 +148,19 @@ $(function(){
           enabled: true,
           mode: "select"
       },
+      paging: {
+          pageSize: 3
+      },
+      pager: {
+          showPageSizeSelector: true,
+          allowedPageSizes: [3, 5, 10],
+          showInfo: true,
+          showNavigationButtons: true
+      },
       columns: [{
                   dataField: "id",
                   caption: formatMessage("transaction_id"),
+//                  cssClass: 'TransactionColumnsStyle',
                   width: 100
                 }, {
                   dataField: "parent_id",
@@ -182,7 +223,7 @@ $(function(){
                   dataType: "number",
                   format: "#,##0.00"
                 }, {
-                  dataField: "currency",
+                  dataField: "currency_id",
                   caption: formatMessage("currency_id"),
                   lookup: {
                     dataSource: currency,
@@ -223,7 +264,12 @@ $(function(){
                   format: "#,##0.00"
                 }, {
                   dataField: "partition_id",
-                  caption: formatMessage("partition_id")
+                  caption: formatMessage("partition_id"),
+                  lookup: {
+                    dataSource: partition,
+                    displayExpr: "name",
+                    valueExpr: "resource_uri"
+                  }
                 }, {
                   dataField: "bankimport_id",
                   caption: formatMessage("bankimport_id")
@@ -240,12 +286,93 @@ $(function(){
                   width: 50,
                 }, {
                   dataField: "user_id",
-                  caption: formatMessage("user_id")
+                  caption: formatMessage("user_id"),
+                  lookup: {
+                    dataSource: user_,
+                    displayExpr: "username",
+                    valueExpr: "resource_uri"
+                  }
                 }, {
                   dataField: "status_id",
-                  caption: formatMessage("status_id")
+                  caption: formatMessage("status_id"),
+                  lookup: {
+                      dataSource: [{
+                          "id": "1",
+                          "name": "проведена"
+                      }, {
+                          "id": "2",
+                          "name": "отложена"
+                      }, {
+                          "id": "3",
+                          "name": "сторно"
+                      }],
+                    displayExpr: "name",
+                    valueExpr: "id"
+                  }
                 }
                ],
+        onToolbarPreparing: function(e) {
+            var dataGrid = e.component;
+
+            e.toolbarOptions.items.unshift({
+            //     location: "before",
+            //     template: function(){
+            //         return $("<div/>")
+            //             .addClass("informer")
+            //             .append(
+            //                $("<h2 />")
+            //                  .addClass("count")
+            //                  .text(getGroupCount("currency")),
+            //                $("<span />")
+            //                  .addClass("name")
+            //                  .text("Total Count")
+            //             );
+            //     }
+            // }, {
+            //     location: "before",
+            //     widget: "dxSelectBox",
+            //     options: {
+            //         width: 200,
+            //         items: [{
+            //             value: "currency",
+            //             text: "Grouping by Currency"
+            //         }, {
+            //             value: "db_client_id",
+            //             text: "Grouping by Db Client"
+            //         }],
+            //         displayExpr: "text",
+            //         valueExpr: "value",
+            //         value: "currency",
+            //         onValueChanged: function(e) {
+            //             dataGrid.clearGrouping();
+            //             dataGrid.columnOption(e.value, "groupIndex", 0);
+            //             $(".informer .count").text(getGroupCount(e.value));
+            //         }
+            //     }
+            // }, {
+                location: "before",
+                widget: "dxButton",
+                options: {
+                    text: formatMessage("collapse_all"),
+                    width: 100,
+                    onClick: function(e) {
+                        var expanding = e.component.option("text") === formatMessage("expand_all");
+                        dataGrid.option("grouping.autoExpandAll", expanding);
+                        e.component.option("text", expanding ? formatMessage("collapse_all") : formatMessage("expand_all"));
+                    }
+                }
+            }, {
+                location: "after",
+                widget: "dxButton",
+                options: {
+                    icon: "refresh",
+                    hint: formatMessage("refresh"),
+                    onClick: function() {
+                        dataGrid.refresh();
+                    }
+                }
+            });
+        },
       editing: {
           allowAdding: true,
           allowUpdating: true,
@@ -263,9 +390,9 @@ $(function(){
           visible: true,
           allowSearch: true
       },
-      scrolling: {
-          mode: "virtual"
-      },
+      // scrolling: {
+      //     mode: "virtual"
+      // },
       // height: 600,
       showBorders: true,
       selection: {
@@ -280,26 +407,30 @@ $(function(){
           expandMode: 'rowClick',
           contextMenuEnabled: true,
       },
-      // onContentReady: function() {
-      //       var ColName = formatMessage("dxDataGrid-ariaColumn") + ' ' + formatMessage("amount");
-      //       var ci = $("[aria-label='" + ColName + "']").attr("aria-colindex");
-      //       var cid = $("[aria-label='" + ColName + "']").attr("id");
-      //
-      //       $('[aria-colindex='+ci+'] .dx-datagrid-summary-item').css("color", "#c56363");
-      //       $('[aria-describedby='+cid+']').css("color", "#c56363");
-      //
-      //       ColName = formatMessage("dxDataGrid-ariaColumn") + ' ' + formatMessage("amount_e");
-      //       ci = $("[aria-label='" + ColName + "']").attr("aria-colindex");
-      //       cid = $("[aria-label='" + ColName + "']").attr("id");
-      //
-      //       $('[aria-colindex='+ci+'] .dx-datagrid-summary-item').css("color", "rgb(53, 62, 183)");
-      //       $('[aria-describedby='+cid+']').css("color", "rgb(53, 62, 183)");
-      //
-      //       // $('.dx-datagrid-rowsview .dx-row.dx-group-row').css({
-      //       //     'background-color': '#e7f4ff'
-      //       // });
-      //
-      //   },
+      // onRowInserted: function (keys) {
+      //     selectRows(self.dataSource.insert.promise)
+      // } ,
+      onContentReady: function() {
+            var ColName = formatMessage("dxDataGrid-ariaColumn") + ' ' + formatMessage("amount");
+            var ci = $("[aria-label='" + ColName + "']").attr("aria-colindex");
+            var cid = $("[aria-label='" + ColName + "']").attr("id");
+
+            $('[role="columnheader"]').css("font-size", "10px");
+            $('[aria-colindex='+ci+'] .dx-datagrid-summary-item').css("color", "#c56363");
+            $('[aria-describedby='+cid+']').css("color", "#c56363");
+
+            ColName = formatMessage("dxDataGrid-ariaColumn") + ' ' + formatMessage("amount_e");
+            ci = $("[aria-label='" + ColName + "']").attr("aria-colindex");
+            cid = $("[aria-label='" + ColName + "']").attr("id");
+
+            $('[aria-colindex='+ci+'] .dx-datagrid-summary-item').css("color", "rgb(53, 62, 183)");
+            $('[aria-describedby='+cid+']').css("color", "rgb(53, 62, 183)");
+
+            // $('.dx-datagrid-rowsview .dx-row.dx-group-row').css({
+            //     'background-color': '#e7f4ff'
+            // });
+
+        },
       summary: {
           totalItems: [{
                   column: "amount",
@@ -343,5 +474,10 @@ $(function(){
           ]
       }
   });
+    // function getGroupCount(groupField) {
+    //     return DevExpress.data.query(transaction)
+    //         .groupBy(groupField)
+    //         .toArray().length;
+    // }
 });
 
