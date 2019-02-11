@@ -17,11 +17,22 @@ class Partition(models.Model):
     user = models.ForeignKey('auth.User', on_delete=models.SET_NULL, blank=True, null=True)
     handle_time = models.DateTimeField(auto_now=True)
 
+class ClientType(models.Model):
+    name = models.CharField(max_length=30)
+    note = models.CharField(max_length=100, blank=True, null=True)
+
+class ClientCategory(models.Model):
+    name = models.CharField(max_length=30)
+    note = models.CharField(max_length=100, blank=True, null=True)
+
 class Client(models.Model):
     name = models.CharField(max_length=500)
+    # latin_name = models.CharField(max_length=500)
     text_id = models.CharField(max_length=300, blank=True, null=True)
-    type = models.SmallIntegerField()
-    category = models.SmallIntegerField(blank=True, null=True)
+    type = models.ForeignKey('ClientType', on_delete=models.SET_NULL, default=3, blank=True, null=True)
+    category = models.ForeignKey('ClientCategory', on_delete=models.PROTECT, blank=True, null=True)
+    # type = models.SmallIntegerField(blank=True, null=True)
+    # category = models.SmallIntegerField(blank=True, null=True)
     is_resident = models.BooleanField(default=True)
     responsible_client = models.ForeignKey('self', related_name='client_responsible_client', on_delete=models.SET_NULL, blank=True, null=True)
     document = models.SmallIntegerField(blank=True, null=True)

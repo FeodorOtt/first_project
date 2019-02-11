@@ -148,15 +148,6 @@ $(function(){
           enabled: true,
           mode: "select"
       },
-      paging: {
-          pageSize: 3
-      },
-      pager: {
-          showPageSizeSelector: true,
-          allowedPageSizes: [3, 5, 10],
-          showInfo: true,
-          showNavigationButtons: true
-      },
       columns: [{
                   dataField: "id",
                   caption: formatMessage("transaction_id"),
@@ -390,9 +381,23 @@ $(function(){
           visible: true,
           allowSearch: true
       },
-      // scrolling: {
-      //     mode: "virtual"
+      scrolling: {
+          showScrollbar: "never"
+          // scrollByThumb: true,
+          // mode: "virtual",
+          // useNative: true
+      },
+      // paging: {
+      //     enabled: true,
+      //     pageSize: 5
       // },
+      // pager: {
+      //     showPageSizeSelector: true,
+      //     allowedPageSizes: [5, 10, 20],
+      //     showInfo: true,
+      //     showNavigationButtons: true
+      // },
+      width: 1200,
       // height: 600,
       showBorders: true,
       selection: {

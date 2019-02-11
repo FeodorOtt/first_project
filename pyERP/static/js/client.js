@@ -70,7 +70,37 @@ $(function(){
                   return d.promise();
               }
           }),
-     sort: "ISO_char"
+     sort: "name"
+  }
+
+  var clienttype = {
+      store: new DevExpress.data.CustomStore({
+              key: "id",
+              loadMode: "raw",
+              load: function() {
+                  var d = $.Deferred();
+                  $.getJSON('../api/clienttype/').done(function(result) {
+                      return d.resolve(result["objects"]);
+                  });
+                  return d.promise();
+              }
+          }),
+     sort: "name"
+  }
+
+  var clientcategory = {
+      store: new DevExpress.data.CustomStore({
+              key: "id",
+              loadMode: "raw",
+              load: function() {
+                  var d = $.Deferred();
+                  $.getJSON('../api/clientcategory/').done(function(result) {
+                      return d.resolve(result["objects"]);
+                  });
+                  return d.promise();
+              }
+          }),
+     sort: "name"
   }
 
  var currency = {
@@ -143,14 +173,35 @@ $("#gridContainer").dxDataGrid({
 //                  cssClass: 'ClientName',
                   width: 125
                 }, {
-                  dataField: "type",
-                  caption: formatMessage("type")
+                  dataField: "type_id",
+                  caption: formatMessage("type"),
+                  lookup: {
+                    dataSource: clienttype,
+                    displayExpr: "name",
+                    valueExpr: "resource_uri"
+                  }
+                }, {
+                  dataField: "category_id",
+                  caption: formatMessage("category"),
+                  lookup: {
+                    dataSource: clientcategory,
+                    displayExpr: "name",
+                    valueExpr: "resource_uri"
+                  }
                 }, {
                   dataField: "is_resident",
                   caption: formatMessage("is_resident"),
                 }, {
                   dataField: "responsible_client",
                   caption: formatMessage("responsible_client"),
+                  lookup: {
+                    dataSource: client_lu,
+                    displayExpr: "name",
+                    valueExpr: "resource_uri"
+                  }
+                }, {
+                  dataField: "attracted_by",
+                  caption: formatMessage("attracted_by"),
                   lookup: {
                     dataSource: client_lu,
                     displayExpr: "name",

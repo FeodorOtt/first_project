@@ -44,6 +44,8 @@
             //Client
             'name': 'Name',
             'type': 'Type',
+            'category': 'Category',
+            'attracted_by': 'Attracted by',
             'is_resident': 'Resident',
             'responsible_client': 'Responsible',
             'cr_client_id': 'Ct Client',
@@ -102,6 +104,8 @@
             //Client
             'name': 'Name',
             'type': 'Type',
+            'category': 'Kategorie',
+            'attracted_by': 'Angezogen von',
             'is_resident': 'Resident',
             'responsible_client': 'Responsible',
             'cr_client_id': 'Ct Client',
@@ -160,6 +164,8 @@
             //Client
             'name': 'Название (Имя)',
             'type': 'Тип',
+            'category': 'Категория',
+            'attracted_by': 'Кем привлечен',
             'is_resident': 'Резидент',
             'responsible_client': 'Ответственный',
             'cr_client_id': 'Клиент Кт',
@@ -218,6 +224,8 @@
             //Client
             'name': "Назва (Ім'я)",
             'type': 'Тип',
+            'category': 'Категорія',
+            'attracted_by': 'Ким залучений',
             'is_resident': 'Резидент',
             'responsible_client': 'Відповідальний',
             'cr_client_id': 'Клієнт Кт',

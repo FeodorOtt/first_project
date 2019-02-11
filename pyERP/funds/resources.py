@@ -1,7 +1,7 @@
 from tastypie.resources import ModelResource
 from tastypie.authentication import BasicAuthentication
 from tastypie import fields
-from .models import Currency, Client, Transaction, User, Partition
+from .models import Currency, Client, Transaction, User, Partition, ClientType, ClientCategory
 from tastypie.authorization import Authorization
 # from django.contrib.auth.models import User
 
@@ -15,6 +15,18 @@ class UserResource(ModelResource):
         # authentication = BasicAuthentication()
         authorization = Authorization()
 
+class ClientTypeResource(ModelResource):
+    class Meta:
+        queryset = ClientType.objects.all().order_by('name')
+        resource_name = 'clienttype'
+        authorization = Authorization()
+
+class ClientCategoryResource(ModelResource):
+    class Meta:
+        queryset = ClientCategory.objects.all().order_by('name')
+        resource_name = 'clientcategory'
+        authorization = Authorization()
+
 class PartitionResource(ModelResource):
     # entry = fields.ToOneField('funds.resources.TransactionResourse', 'entry')
     class Meta:
@@ -25,6 +37,10 @@ class PartitionResource(ModelResource):
 
 class ClientResource(ModelResource):
     responsible_client = fields.ForeignKey('self', 'responsible_client', null=True)
+    attracted_by = fields.ForeignKey('self', 'attracted_by', null=True)
+
+    type_id = fields.ForeignKey('funds.resources.ClientTypeResource', 'type')
+    category_id = fields.ForeignKey('funds.resources.ClientCategoryResource', 'category', null=True)
     class Meta:
         # allowed_methods = ['get']
         queryset = Client.objects.all().order_by('name')
