@@ -142,7 +142,7 @@ class BankImportPattern(models.Model):
 class Bank(models.Model):
     name = models.CharField(max_length=100)
     text_id = models.CharField(unique=True, max_length=300, blank=True, null=True)
-    country = models.SmallIntegerField(null=True)
+    country = models.ForeignKey('Country', null=True, blank=True, on_delete=models.SET_NULL)
     contact_data = models.CharField(max_length=300, blank=True, null=True)
     user = models.ForeignKey('auth.User', on_delete=models.SET_NULL, blank=True, null=True)
     handle_time = models.DateTimeField(auto_now=True)

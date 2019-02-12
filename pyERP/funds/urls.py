@@ -30,6 +30,7 @@ urlpatterns = [
     path('client/', client_list_view, name='client'),
     # path('client/api/', ClientAPI.as_view(), name='client-json'),
     path('currency/', currency_list_view, name='currency'),
+    path('bank/', bank_list_view, name='bank'),
     # path('currency/api/', CurrencyAPI.as_view(), name='currency-json'),
     # path('', include(api.urls), name='api'),
     # path('api/', include(currency_resource.urls)),

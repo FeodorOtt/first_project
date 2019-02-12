@@ -32,6 +32,10 @@ def about_view(request, *args, **kwargs):
 def currency_list_view(request, *args, **kwargs):
     return render(request, 'funds/currency_list.html', {})
 
+@login_required
+def bank_list_view(request, *args, **kwargs):
+    return render(request, 'funds/bank_list.html', {})
+
 
 @login_required
 def client_list_view(request, *args, **kwargs):

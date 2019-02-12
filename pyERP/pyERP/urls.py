@@ -4,7 +4,8 @@ from django.urls import path, include
 from funds.views import index_view, about_view
 from tastypie.api import Api
 
-from funds.resources import CurrencyResource, ClientResource, TransactionResource, UserResource, PartitionResource, ClientCategoryResource, ClientTypeResource
+from funds.resources import CurrencyResource, ClientResource, TransactionResource, UserResource, PartitionResource, ClientCategoryResource, ClientTypeResource, \
+                            BankResource, CountryResource
 
 funds_api = Api(api_name='funds/api')
 funds_api.register(UserResource())
@@ -14,6 +15,8 @@ funds_api.register(ClientTypeResource())
 funds_api.register(ClientCategoryResource())
 funds_api.register(TransactionResource())
 funds_api.register(PartitionResource())
+funds_api.register(BankResource())
+funds_api.register(CountryResource())
 
 urlpatterns = [
     path('', index_view, name='index'),

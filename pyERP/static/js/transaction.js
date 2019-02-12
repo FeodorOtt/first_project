@@ -75,7 +75,6 @@ $(function(){
           }),
       sort: "name"
 }
-
   var client = {
       store: new DevExpress.data.CustomStore({
               key: "id",
@@ -90,7 +89,6 @@ $(function(){
           }),
       sort: "name"
 }
-
   var partition = {
       store: new DevExpress.data.CustomStore({
               key: "id",
@@ -105,7 +103,6 @@ $(function(){
           }),
       sort: "name"
 }
-
  var currency = {
      store: new DevExpress.data.CustomStore({
          key: "id",
@@ -120,7 +117,6 @@ $(function(){
      }),
      sort: "ISO_char"
  }
-
  $("#gridContainer").dxDataGrid({
       dataSource: transaction,
       export: {
