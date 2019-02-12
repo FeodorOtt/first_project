@@ -33,7 +33,7 @@ function changeLocale(data) {
 
 function getLocale() {
     var locale = localStorage.getItem("locale");
-    return locale != null ? locale : "en";
+    return locale != null ? locale : "ru";
 }
 
 function setLocale(locale) {

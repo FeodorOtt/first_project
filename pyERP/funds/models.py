@@ -52,6 +52,12 @@ class ClientPartition(models.Model):
     class Meta:
         unique_together = (('client', 'partition'),)
 
+class Country(models.Model):
+    name = models.CharField(max_length=100)
+    ISO_digit = models.CharField(max_length=3)
+    ISO_char = models.CharField(max_length=3)
+    ISO_short_char = models.CharField(max_length=2)
+
 class Currency(models.Model):
     name = models.CharField(max_length=100)
     short_name = models.CharField(max_length=5, null=True)

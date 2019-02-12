@@ -362,6 +362,27 @@ $(function(){
                         dataGrid.refresh();
                     }
                 }
+            }, {
+                location: "after",
+                widget: "dxDateBox",
+                options: {
+                    // icon: "refresh",
+                    hint: 'Begin Date',
+                    onValueChanged: function(e) {
+                        dataGrid.filtervalue = ["oper_date", ">=", e.value]
+                        // dataGrid.refresh();
+                    }
+                }
+            }, {
+                location: "after",
+                widget: "dxDateBox",
+                options: {
+                    // icon: "refresh",
+                    hint: 'End Date',
+                    onClick: function() {
+                        // dataGrid.refresh();
+                    }
+                }
             });
         },
       editing: {
@@ -383,14 +404,14 @@ $(function(){
       },
       scrolling: {
           showScrollbar: "never"
-          // scrollByThumb: true,
-          // mode: "virtual",
-          // useNative: true
+      //     scrollByThumb: true,
+      //      mode: "infinite"
+      //     useNative: false
       },
-      // paging: {
-      //     enabled: true,
-      //     pageSize: 5
-      // },
+      paging: {
+          enabled: false
+          // pageSize: 5
+      },
       // pager: {
       //     showPageSizeSelector: true,
       //     allowedPageSizes: [5, 10, 20],
@@ -398,7 +419,7 @@ $(function(){
       //     showNavigationButtons: true
       // },
       width: 1200,
-      // height: 600,
+      height: 600,
       showBorders: true,
       selection: {
           mode: "multiple",
@@ -408,13 +429,15 @@ $(function(){
           visible: true,
       },
       grouping: {
+          allowCollapsing: true,
           autoExpandAll: true,
           expandMode: 'rowClick',
           contextMenuEnabled: true,
       },
-      // onRowInserted: function (keys) {
-      //     selectRows(self.dataSource.insert.promise)
-      // } ,
+        // onRowInserted: function(e) {
+        //   selectRowsByIndexes([1]);
+        //   console.log(e.component);
+        // },
       onContentReady: function() {
             var ColName = formatMessage("dxDataGrid-ariaColumn") + ' ' + formatMessage("amount");
             var ci = $("[aria-label='" + ColName + "']").attr("aria-colindex");
