@@ -5,6 +5,7 @@
             'idTransaction': 'Transactions',
             'idClient': 'Clients',
             'idCurrency': 'Currency',
+            'idBank': 'Banks',
             'idLogout': 'Logout',
             'idAbout': 'About',
             'idLogin': 'Login',
@@ -13,10 +14,20 @@
             'idAppName': '<b>pyERP</b>',
             'idLang': 'Language',
             'idTheme': 'Theme',
+
             //Common for all grids
             'collapse_all': 'Collapse All',
             'expand_all': 'Expand All',
             'refresh': 'Refresh',
+            'begin_date': 'Begin Date',
+            'end_date': 'End Date',
+
+            //Bank
+            'text_id': 'BankID (MFO, SWIFT)',
+            'country': 'Country',
+            'contact_data': 'Contact Data',
+            'country_lu_field': 'latin_name',
+
             //Transaction
             'transaction_id': 'Transaction #',
             'parent_id': 'Parent #',
@@ -41,6 +52,10 @@
             'status_id': 'Status',
             'handle_time': 'Exact Time',
             'user_id': 'User',
+            'posted': 'posted',
+            'postponed': 'postponed',
+            'reversed': 'reversed',
+
             //Client
             'name': 'Name',
             'type': 'Type',
@@ -53,6 +68,7 @@
             'currency_id': 'Currency',
             'payment_details': 'Details',
             'transactions_of': 'Transactions of ',
+
             //Currency
             'short_name': 'Short Name',
             'ISO_digit': 'ISO digit',
@@ -65,6 +81,7 @@
             'idTransaction': 'Transaktionen',
             'idClient': 'Kunden',
             'idCurrency': 'Währung',
+            'idBank': 'Banken',
             'idLogout': 'Ausloggen',
             'idAbout': 'Über',
             'idLogin': 'Einloggen',
@@ -72,10 +89,20 @@
             'idAppName': '<b>pyERP</b>',
             'idLang': 'Sprache',
             'idTheme': 'Thema',
+
             //Common for all grids
             'collapse_all': 'Alles einklappen\n',
             'expand_all': 'Alle erweitern',
             'refresh': 'Aktualisierung',
+            'begin_date': 'Beginndatum',
+            'end_date': 'Enddatum',
+
+            //Bank
+            'text_id': 'BankID (MFO, SWIFT)',
+            'country': 'Land',
+            'contact_data': 'Kontaktdaten',
+            'country_lu_field': 'latin_name',
+
             //Transactions
             'transaction_id': 'Transaktion #',
             'parent_id': 'Parent #',
@@ -98,8 +125,11 @@
             'addinfo': 'Info',
             'pattern_id': 'Bewegungsart',
             'status_id': 'Status',
-            'handle_time': 'Exact TimeGenaue Zeit',
+            'handle_time': 'Genaue Zeit',
             'user_id': 'Nutzer',
+            'posted': 'gemacht',
+            'postponed': 'verschoben',
+            'reversed': 'storniert',
 
             //Client
             'name': 'Name',
@@ -113,6 +143,7 @@
             'currency_id': 'Währung',
             'payment_details': 'Zahlungszweck',
             'transactions_of': 'Transaktionen ',
+
             //Currency
             'short_name': 'Kurzname',
             'ISO_digit': 'ISO Digit',
@@ -125,6 +156,7 @@
             'idTransaction': 'Транзакции',
             'idClient': 'Клиенты',
             'idCurrency': 'Валюта',
+            'idBank': 'Банки',
             'idLogout': 'Выйти',
             'idAbout': 'О...',
             'idLogin': 'Войти',
@@ -132,10 +164,20 @@
             'idAppName': '<b>pyERP</b>',
             'idLang': 'Язык',
             'idTheme': 'Тема',
+
             //Common for all grids
             'collapse_all': 'Свернуть всё',
             'expand_all': 'Развернуть всё',
             'refresh': 'Обновить',
+            'begin_date': 'Начальная дата',
+            'end_date': 'Конечная дата',
+
+            //Bank
+            'text_id': 'Код (МФО, SWIFT)',
+            'country': 'Страна',
+            'contact_data': 'Контактные данные',
+            'country_lu_field': 'name',
+
             //Transactions
             'transaction_id': 'Транзакция №',
             'parent_id': 'Parent #',
@@ -160,6 +202,9 @@
             'status_id': 'Статус',
             'handle_time': 'Точное время',
             'user_id': 'Пользователь',
+            'posted': 'проведено',
+            'postponed': 'отложено',
+            'reversed': 'сторно',
 
             //Client
             'name': 'Название (Имя)',
@@ -173,6 +218,7 @@
             'currency_id': 'Валюта',
             'payment_details': 'Примечание',
             'transactions_of': 'Транзакции ',
+
             //Currency
             'short_name': 'Короткое',
             'ISO_digit': 'ISO цифр.',
@@ -185,6 +231,7 @@
             'idTransaction': 'Транзакції',
             'idClient': 'Клієнти',
             'idCurrency': 'Валюта',
+            'idBank': 'Банки',
             'idLogout': 'Вийти',
             'idAbout': 'Про...',
             'idLogin': 'Увійти',
@@ -192,10 +239,20 @@
             'idAppName': '<b>pyERP</b>',
             'idLang': 'Мова',
             'idTheme': 'Тема',
+
             //Common for all grids
             'collapse_all': 'Згорнути все',
             'expand_all': 'Розгорнути все',
             'refresh': 'Оновити',
+            'begin_date': 'Початкова дата',
+            'end_date': 'Кінцева дата',
+
+            //Bank
+            'text_id': 'Код (МФО, SWIFT)',
+            'country': 'Країна',
+            'contact_data': 'Контактні дані',
+            'country_lu_field': 'name',
+
             //Transactions
             'transaction_id': 'Транзакція №',
             'parent_id': 'Parent #',
@@ -220,6 +277,9 @@
             'status_id': 'Статус',
             'handle_time': 'Точний час',
             'user_id': 'Користувач',
+            'posted': 'проведено',
+            'postponed': 'відкладено',
+            'reversed': 'сторно',
 
             //Client
             'name': "Назва (Ім'я)",
@@ -233,6 +293,7 @@
             'currency_id': 'Валюта',
             'payment_details': 'Призначення',
             'transactions_of': 'Транзакції ',
+
             //Currency
             'short_name': 'Коротка',
             'ISO_digit': 'ISO цифр.',
@@ -249,6 +310,7 @@
     $('#idTransaction').text(formatMessage('idTransaction'));
     $('#idClient').text(formatMessage('idClient'));
     $('#idCurrency').text(formatMessage('idCurrency'));
+    $('#idBank').text(formatMessage('idBank'));
     $('#idLogout').text(formatMessage('idLogout'));
     $('#idAbout').text(formatMessage('idAbout'));
     $('.idLogin').text(formatMessage('idLogin'));

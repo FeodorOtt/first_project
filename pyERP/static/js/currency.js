@@ -7,27 +7,9 @@ $(function(){
         // loadMode: "raw",
         load: function(loadOptions) {
             var d = $.Deferred();
-            $.getJSON(json_url, {
-                // // Passing settings to the server
-
-                // filter: loadOptions.filter ? JSON.stringify(loadOptions.filter) : "", // Pass if filtering is remote
-                // sort: loadOptions.sort ? JSON.stringify(loadOptions.sort) : "",       // Pass if sorting is remote
-                // // Pass if paging is remote
-                // skip: loadOptions.skip,     // The number of records to skip
-                // take: loadOptions.take,     // The number of records to take
-                // requireTotalCount: loadOptions.requireTotalCount,   // A flag telling the server whether
-                //                                                     // the total count of records (totalCount) is required
-                // group: loadOptions.group ? JSON.stringify(loadOptions.group) : "", // Pass if grouping is remote
-                // totalSummary: loadOptions.totalSummary ? JSON.stringify(loadOptions.totalSummary) : "", // Pass if summary is calculated remotely
-                // groupSummary: loadOptions.groupSummary ? JSON.stringify(loadOptions.groupSummary) : "" // Pass if grouping is remote and summary is calculated remotely
-
-                }).done(function(result) {
-                        d.resolve(result["objects"], {
-                        // totalCount: result["objects"].totalCount // The count of received records; needed if paging is enabled
-                //         summary: result["objects"].summary        // Needed if summary is calculated remotely
-                    });
-            }
-            );
+            $.getJSON(json_url).done(function(result) {
+                d.resolve(result["objects"]);
+            });
             return d.promise();
         },
 
@@ -116,17 +98,6 @@ $(function(){
             dataField: "ISO_char",
             caption: formatMessage("ISO_char"),
             width: '15%'
-            // }, {
-            // type: "buttons",
-            // buttons: ["edit", "delete", {
-            //     text: "My Command",
-            //     // icon: "/url/to/my/icon.ico",
-            //     hint: "My Command",
-            //     onClick: function (e) {
-            //             var ds = dxDataGrid("getDataSource");
-            //             ds.reload();
-            //         }
-            //     }]
             },
         ],
         editing: {

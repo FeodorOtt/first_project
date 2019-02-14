@@ -71,6 +71,13 @@ var themes = [
     // { name: "Purple dark", value: "material.purple.dark" },
     // { name: "Teal", value: "material.teal.light" },
     // { name: "Teal dark", value: "material.teal.dark" },
+
+    { name: "Windows 10 Black", value: "win10.black" },
+    { name: "Windows 10 White", value: "win10.white" },
+    // { name: "Windows 8 Black", value: "win8.black" },
+    // { name: "Windows 8 White", value: "win8.white" },
+    { name: "Android 5", value: "android5.light" },
+    { name: "IOS 7", value: "ios7.default" },
 ];
 var theme = getTheme();
 DevExpress.ui.themes.current(theme);

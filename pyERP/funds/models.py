@@ -21,6 +21,15 @@ class ClientType(models.Model):
     name = models.CharField(max_length=30)
     note = models.CharField(max_length=100, blank=True, null=True)
 
+class ClientTypeLocale(models.Model):
+    locale = models.CharField(max_length=2)
+    client_type = models.ForeignKey('ClientType', on_delete=models.CASCADE)
+    name = models.CharField(max_length=30)
+    note = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        unique_together = (('locale', 'client_type'),)
+
 class ClientCategory(models.Model):
     name = models.CharField(max_length=30)
     note = models.CharField(max_length=100, blank=True, null=True)
@@ -54,6 +63,7 @@ class ClientPartition(models.Model):
 
 class Country(models.Model):
     name = models.CharField(max_length=100)
+    latin_name = models.CharField(max_length=100, blank=True, null=True)
     ISO_digit = models.CharField(max_length=3)
     ISO_char = models.CharField(max_length=3)
     ISO_short_char = models.CharField(max_length=2)

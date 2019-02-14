@@ -290,13 +290,13 @@ $(function(){
                   lookup: {
                       dataSource: [{
                           "id": "1",
-                          "name": "проведена"
+                          "name": formatMessage("posted")
                       }, {
                           "id": "2",
-                          "name": "отложена"
+                          "name": formatMessage("postponed")
                       }, {
                           "id": "3",
-                          "name": "сторно"
+                          "name": formatMessage("reversed")
                       }],
                     displayExpr: "name",
                     valueExpr: "id"
@@ -369,7 +369,7 @@ $(function(){
                 options: {
                     // icon: "refresh",
                     value: firstDay,
-                    hint: 'Begin Date',
+                    hint: formatMessage("begin_date"),
                     showClearButton: true,
                     type: 'date',
                     pickerType: 'calendar',
@@ -397,7 +397,7 @@ $(function(){
                 options: {
                     // icon: "refresh",
                     value: Date.now(),
-                    hint: 'End Date',
+                    hint: formatMessage("end_date"),
                     showClearButton: true,
                     type: 'date',
                     pickerType: 'calendar',

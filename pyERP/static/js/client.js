@@ -1,6 +1,5 @@
 $(function(){
-
-    var json_url = '../api/client/'
+    var json_url = '../api/client/';
 
     var client = new DevExpress.data.CustomStore({
         key: "id",
@@ -79,7 +78,8 @@ $(function(){
               loadMode: "raw",
               load: function() {
                   var d = $.Deferred();
-                  $.getJSON('../api/clienttype/').done(function(result) {
+                  // $.getJSON('../api/clienttype/').done(function(result) {
+                  $.getJSON('../api/clienttype/?locale='+locale).done(function(result) {
                       return d.resolve(result["objects"]);
                   });
                   return d.promise();
@@ -130,9 +130,7 @@ $(function(){
              return d.promise();
          }
      }),
-     sort: "ISO_char",
-     // filter: ["db_client_id", "=", currentClientData.id]
-
+     sort: "ISO_char"
  }
 
 $("#gridContainer").dxDataGrid({

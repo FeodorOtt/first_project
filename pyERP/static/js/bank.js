@@ -126,13 +126,14 @@ $("#gridContainer").dxDataGrid({
                   width: 125
                 }, {
                   dataField: "text_id",
-                  caption: formatMessage("text")
+                  caption: formatMessage("text_id")
                 }, {
                   dataField: "country_id",
+                  showClearButton: true,
                   caption: formatMessage("country"),
                   lookup: {
                     dataSource: country,
-                    displayExpr: "name",
+                    displayExpr: formatMessage("country_lu_field"),
                     valueExpr: "resource_uri"
                   }
                 }, {
