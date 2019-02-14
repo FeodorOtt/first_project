@@ -1,8 +1,9 @@
-from tastypie.resources import ModelResource
+from tastypie.resources import ModelResource, ALL
 from tastypie.authentication import BasicAuthentication
 from tastypie import fields
 from .models import Currency, Client, Transaction, User, Partition, ClientType, ClientCategory, Bank, Country
 from tastypie.authorization import Authorization
+from tastypie.constants import ALL
 # from django.contrib.auth.models import User
 
 
@@ -88,6 +89,10 @@ class TransactionResource(ModelResource):
             'db_account_id', 'db_client_id', 'exchange_currency_id', 'parent_id', 'partition_id', 'pattern_id', 'user_id'];
         queryset = Transaction.objects.all().order_by('id')
         resource_name = 'transaction'
+        filtering = {
+            'oper_date': ALL,
+            'amount': ALL
+        }
         authorization = Authorization()
 
 class CurrencyResource(ModelResource):

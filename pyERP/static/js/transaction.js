@@ -1,6 +1,11 @@
 $(function(){
 
-    var json_url = '../api/transaction/'
+    var json_url = '../api/transaction/';
+
+    var initDate = new Date(Date.now());
+    var firstDay = new Date(initDate.getFullYear(), initDate.getMonth(), 1);
+
+    var url_search_params = ['&oper_date__gte=' + moment(firstDay).format('YYYY-MM-DD'), '&oper_date__lte=' + moment(Date.now()).format('YYYY-MM-DD')];
 
     var transaction = {
         store: new DevExpress.data.CustomStore({
@@ -8,7 +13,7 @@ $(function(){
             // loadMode: "raw",
             load: function (loadOptions) {
                 var d = $.Deferred();
-                $.getJSON(json_url).done(function (result) {
+                $.getJSON(json_url+'?'+url_search_params[0]+url_search_params[1]).done(function (result) {
                         d.resolve(result["objects"])
                         // console.log(result["objects"][0]);
                     }
@@ -363,10 +368,27 @@ $(function(){
                 widget: "dxDateBox",
                 options: {
                     // icon: "refresh",
+                    value: firstDay,
                     hint: 'Begin Date',
+                    showClearButton: true,
+                    type: 'date',
+                    pickerType: 'calendar',
                     onValueChanged: function(e) {
-                        dataGrid.filtervalue = ["oper_date", ">=", e.value]
-                        // dataGrid.refresh();
+                        try{
+                            if (!e.value) {
+                                url_search_params[0] = '';
+                            }
+                            else {
+                                url_search_params[0] = '&oper_date__gte=' + moment(e.value).format('YYYY-MM-DD');
+                            }
+                        }
+                        catch (e) {
+                            url_search_params[0] = '';
+                        }
+                        finally {
+                            dataGrid.refresh();
+                            console.log(url_search_params);
+                        }
                     }
                 }
             }, {
@@ -374,13 +396,34 @@ $(function(){
                 widget: "dxDateBox",
                 options: {
                     // icon: "refresh",
+                    value: Date.now(),
                     hint: 'End Date',
-                    onClick: function() {
-                        // dataGrid.refresh();
+                    showClearButton: true,
+                    type: 'date',
+                    pickerType: 'calendar',
+                    onValueChanged: function(e) {
+                        try{
+                            if (!e.value) {
+                                url_search_params[1] = '';
+                            }
+                            else {
+                                url_search_params[1] = '&oper_date__lte=' + moment(e.value).format('YYYY-MM-DD');
+                            }
+                        }
+                        catch (e) {
+                            url_search_params[1] = '';
+                        }
+                        finally {
+                            dataGrid.refresh();
+                            console.log(url_search_params);
+                        }
                     }
                 }
             });
         },
+      onInitialized: function(e){
+
+      },
       editing: {
           allowAdding: true,
           allowUpdating: true,
@@ -439,7 +482,8 @@ $(function(){
             var ci = $("[aria-label='" + ColName + "']").attr("aria-colindex");
             var cid = $("[aria-label='" + ColName + "']").attr("id");
 
-            $('[role="columnheader"]').css("font-size", "10px");
+            // $('[role="columnheader"]').css("font-size", "10px");
+
             $('[aria-colindex='+ci+'] .dx-datagrid-summary-item').css("color", "#c56363");
             $('[aria-describedby='+cid+']').css("color", "#c56363");
 
@@ -498,10 +542,5 @@ $(function(){
           ]
       }
   });
-    // function getGroupCount(groupField) {
-    //     return DevExpress.data.query(transaction)
-    //         .groupBy(groupField)
-    //         .toArray().length;
-    // }
 });
 
