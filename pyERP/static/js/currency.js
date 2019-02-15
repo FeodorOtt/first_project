@@ -1,60 +1,5 @@
 $(function(){
-
-    var json_url = '../api/currency/'
-
-    var currency = new DevExpress.data.CustomStore({
-        key: "id",
-        // loadMode: "raw",
-        load: function(loadOptions) {
-            var d = $.Deferred();
-            $.getJSON(json_url).done(function(result) {
-                d.resolve(result["objects"]);
-            });
-            return d.promise();
-        },
-
-        byKey: function(key) {
-            return $.getJSON(json_url + encodeURIComponent(key) + '/');
-        },
-
-        insert: function(values) {
-            var d = $.Deferred()
-            $.ajax({
-                url: json_url,
-                method: "POST",
-                contentType: 'application/json',
-                data: JSON.stringify(values)
-            }).done(function () {
-                      d.resolve(values)
-                    })
-            return d.promise();
-        },
-
-        update: function(key, values) {
-            var d = $.Deferred()
-            $.ajax({
-                url: json_url + encodeURIComponent(key) + '/',
-                method: "PUT",
-                contentType: 'application/json',
-                data: JSON.stringify(values)
-            }).done(function () {
-                      d.resolve(key)
-                    });;
-            return d.promise();
-        },
-
-        remove: function(key) {
-            var d = $.Deferred()
-            $.ajax({
-                url: json_url + encodeURIComponent(key) + '/',
-                method: "DELETE",
-            }).done(function () {
-                      d.resolve(key)
-                    });
-            return d.promise();
-        }
-
-    });
+    var currency = json_crud('../api/currency/');
 
     $("#gridContainer").dxDataGrid({
         dataSource: {
@@ -85,11 +30,11 @@ $(function(){
             // }, {
             dataField: "name",
             caption: formatMessage("name"),
-            width: '45%'
+            width: '35%'
             }, {
-            dataField: "short_name",
-            caption: formatMessage("short_name"),
-            width: '25%'
+            dataField: "latin_name",
+            caption: formatMessage("latin_name"),
+            width: '35%'
             }, {
             dataField: "ISO_digit",
             caption: formatMessage("ISO_digit"),

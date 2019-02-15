@@ -1,129 +1,20 @@
 $(function(){
-
-    var json_url = '../api/transaction/';
-
     var initDate = new Date(Date.now());
     var firstDay = new Date(initDate.getFullYear(), initDate.getMonth(), 1);
 
     var url_search_params = ['&oper_date__gte=' + moment(firstDay).format('YYYY-MM-DD'), '&oper_date__lte=' + moment(Date.now()).format('YYYY-MM-DD')];
 
-    var transaction = {
-        store: new DevExpress.data.CustomStore({
-            key: "id",
-            // loadMode: "raw",
-            load: function (loadOptions) {
-                var d = $.Deferred();
-                $.getJSON(json_url+'?'+url_search_params[0]+url_search_params[1]).done(function (result) {
-                        d.resolve(result["objects"])
-                        // console.log(result["objects"][0]);
-                    }
-                );
-                return d.promise();
-            },
+    var transaction = json_crud('../api/transaction/', url_search_params);
 
-            byKey: function (key) {
-                return $.getJSON(json_url + encodeURIComponent(key) + '/');
-            },
+    var user_ = json_read('../api/user/');
+    var client = json_read('../api/client/');
+    var partition = json_read('../api/partition/');
+    var currency = json_read('../api/currency/', 'ISO_char');
 
-            insert: function (values) {
-                var d = $.Deferred()
-                $.ajax({
-                    url: json_url,
-                    method: "POST",
-                    contentType: 'application/json',
-                    data: JSON.stringify(values)
-                }).done(function () {
-                    d.resolve(values)
-                })
-                return d.promise();
-                // dataGrid.option("focusedRowKey", d.promise);
-            },
-
-            update: function (key, values) {
-                var d = $.Deferred()
-                $.ajax({
-                    url: json_url + encodeURIComponent(key) + '/',
-                    method: "PUT",
-                    contentType: 'application/json',
-                    data: JSON.stringify(values)
-                }).done(function () {
-                          d.resolve(key)
-                        });;
-                return d.promise();
-            },
-
-            remove: function (key) {
-                var d = $.Deferred()
-                $.ajax({
-                    url: json_url + encodeURIComponent(key) + '/',
-                    method: "DELETE",
-                }).done(function () {
-                    d.resolve(key)
-                });
-                return d.promise();
-            }
-
-        })
-    }
-
-  var user_ = {
-      store: new DevExpress.data.CustomStore({
-              key: "id",
-              loadMode: "raw",
-              load: function() {
-                  var d = $.Deferred();
-                  $.getJSON('../api/user/').done(function(result) {
-                      return d.resolve(result["objects"]);
-                  });
-                  return d.promise();
-              }
-          }),
-      sort: "name"
-}
-  var client = {
-      store: new DevExpress.data.CustomStore({
-              key: "id",
-              loadMode: "raw",
-              load: function() {
-                  var d = $.Deferred();
-                  $.getJSON('../api/client/').done(function(result) {
-                      return d.resolve(result["objects"]);
-                  });
-                  return d.promise();
-              }
-          }),
-      sort: "name"
-}
-  var partition = {
-      store: new DevExpress.data.CustomStore({
-              key: "id",
-              loadMode: "raw",
-              load: function() {
-                  var d = $.Deferred();
-                  $.getJSON('../api/partition/').done(function(result) {
-                      return d.resolve(result["objects"]);
-                  });
-                  return d.promise();
-              }
-          }),
-      sort: "name"
-}
- var currency = {
-     store: new DevExpress.data.CustomStore({
-         key: "id",
-         loadMode: "raw",
-         load: function() {
-             var d = $.Deferred();
-             $.getJSON('../api/currency/').done(function(result) {
-                      return d.resolve(result["objects"]);
-                    });
-             return d.promise();
-         }
-     }),
-     sort: "ISO_char"
- }
  $("#gridContainer").dxDataGrid({
-      dataSource: transaction,
+      dataSource: {
+          store: transaction
+      },
       export: {
           enabled: true,
           fileName: "Transactions",

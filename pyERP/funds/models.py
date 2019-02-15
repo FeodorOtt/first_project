@@ -72,7 +72,7 @@ class Country(models.Model):
 
 class Currency(models.Model):
     name = models.CharField(max_length=100)
-    short_name = models.CharField(max_length=5, null=True)
+    latin_name = models.CharField(max_length=100, blank=True, null=True)
     ISO_digit = models.CharField(max_length=3)
     ISO_char = models.CharField(max_length=3)
     status_id = models.SmallIntegerField(default=1)

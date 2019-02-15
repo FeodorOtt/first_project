@@ -70,7 +70,7 @@
             'transactions_of': 'Transactions of ',
 
             //Currency
-            'short_name': 'Short Name',
+            'latin_name': "Latin Name",
             'ISO_digit': 'ISO digit',
             'ISO_char': 'ISO char',
             'status_id': 'Status'
@@ -145,7 +145,7 @@
             'transactions_of': 'Transaktionen ',
 
             //Currency
-            'short_name': 'Kurzname',
+            'latin_name': "Lateinischer Name",
             'ISO_digit': 'ISO Digit',
             'ISO_char': 'ISO Zeichen',
             'status_id': 'Status'
@@ -220,7 +220,7 @@
             'transactions_of': 'Транзакции ',
 
             //Currency
-            'short_name': 'Короткое',
+            'latin_name': "Латинское название(имя)",
             'ISO_digit': 'ISO цифр.',
             'ISO_char': 'ISO симв.',
             'status_id': 'Статус'
@@ -295,7 +295,7 @@
             'transactions_of': 'Транзакції ',
 
             //Currency
-            'short_name': 'Коротка',
+            'latin_name': "Латинська назва(им'я)",
             'ISO_digit': 'ISO цифр.',
             'ISO_char': 'ISO симв.',
             'status_id': 'Статус'
