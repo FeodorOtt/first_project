@@ -17,18 +17,20 @@ class UserResource(ModelResource):
         authorization = Authorization()
 
 class ClientTypeResource(ModelResource):
-    # name = fields.ForeignKey('funds.resources.ClientTypeLocaleResource', 'clienttype', null=True)
-
     class Meta:
         queryset = ClientType.objects.all().order_by('name')
-        # queryset =ClientType.objects.select_related('name')
+        # queryset=ClientType.objects.select_related('ClientTypeLocale').all()
         resource_name = 'clienttype'
         authorization = Authorization()
 
 class ClientTypeLocaleResource(ModelResource):
+    client_type_id = fields.ForeignKey('funds.resources.ClientTypeResource', 'client_type', null=True)
     class Meta:
-        queryset = ClientTypeLocale.objects.all()
+        queryset = ClientTypeLocale.objects.select_related('client_type').all()
         resource_name = 'clienttypelocale'
+        filtering = {
+            'locale': ALL,
+        }
         authorization = Authorization()
 
 class ClientCategoryResource(ModelResource):

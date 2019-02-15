@@ -21,9 +21,11 @@ class ClientType(models.Model):
     name = models.CharField(max_length=30)
     note = models.CharField(max_length=100, blank=True, null=True)
 
+
 class ClientTypeLocale(models.Model):
     locale = models.CharField(max_length=2)
     client_type = models.ForeignKey('ClientType', on_delete=models.CASCADE)
+    # client_type = models.IntegerField()
     name = models.CharField(max_length=30)
     note = models.CharField(max_length=100, blank=True, null=True)
 

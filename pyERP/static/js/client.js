@@ -79,7 +79,7 @@ $(function(){
               load: function() {
                   var d = $.Deferred();
                   // $.getJSON('../api/clienttype/').done(function(result) {
-                  $.getJSON('../api/clienttype/?locale='+locale).done(function(result) {
+                  $.getJSON('../api/clienttypelocale/?locale='+locale).done(function(result) {
                       return d.resolve(result["objects"]);
                   });
                   return d.promise();
@@ -176,7 +176,7 @@ $("#gridContainer").dxDataGrid({
                   lookup: {
                     dataSource: clienttype,
                     displayExpr: "name",
-                    valueExpr: "resource_uri"
+                    valueExpr: "client_type_id"
                   }
                 }, {
                   dataField: "category_id",
