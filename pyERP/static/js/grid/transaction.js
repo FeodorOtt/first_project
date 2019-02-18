@@ -11,7 +11,7 @@ $(function(){
     var partition = json_read('../api/partition/');
     var currency = json_read('../api/currency/', 'ISO_char');
 
- $("#gridContainer").dxDataGrid({
+    $("#gridContainer").dxDataGrid({
       dataSource: {
           store: transaction
       },
@@ -180,13 +180,13 @@ $(function(){
                   caption: formatMessage("status_id"),
                   lookup: {
                       dataSource: [{
-                          "id": "1",
+                          "id": 1,
                           "name": formatMessage("posted")
                       }, {
-                          "id": "2",
+                          "id": 2,
                           "name": formatMessage("postponed")
                       }, {
-                          "id": "3",
+                          "id": 3,
                           "name": formatMessage("reversed")
                       }],
                     displayExpr: "name",
@@ -265,6 +265,8 @@ $(function(){
                     type: 'date',
                     pickerType: 'calendar',
                     onValueChanged: function(e) {
+                        // console.log(Date.now());
+                        // console.log(firstDay);
                         try{
                             if (!e.value) {
                                 url_search_params[0] = '';
@@ -292,7 +294,12 @@ $(function(){
                     showClearButton: true,
                     type: 'date',
                     pickerType: 'calendar',
+                    // onInitialized: function(e) {
+                    //     e.value = Date.now();
+                    // },
                     onValueChanged: function(e) {
+                        // console.log(Date.now());
+                        // console.log(firstDay);
                         try{
                             if (!e.value) {
                                 url_search_params[1] = '';
@@ -319,7 +326,17 @@ $(function(){
           allowAdding: true,
           allowUpdating: true,
           allowDeleting: true,
-          useIcons: true
+          useIcons: true,
+          mode: "popup",
+          form: {
+              minColWidth: 50,
+              colCount: 2,
+              focusStateEnabled: true
+              // items: [{
+              //     itemType: "group",
+              //     caption: formatMessage("idCurrency"),
+              // }]
+          }
       },
       filterRow: {
           filterEnabled: true,
@@ -432,6 +449,6 @@ $(function(){
               }
           ]
       }
-  });
+    });
 });
 

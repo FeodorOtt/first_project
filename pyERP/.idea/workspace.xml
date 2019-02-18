@@ -2,17 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d5ef4a4-f503-4806-ba25-6e24b08876cb" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/static/js/master.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../blog_project" beforeDir="false" afterPath="$PROJECT_DIR$/../blog_project" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/funds/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/funds/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/funds/resources.py" beforeDir="false" afterPath="$PROJECT_DIR$/funds/resources.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/funds/templates/funds/bank_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/funds/templates/funds/bank_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/funds/templates/funds/currency_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/funds/templates/funds/currency_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/bank.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/bank.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyERP/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyERP/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/master.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/master.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/bank.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/grid/bank.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/captions.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/captions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/client.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/currency.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/currency.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/transaction.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/transaction.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/client.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/grid/client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/currency.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/grid/currency.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/transaction.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/grid/transaction.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/dx-themes-links.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/dx-themes-links.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -95,19 +99,52 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="transaction.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/static/js/transaction.js">
+        <entry file="file://$PROJECT_DIR$/static/js/grid/transaction.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="47" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
+            <state relative-caret-position="2737">
+              <caret line="188" column="33" selection-start-line="188" selection-start-column="33" selection-end-line="188" selection-end-column="33" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bank.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/static/js/bank.js">
+      <file leaf-file-name="client.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/static/js/grid/client.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
+            <state relative-caret-position="270">
+              <caret line="84" column="33" selection-start-line="84" selection-start-column="33" selection-end-line="84" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="currency.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/js/grid/currency.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="100">
+              <caret line="52" selection-start-line="52" selection-end-line="62" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="resources.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/funds/resources.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="202">
+              <caret line="45" column="41" selection-start-line="45" selection-start-column="41" selection-end-line="45" selection-end-column="41" />
+              <folding>
+                <element signature="e#0#49#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/funds/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
+              <folding>
+                <element signature="e#400#438#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -115,8 +152,8 @@
       <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/funds/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1207">
-              <caret line="74" column="60" selection-start-line="74" selection-start-column="60" selection-end-line="74" selection-end-column="60" />
+            <state relative-caret-position="289">
+              <caret line="17" column="47" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -124,29 +161,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="funds_clienttypelocale" pinned="false" current-in-tab="false">
-        <entry file="das://dfca0829-69ba-4ac7-946f-e489bc9e1967/database/pyERP/schema/public/table/funds_clienttypelocale">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="funds_country" pinned="false" current-in-tab="false">
-        <entry file="das://dfca0829-69ba-4ac7-946f-e489bc9e1967/database/pyERP/schema/public/table/funds_country">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="131">
-              <caret line="47" column="37" selection-start-line="47" selection-start-column="37" selection-end-line="47" selection-end-column="37" />
+            <state relative-caret-position="-170">
+              <caret line="38" column="33" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -186,6 +205,9 @@
       <find>укрси</find>
       <find>dxDataGrid-ariaColumn</find>
       <find>carmin</find>
+      <find>text_id</find>
+      <find>partition</find>
+      <find>Partition</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -206,7 +228,6 @@
         <option value="$PROJECT_DIR$/funds/apps.py" />
         <option value="$PROJECT_DIR$/templates/login.html" />
         <option value="$PROJECT_DIR$/templates/test.html" />
-        <option value="$PROJECT_DIR$/funds/templates/funds/transaction_list.html" />
         <option value="$PROJECT_DIR$/templates/index.html" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/dfca0829-69ba-4ac7-946f-e489bc9e1967/console_4.sql" />
         <option value="$PROJECT_DIR$/funds/templates/funds/currency_confirm_delete.html" />
@@ -214,27 +235,32 @@
         <option value="C:/ProgramData/Anaconda3/envs/pyERP/Lib/site-packages/tastypie/fields.py" />
         <option value="$PROJECT_DIR$/funds/serializers.py" />
         <option value="dfca0829-69ba-4ac7-946f-e489bc9e1967/database/pyERP/schema/public/table/funds_transaction.sql" />
-        <option value="$PROJECT_DIR$/static/css/master.css" />
-        <option value="dfca0829-69ba-4ac7-946f-e489bc9e1967/database/pyERP/schema/public/table/funds_client.sql" />
-        <option value="$PROJECT_DIR$/pyERP/settings.py" />
         <option value="dfca0829-69ba-4ac7-946f-e489bc9e1967/database/pyERP/schema/public/table/funds_bank.sql" />
-        <option value="$PROJECT_DIR$/funds/views.py" />
         <option value="$PROJECT_DIR$/funds/templates/funds/bank_list.html" />
         <option value="$PROJECT_DIR$/funds/urls.py" />
         <option value="$PROJECT_DIR$/templates/dx-themes-links.html" />
         <option value="$PROJECT_DIR$/pyERP/urls.py" />
-        <option value="$PROJECT_DIR$/funds/resources.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/dfca0829-69ba-4ac7-946f-e489bc9e1967/console.sql" />
-        <option value="$PROJECT_DIR$/funds/models.py" />
-        <option value="$PROJECT_DIR$/static/js/captions.js" />
         <option value="$PROJECT_DIR$/static/js/settings.js" />
         <option value="$PROJECT_DIR$/funds/templates/funds/currency_list.html" />
-        <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/static/js/master.js" />
         <option value="$PROJECT_DIR$/static/js/client.js" />
         <option value="$PROJECT_DIR$/static/js/currency.js" />
-        <option value="$PROJECT_DIR$/static/js/transaction.js" />
         <option value="$PROJECT_DIR$/static/js/bank.js" />
+        <option value="$PROJECT_DIR$/static/js/transaction.js" />
+        <option value="$PROJECT_DIR$/funds/templates/funds/transaction_list.html" />
+        <option value="$PROJECT_DIR$/templates/base.html" />
+        <option value="dfca0829-69ba-4ac7-946f-e489bc9e1967/database/pyERP/schema/public/table/funds_client.sql" />
+        <option value="$PROJECT_DIR$/funds/models.py" />
+        <option value="$PROJECT_DIR$/funds/resources.py" />
+        <option value="$PROJECT_DIR$/static/css/master.css" />
+        <option value="$PROJECT_DIR$/pyERP/settings.py" />
+        <option value="$PROJECT_DIR$/funds/views.py" />
+        <option value="$PROJECT_DIR$/static/js/captions.js" />
+        <option value="$PROJECT_DIR$/static/js/grid/currency.js" />
+        <option value="$PROJECT_DIR$/static/js/grid/bank.js" />
+        <option value="$PROJECT_DIR$/static/js/grid/transaction.js" />
+        <option value="$PROJECT_DIR$/static/js/grid/client.js" />
       </list>
     </option>
   </component>
@@ -248,10 +274,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="140" />
-    <option name="y" value="20" />
-    <option name="width" value="1400" />
-    <option name="height" value="970" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="933" />
+    <option name="height" value="647" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -259,7 +285,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -299,7 +324,20 @@
               <item name="pyERP" type="b2602c69:ProjectViewProjectNode" />
               <item name="pyERP" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pyERP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pyERP" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="pyERP" type="b2602c69:ProjectViewProjectNode" />
+              <item name="pyERP" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="grid" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="pyERP" type="b2602c69:ProjectViewProjectNode" />
@@ -310,6 +348,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -332,13 +371,16 @@
     </option>
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="X:\Django\pyERP\static\css\theme" />
+      <recent name="X:\Django\pyERP\static\js\lib" />
+      <recent name="X:\Django\pyERP\static\js\grid" />
+      <recent name="X:\Django\pyERP\templates\registration" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="X:\Django\pyERP\static\js" />
       <recent name="X:\Django\pyERP\funds\templates\funds" />
       <recent name="X:\Django\pyERP\static\css" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="X:\Django\pyERP\templates\registration" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -515,7 +557,14 @@
       <option name="project" value="LOCAL" />
       <updated>1550197927017</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="28.3">
+      <created>1550274221295</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1550274221295</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TodoView" selected-index="1">
@@ -538,15 +587,15 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.2835165" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32967034" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49633253" weight="0.32967034" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4978022" visible="true" weight="0.20721272" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4978022" visible="true" weight="0.2096577" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="5" weight="0.25366747" />
       <window_info anchor="right" id="SciView" order="3" weight="0.3294621" />
       <window_info id="Structure" order="1" sideWeight="0.50163937" side_tool="true" weight="0.14792176" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" sideWeight="0.5021978" side_tool="true" weight="0.14975551" />
+      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="16" weight="0.32967034" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Coverage" order="4" side_tool="true" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -556,7 +605,7 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Database Console" order="14" sideWeight="0.49816626" weight="0.22197802" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32967034" />
-      <window_info anchor="bottom" id="Concurrent Activities Diagram" order="16" weight="0.32967034" />
+      <window_info anchor="right" id="Coverage" order="4" side_tool="true" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -617,7 +666,8 @@
     <MESSAGE value="28" />
     <MESSAGE value="28.1" />
     <MESSAGE value="28.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="28.2" />
+    <MESSAGE value="28.3" />
+    <option name="LAST_COMMIT_MESSAGE" value="28.3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -625,55 +675,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="das://c1c9e9a5-80bd-46c6-9d93-0090bf73363a/database/new_db/schema/public/table/AccountClasses">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://c1c9e9a5-80bd-46c6-9d93-0090bf73363a/database/new_db/schema/public/table/AccountType">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://c1c9e9a5-80bd-46c6-9d93-0090bf73363a/database/new_db/schema/public/table/AccountSections">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://c1c9e9a5-80bd-46c6-9d93-0090bf73363a/database/new_db/schema/public/table/AccountGroups">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://dfca0829-69ba-4ac7-946f-e489bc9e1967/database/pyERP/schema/public/table/funds_accountcategory">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://dfca0829-69ba-4ac7-946f-e489bc9e1967/database/pyERP/schema/public/table/funds_accountclass">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://dfca0829-69ba-4ac7-946f-e489bc9e1967/database/pyERP/schema/public/table/funds_accountgroup">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="das://dfca0829-69ba-4ac7-946f-e489bc9e1967/database/pyERP/schema/public/table/funds_accountpartition">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -787,35 +788,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/funds/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="36" column="38" selection-start-line="36" selection-start-column="38" selection-end-line="36" selection-end-column="38" />
-          <folding>
-            <element signature="e#177#234#0" expanded="true" />
-            <element signature="e#400#438#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="120" column="4" selection-start-line="120" selection-start-column="4" selection-end-line="120" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/master.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="17" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/dx-themes-links.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="48" column="50" selection-start-line="48" selection-start-column="50" selection-end-line="48" selection-end-column="50" />
         </state>
       </provider>
     </entry>
@@ -843,16 +819,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pyERP/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="das://dfca0829-69ba-4ac7-946f-e489bc9e1967/database/pyERP/schema/public/table/funds_clienttypelocale.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -864,16 +830,6 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/funds/resources.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="28" column="71" selection-start-line="28" selection-start-column="71" selection-end-line="28" selection-end-column="71" />
-          <folding>
-            <element signature="e#0#49#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -898,27 +854,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/funds/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1207">
-          <caret line="74" column="60" selection-start-line="74" selection-start-column="60" selection-end-line="74" selection-end-column="60" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="das://dfca0829-69ba-4ac7-946f-e489bc9e1967/database/pyERP/schema/public/table/funds_currency">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/captions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3674">
-          <caret line="72" column="32" selection-start-line="72" selection-start-column="32" selection-end-line="72" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -936,6 +875,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/funds/templates/funds/transaction_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/funds/templates/funds/currency_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -943,45 +889,140 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/client.js">
+    <entry file="file://$PROJECT_DIR$/templates/dx-themes-links.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="816">
+          <caret line="48" column="50" selection-start-line="48" selection-start-column="50" selection-end-line="48" selection-end-column="50" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/currency.js">
+    <entry file="file://$PROJECT_DIR$/funds/migrations/0015_auto_20190217_2106.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/funds/migrations/0017_auto_20190217_2125.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="das://dfca0829-69ba-4ac7-946f-e489bc9e1967/database/pyERP/schema/public/table/funds_client.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        <state relative-caret-position="188">
+          <caret line="17" column="2" selection-start-line="17" selection-start-column="2" selection-end-line="17" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://dfca0829-69ba-4ac7-946f-e489bc9e1967/database/pyERP/schema/public/table/funds_partition">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://dfca0829-69ba-4ac7-946f-e489bc9e1967/database/pyERP/schema/public/table/funds_client">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/funds/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="47" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyERP/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/master.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" column="1" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/base.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="47" column="37" selection-start-line="47" selection-start-column="37" selection-end-line="47" selection-end-column="37" />
+        <state relative-caret-position="-170">
+          <caret line="38" column="33" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/transaction.js">
+    <entry file="file://$PROJECT_DIR$/funds/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="47" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
+        <state relative-caret-position="54">
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+          <folding>
+            <element signature="e#400#438#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyERP/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="108" lean-forward="true" selection-start-line="108" selection-end-line="108" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/funds/resources.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="45" column="41" selection-start-line="45" selection-start-column="41" selection-end-line="45" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/grid/currency.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="52" selection-start-line="52" selection-end-line="62" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/master.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="53" column="31" lean-forward="true" selection-start-line="53" selection-start-column="31" selection-end-line="53" selection-end-column="31" />
+        <state relative-caret-position="270">
+          <caret line="60" column="9" selection-start-line="60" selection-start-column="9" selection-end-line="60" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/bank.js">
+    <entry file="file://$PROJECT_DIR$/static/js/grid/bank.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="28" selection-start-line="2" selection-start-column="28" selection-end-line="2" selection-end-column="28" />
+        <state relative-caret-position="1428">
+          <caret line="84" column="19" lean-forward="true" selection-start-line="84" selection-start-column="19" selection-end-line="84" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/grid/transaction.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2737">
+          <caret line="188" column="33" selection-start-line="188" selection-start-column="33" selection-end-line="188" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/captions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="23" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/grid/client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="84" column="33" selection-start-line="84" selection-start-column="33" selection-end-line="84" selection-end-column="33" />
         </state>
       </provider>
     </entry>

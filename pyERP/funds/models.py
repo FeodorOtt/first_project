@@ -51,7 +51,7 @@ class Client(models.Model):
     contact_data = models.CharField(max_length=300, blank=True, null=True)
     add_info = models.CharField(max_length=300, blank=True, null=True)
     attracted_by = models.ForeignKey('self', related_name='attracted_by_client', on_delete=models.SET_NULL, blank=True, null=True)
-    status_id = models.BooleanField(default='1')
+    status_id = models.SmallIntegerField(default='1')
     user = models.ForeignKey('auth.User', on_delete=models.SET_NULL, blank=True, null=True)
     handle_time = models.DateTimeField(auto_now=True)
 

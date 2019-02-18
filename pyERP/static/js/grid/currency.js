@@ -49,7 +49,17 @@ $(function(){
             allowAdding: true,
             allowUpdating: true,
             allowDeleting: true,
-            useIcons: true
+            useIcons: true,
+            mode: "form",
+            form: {
+                minColWidth: 50,
+                colCount: 2,
+                focusStateEnabled: true
+                // items: [{
+                //     itemType: "group",
+                //     caption: formatMessage("idCurrency"),
+                // }]
+            }
         },
         filterRow: {
             filterEnabled: true,

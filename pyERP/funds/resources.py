@@ -74,6 +74,7 @@ class ClientResource(ModelResource):
 
     type_id = fields.ForeignKey('funds.resources.ClientTypeResource', 'type')
     category_id = fields.ForeignKey('funds.resources.ClientCategoryResource', 'category', null=True)
+    user_id = fields.ForeignKey('funds.resources.UserResource', 'user', null=True)
     class Meta:
         # allowed_methods = ['get']
         queryset = Client.objects.all().order_by('name')
