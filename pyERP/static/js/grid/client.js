@@ -3,7 +3,7 @@ $(function(){
 
   var client_lu = json_read('../api/client/');
   var clienttype = json_read('../api/clienttypelocale/?locale='+locale);
-  var clientcategory = json_read('../api/clientcategory/');
+  var clientcategory = json_read('../api/clientcategorylocale/?locale='+locale);
   var currency = json_read('../api/currency/', 'ISO_char');
   var user_ = json_read('../api/user/');
 
@@ -69,7 +69,7 @@ $("#gridContainer").dxDataGrid({
                   lookup: {
                     dataSource: clientcategory,
                     displayExpr: "name",
-                    valueExpr: "resource_uri"
+                    valueExpr: "client_category_id"
                   }
                 }, {
                   dataField: "is_resident",
@@ -210,6 +210,8 @@ $("#gridContainer").dxDataGrid({
           form: {
               minColWidth: 50,
               colCount: 2,
+              showTitle: true,
+              // title: 'QWERTY',
               focusStateEnabled: true,
               items: [{
                   itemType: "group",
@@ -248,6 +250,7 @@ $("#gridContainer").dxDataGrid({
                         dataField: "responsible_client"
                       }, {
                         dataField: "is_resident"
+                        // defaultvalue: true
                       }, {
                         dataField: "attracted_by"
                       }, {

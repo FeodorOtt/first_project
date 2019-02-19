@@ -42,6 +42,9 @@ $(function(){
       },
       columns: [{
                   dataField: "id",
+                  editorOptions: {
+                      disabled: true
+                  },
                   caption: formatMessage("transaction_id"),
 //                  cssClass: 'TransactionColumnsStyle',
                   width: 100
@@ -101,6 +104,11 @@ $(function(){
                   // }
                 }, {
                   dataField: "amount",
+                  // cssClass: 'transactionAmount',
+                  editorOptions: {
+                      // disabled: true,
+                      width: "30%"
+                  },
                   caption: formatMessage("amount"),
                   alignment: 'right',
                   dataType: "number",
@@ -164,11 +172,17 @@ $(function(){
                   caption: formatMessage("addinfo"),
                 }, {
                   dataField: "handle_time",
+                  editorOptions: {
+                      disabled: true
+                  },
                   dataType: "datetime",
                   caption: formatMessage("handle_time"),
                   width: 50,
                 }, {
                   dataField: "user_id",
+                  editorOptions: {
+                      disabled: true
+                  },
                   caption: formatMessage("user_id"),
                   lookup: {
                     dataSource: user_,
@@ -192,8 +206,7 @@ $(function(){
                     displayExpr: "name",
                     valueExpr: "id"
                   }
-                }
-               ],
+        }],
         onToolbarPreparing: function(e) {
             var dataGrid = e.component;
 
@@ -319,24 +332,93 @@ $(function(){
                 }
             });
         },
-      onInitialized: function(e){
+      // onContentReady: function(e){
+      //     formInstance = e.component;
+      // },
+      // onShown: function(e){
+      //     setTimeout(function(){
+      //         e.component.getEditor('amount').focus();
+      //       }, 100);
+      // },
 
-      },
       editing: {
           allowAdding: true,
           allowUpdating: true,
           allowDeleting: true,
           useIcons: true,
           mode: "popup",
+          // activeStateEnabled: true,
           form: {
               minColWidth: 50,
               colCount: 2,
-              focusStateEnabled: true
-              // items: [{
-              //     itemType: "group",
-              //     caption: formatMessage("idCurrency"),
-              // }]
+              focusStateEnabled: true,
+              showTitle: true,
+              onShowing: function(e){
+                  e.component.option("title", "Тип транзакции: -----");
+              },
+              items: [{
+                  dataField: "id",
+                // }, {
+                //   dataField: "parent_id"
+                }, {
+                  dataField: "pattern_id"
+                }, {
+                  dataField: "oper_date",
+                  dataType: "date"
+                }, {
+                  dataField: "currency_rate",
+                }, {
+                  dataField: "db_client_id",
+                }, {
+                  dataField: "db_account_id",
+                }, {
+                  dataField: "cr_client_id",
+                }, {
+                  dataField: "cr_account_id",
+                }, {
+                  itemType: "empty",
+                }, {
+                  itemType: "empty",
+                }, {
+                  dataField: "amount",
+                  cssClass: 'transactionAmount'
+                }, {
+                  dataField: "currency_id",
+                }, {
+                  itemType: "empty",
+                }, {
+                  itemType: "empty",
+                }, {
+                  dataField: "amount_e",
+                }, {
+                  dataField: "exchange_income",
+                }, {
+                  dataField: "exchange_amount",
+                }, {
+                  dataField: "exchange_currency",
+                }, {
+                  dataField: "exchange_amount_e",
+                }, {
+                  dataField: "partition_id",
+                }, {
+                  dataField: "bankimport_id",
+                }, {
+                  dataField: "payment_details",
+                }, {
+                  dataField: "addinfo",
+                }, {
+                  dataField: "handle_time",
+                }, {
+                  dataField: "user_id",
+                }, {
+                  dataField: "status_id",
+                }
+               ]
           }
+      },
+      onEditorPreparing: function (e) {
+            if (e.dataField == "amount"||e.dataField == "amount_e"||e.dataField == "exchange_amount"||e.dataField == "exchange_amount_e")
+            e.editorName = "dxNumberBox";
       },
       filterRow: {
           filterEnabled: true,

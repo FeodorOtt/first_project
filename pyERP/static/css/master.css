@@ -35,3 +35,8 @@
     /*font-size: 17px;*/
     /*background-color: #0964E4;*/
 }
+
+.transactionAmount.{
+    font-weight: bold;
+    /*background-color: red;*/
+}

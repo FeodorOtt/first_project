@@ -36,6 +36,16 @@ class ClientCategory(models.Model):
     name = models.CharField(max_length=30)
     note = models.CharField(max_length=100, blank=True, null=True)
 
+class ClientCategoryLocale(models.Model):
+    locale = models.CharField(max_length=2)
+    client_category = models.ForeignKey('ClientCategory', on_delete=models.CASCADE)
+    # client_type = models.IntegerField()
+    name = models.CharField(max_length=30)
+    note = models.CharField(max_length=100, blank=True, null=True)
+
+    class Meta:
+        unique_together = (('locale', 'client_category'),)
+
 class Client(models.Model):
     name = models.CharField(max_length=500)
     # latin_name = models.CharField(max_length=500)

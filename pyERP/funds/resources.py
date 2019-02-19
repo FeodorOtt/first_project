@@ -1,7 +1,8 @@
 from tastypie.resources import ModelResource, ALL
 from tastypie.authentication import BasicAuthentication
 from tastypie import fields
-from .models import Currency, Client, Transaction, User, Partition, ClientType, ClientTypeLocale, ClientCategory, Bank, Country
+from .models import Currency, Client, Transaction, User, Partition, ClientType, ClientTypeLocale, \
+    ClientCategory, ClientCategoryLocale, Bank, Country
 from tastypie.authorization import Authorization
 from tastypie.constants import ALL
 # from django.contrib.auth.models import User
@@ -37,6 +38,16 @@ class ClientCategoryResource(ModelResource):
     class Meta:
         queryset = ClientCategory.objects.all().order_by('name')
         resource_name = 'clientcategory'
+        authorization = Authorization()
+
+class ClientCategoryLocaleResource(ModelResource):
+    client_category_id = fields.ForeignKey('funds.resources.ClientCategoryResource', 'client_category', null=True)
+    class Meta:
+        queryset = ClientCategoryLocale.objects.select_related('client_category').all()
+        resource_name = 'clientcategorylocale'
+        filtering = {
+            'locale': ALL,
+        }
         authorization = Authorization()
 
 class PartitionResource(ModelResource):
