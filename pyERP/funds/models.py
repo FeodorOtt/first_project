@@ -4,12 +4,6 @@ from django.db import models
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
-class UsersInfo(models.Model):
-    user = models.OneToOneField('auth.User', on_delete=models.CASCADE,)
-    client = models.ForeignKey('Client', on_delete=models.SET_NULL, null=True)
-    bria_name = models.CharField(max_length=100, null=True)
-    status_id = models.SmallIntegerField()
-
 class Partition(models.Model):
     name = models.CharField(max_length=100)
     note = models.CharField(max_length=200, blank=True, null=True)

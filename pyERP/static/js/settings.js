@@ -3,18 +3,10 @@ var locales = [
     { name: "English", value: "en" },
     { name: "Deutsch", value: "de" },
     { name: "Русский", value: "ru" },
-    { name: "Українська", value: "ua" }
+    { name: "Українська", value: "uk" }
 ];
 var locale = getLocale();
 DevExpress.localization.locale(locale);
-
-// DevExpress.config(
-//   {
-//     decimalSeparator: '.',
-//     thousandsSeparator: ',',
-//     forceIsoDateParsing: true
-//   });
-
 
 
 var selectLangBoxOptions = {
@@ -28,16 +20,19 @@ var selectLangBoxOptions = {
 
 function changeLocale(data) {
     setLocale(data.value);
-    document.location.reload();
+    // document.location.reload();
 }
 
 function getLocale() {
     var locale = localStorage.getItem("locale");
-    return locale != null ? locale : "ru";
+    return locale != null ? locale : "en";
 }
 
 function setLocale(locale) {
     localStorage.setItem("locale", locale);
+
+    $('#langForm select').val(locale);// change session locale
+    $('#langForm').submit();// change session locale
 }
 
 $("#selectLangBox").dxSelectBox(selectLangBoxOptions);

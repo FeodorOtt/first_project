@@ -1,5 +1,5 @@
 /*!
-* DevExtreme (dx.messages.ua.js)
+* DevExtreme (dx.messages.uk.js)
 * Version: 18.2.5
 * Build date: Wed Jan 23 2019
 *
@@ -22,7 +22,7 @@
     }
 }(this, function(localization) {
     localization.loadMessages({
-        ua: {
+        uk: {
             Yes: "Так",
             No: "Ні",
             Cancel: "Скасувати",

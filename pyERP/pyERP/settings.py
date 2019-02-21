@@ -32,13 +32,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'funds.apps.FundsConfig',
-    'rest_framework'
+    'rest_framework',
+    'bootstrap3',
+    'bootstrap4',
+    'accounts',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    # 'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -104,7 +108,14 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'ru-ru'
+LANGUAGE_CODE = 'en-en'
+
+LANGUAGES = (
+    ('en', 'English'),
+    ('de', 'Deutsch'),
+    ('ru', 'Русский'),
+    ('uk', 'Українська'),
+)
 
 TIME_ZONE = 'Europe/Kiev'
 

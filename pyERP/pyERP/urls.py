@@ -23,9 +23,12 @@ funds_api.register(CountryResource())
 urlpatterns = [
     path('', index_view, name='index'),
     path('', include(funds_api.urls)),
+    path('i18n/', include('django.conf.urls.i18n')),
     path('about/', about_view, name='about'),
     path('admin/', admin.site.urls, name='admin'),
     path('funds/', include('funds.urls')),
-    path('accounts/login/', views.LoginView.as_view(), name='login'),
-    path('accounts/logout/', views.LogoutView.as_view(), name='logout', kwargs={'next_page': '/'}),
+    path('accounts/', include("accounts.urls", namespace="accounts")),
+    path('accounts/', include("django.contrib.auth.urls")),
+    # path('accounts/login/', views.LoginView.as_view(), name='login'),
+    # path('accounts/logout/', views.LogoutView.as_view(), name='logout', kwargs={'next_page': '/'}),
 ]

@@ -42,7 +42,7 @@
     <script src={% static 'js/dx.messages.ru.js' %}></script>
 {#    <script src="https://cdn3.devexpress.com/jslib/18.2.5/js/localization/dx.messages.de.js"></script>#}
     <script src={% static 'js/dx.messages.de.js' %}></script>
-    <script src={% static 'js/dx.messages.ua.js' %}></script>
+    <script src={% static 'js/dx.messages.uk.js' %}></script>
     <!-- Some settings -->
     <script src={% static 'js/master.js' %}></script>
     <link rel="stylesheet" type="text/css" href={% static 'css/master.css'%}>
@@ -65,8 +65,8 @@
                       <li><a href="{% url 'logout' %}" class="btn btn-simple" id="idLogout">Logout</a></li>
     				{% else %}
     			      <li><a href="{% url 'about' %}" class="btn btn-simple" id="idAbout">About</a></li>
-                      <li><a href="{% url 'login' %}" class="btn btn-simple idLogin">Login</a></li>
-{#                      <li><a href="{% url 'signup' %}" class="btn btn-simple">Регистрация</a></li>#}
+                      <li><a href="{% url 'accounts:login' %}" class="btn btn-simple idLogin">Login</a></li>
+                      <li><a href="{% url 'accounts:signup' %}" class="btn btn-simple idSignUp">SignUp</a></li>
     				{% endif %}
     			</ul>
 
@@ -77,6 +77,16 @@
 
     {% block content %}
     {% endblock %}
+
+    <form id="langForm" action="{% url 'set_language' %}" method="post" style="display:none;">
+        {% csrf_token %}
+        <select name="language">
+            <option value="en">English</option>
+            <option value="de">Deutsch</option>
+            <option value="ru">Русский</option>
+            <option value="uk">Українська</option>
+        </select>
+    </form>
 
     <div class="option">
       <label for="selectThemeInput" id="idTheme">Theme</label>

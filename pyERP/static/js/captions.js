@@ -9,11 +9,14 @@
             'idLogout': 'Logout',
             'idAbout': 'About',
             'idLogin': 'Login',
+            'idSignUp': 'Sign Up',
             'idGetStarted': ' to get started!',
             'idWelcome': 'Welcome to ',
             'idAppName': '<b>pyERP</b>',
             'idLang': 'Language',
             'idTheme': 'Theme',
+            'idSystem': 'About pyERP',
+            'idSystemText': 'Coded by FOTT',
 
             //Common for all grids
             'collapse_all': 'Collapse All',
@@ -90,12 +93,15 @@
             'idCurrency': 'Währung',
             'idBank': 'Banken',
             'idLogout': 'Ausloggen',
+            'idSignUp': 'Registrieren',
             'idAbout': 'Über',
             'idLogin': 'Einloggen',
             'idWelcome': 'Willkommen bei ',
             'idAppName': '<b>pyERP</b>',
             'idLang': 'Sprache',
             'idTheme': 'Thema',
+            'idSystem': 'Über pyERP',
+            'idSystemText': 'Codiert von FOTT\n',
 
             //Common for all grids
             'collapse_all': 'Alles einklappen\n',
@@ -174,10 +180,13 @@
             'idLogout': 'Выйти',
             'idAbout': 'О...',
             'idLogin': 'Войти',
+            'idSignUp': 'Регистрация',
             'idWelcome': 'Добро пожаловать в ',
             'idAppName': '<b>pyERP</b>',
             'idLang': 'Язык',
             'idTheme': 'Тема',
+            'idSystem': 'О pyERP',
+            'idSystemText': 'Автор FOTT\n',
 
             //Common for all grids
             'collapse_all': 'Свернуть всё',
@@ -246,7 +255,7 @@
             'ISO_char': 'ISO симв.',
             'status_id': 'Статус'
         },
-        'ua': {
+        'uk': {
             //Welcome page and Nave bar
             'idMain': 'Головна',
             'idTransaction': 'Транзакції',
@@ -256,10 +265,13 @@
             'idLogout': 'Вийти',
             'idAbout': 'Про...',
             'idLogin': 'Увійти',
+            'idSignUp': 'Реєстрація',
             'idWelcome': 'Ласкаво просимо до ',
             'idAppName': '<b>pyERP</b>',
             'idLang': 'Мова',
             'idTheme': 'Тема',
+            'idSystem': 'Про pyERP',
+            'idSystemText': 'Автор FOTT\n',
 
             //Common for all grids
             'collapse_all': 'Згорнути все',
@@ -336,13 +348,18 @@
     var formatMessage = DevExpress.localization.formatMessage;
 
     $('#idMain').text(formatMessage('idMain'));
+    $('#idSystem').text(formatMessage('idSystem'));
+    $('#idSystemText').text(formatMessage('idSystemText'));
     $('#idTransaction').text(formatMessage('idTransaction'));
     $('#idClient').text(formatMessage('idClient'));
     $('#idCurrency').text(formatMessage('idCurrency'));
     $('#idBank').text(formatMessage('idBank'));
+    $('.idLogin').text(formatMessage('idLogin'));
+    $('.idLogin').attr('value', formatMessage('idLogin'));
+    $('.idSignUp').text(formatMessage('idSignUp'));
+    $('.idSignUp').attr('value', formatMessage('idSignUp'));
     $('#idLogout').text(formatMessage('idLogout'));
     $('#idAbout').text(formatMessage('idAbout'));
-    $('.idLogin').text(formatMessage('idLogin'));
     $('#idWelcome').html(formatMessage('idWelcome') + formatMessage('idAppName'));
     $('#idLang').text(formatMessage('idLang'));
     $('#idTheme').text(formatMessage('idTheme'));
