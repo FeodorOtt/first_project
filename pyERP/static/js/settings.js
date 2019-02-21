@@ -1,9 +1,9 @@
 ///////////////////////////////////////////////Language Switch/////////////////////////////////////////////////////////////////////////
 var locales = [
-    { name: "English", value: "en" },
-    { name: "Deutsch", value: "de" },
-    { name: "Русский", value: "ru" },
-    { name: "Українська", value: "uk" }
+    { name: "English (en)", value: "en" },
+    { name: "Deutsch (de)", value: "de" },
+    { name: "Русский (ru)", value: "ru" },
+    { name: "Українська (uk)", value: "uk" }
 ];
 var locale = getLocale();
 DevExpress.localization.locale(locale);

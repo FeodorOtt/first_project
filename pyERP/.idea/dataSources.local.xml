@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="pyERP@localhost" uuid="dfca0829-69ba-4ac7-946f-e489bc9e1967">
+      <database-info product="PostgreSQL" version="10.3" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.2.2">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>fott</user-name>
+      <introspection-schemas>pyERP:public</introspection-schemas>
+    </data-source>
+    <data-source name="new_db@localhost" uuid="c1c9e9a5-80bd-46c6-9d93-0090bf73363a">
+      <database-info product="PostgreSQL" version="10.3" jdbc-version="4.2" driver-name="PostgreSQL JDBC Driver" driver-version="42.2.2">
+        <identifier-quote-string>&quot;</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>postgres</user-name>
+      <introspection-schemas>new_db:public</introspection-schemas>
+    </data-source>
+  </component>
+</project>
