@@ -58,6 +58,7 @@
             'posted': 'posted',
             'postponed': 'postponed',
             'reversed': 'reversed',
+            'transaction_detail': 'Details of Transaction #',
 
             //Client
             'name': 'Name',
@@ -143,6 +144,7 @@
             'posted': 'gemacht',
             'postponed': 'verschoben',
             'reversed': 'storniert',
+            'transaction_detail': 'Details der Transaktion #',
 
             //Client
             'name': 'Name',
@@ -228,6 +230,7 @@
             'posted': 'проведено',
             'postponed': 'отложено',
             'reversed': 'сторно',
+            'transaction_detail': 'Детали транзакции №',
 
             //Client
             'name': 'Название (Имя)',
@@ -313,6 +316,7 @@
             'posted': 'проведено',
             'postponed': 'відкладено',
             'reversed': 'сторно',
+            'transaction_detail': 'Деталі транзакції №',
 
             //Client
             'name': "Назва (Ім'я)",

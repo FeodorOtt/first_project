@@ -1,0 +1,56 @@
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('ru', 1, 'Кассовые', 'счета кассы');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('ru', 2, 'Текущие', '');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('ru', 3, 'Депозиты', '');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('ru', 4, 'Кредиты', '');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('ru', 5, 'Доходы', 'счета доходов бизнеса');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('ru', 6, 'Расходы', 'счета расходов бизнеса');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('ru', 7, 'Общие', 'счета, не попавшие в остальные группы');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('ru', 9, 'Транзитные', 'транзитные счета разных типов');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('ru', 10, 'Процентные', '% за депозиты, кредиты, фонды итд.');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('ru', 11, 'Подотчеты', '');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('ru', 12, 'Чистая прибыль', 'счет сворачивания прибыли за период');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('ru', 13, 'Резервы', '');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('ru', 14, 'Внебалансовые', 'не влияющие на общий баланс');
+
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('uk', 1, 'Касові', 'рахунки каси');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('uk', 2, 'Поточні', '');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('uk', 3, 'Депозити', '');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('uk', 4, 'Кредити', '');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('uk', 5, 'Доходы', 'рахунки доходів бізнесу');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('uk', 6, 'ВИтрати', 'рахунки витрат бізнесу');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('uk', 7, 'Загальні', 'рахунки, що не потрапили в інші групи');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('uk', 9, 'Транзитні', 'транзитні рахунки різних типів');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('uk', 10, 'Відсоткові', '% за депозити, кредити, фонди ітд.');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('uk', 11, 'Підзвіти', '');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('uk', 12, 'Чистий прибуток', 'рахунок згортання прибутку за період');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('uk', 13, 'Резерви', '');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('uk', 14, 'Позабалансові', 'такі що не впливають на загальний баланс');
+
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('de', 1, 'Cash', 'Geldkonten');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('de', 2, 'Girokonten', '');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('de', 3, 'Einlagen', '');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('de', 4, 'Kredite', '');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('de', 5, 'Einkommen', 'Account-Geschäft Einkommen');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('de', 6, 'Kosten', 'Rechnungen Betriebsausgaben');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('de', 7, 'Allgemeines', 'Konten, die nicht in anderen Gruppen enthalten');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('de', 9, 'Transit', 'Transitkonten verschiedener Typen');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('de', 10, 'Interesse', '% Für Einlagen, Kredite, Fonds und so weiter.');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('de', 11, 'Unterberichte', '');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('de', 12, 'Nettoergebnis', 'Gewinnmargenkonto');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('de', 13, 'Reserven', '');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('de', 14, 'Ausserbilanz', 'die Gesamtbilanz nicht beeinflussen');
+
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('en', 1, 'Cash', 'cash accounts');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('en', 2, 'Current', '');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('en', 3, 'Deposits', '');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('en', 4, 'Loans', '');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('en', 5, 'Income', 'business income accounts');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('en', 6, 'Costs', 'business expense accounts');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('en', 7, 'Common', 'accounts not included in other groups');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('en', 9, 'Transit', 'transit accounts of different types');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('en', 10, 'Interest', '% for deposits, loans, funds, etc.');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('en', 11, 'Acountable', '');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('en', 12, 'Profit', 'Profit Margin Account');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('en', 13, 'Reserves', '');
+INSERT INTO public.funds_accounttypelocale (locale, account_type_id, name, note) VALUES ('en', 14, 'Off-balance', 'not affecting the overall balance');
+

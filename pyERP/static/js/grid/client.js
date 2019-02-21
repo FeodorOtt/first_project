@@ -184,11 +184,11 @@ $("#gridContainer").dxDataGrid({
                         ],
                         dataSource: {
                              store: new DevExpress.data.CustomStore({
-                                 key: "db_client_id",
+                                 key: "id",
                                  loadMode: "raw",
                                  load: function() {
                                           var d = $.Deferred();
-                                          $.getJSON('../api/transaction/').done(function(result) {
+                                          $.getJSON('../api/transaction/?db_client_id=' + currentClientData.id).done(function(result) {
                                                       d.resolve(result["objects"]);
                                                       // console.log(result["objects"][0])
                                                   }
@@ -196,7 +196,7 @@ $("#gridContainer").dxDataGrid({
                                           return d.promise();
                                        }
                              }),
-                             filter: ["db_client_id", "=", currentClientData.resource_uri]
+                             // filter: ["db_client_id", "=", currentClientData.resource_uri]
                         }
                     }).appendTo(container);
             }

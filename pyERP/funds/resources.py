@@ -1,7 +1,7 @@
 from tastypie.resources import ModelResource, ALL
 from tastypie.authentication import BasicAuthentication
 from tastypie import fields
-from .models import Currency, Client, Transaction, User, Partition, ClientType, ClientTypeLocale, \
+from .models import Currency, Client, Transaction, TransactionDetail, User, Partition, ClientType, ClientTypeLocale, \
     ClientCategory, ClientCategoryLocale, Bank, Country
 from tastypie.authorization import Authorization
 from tastypie.constants import ALL
@@ -114,7 +114,22 @@ class TransactionResource(ModelResource):
         resource_name = 'transaction'
         filtering = {
             'oper_date': ALL,
-            'amount': ALL
+            'db_client_id': ALL,
+        }
+        authorization = Authorization()
+
+class TransactionDetailResource(ModelResource):
+    transaction_id = fields.ForeignKey('funds.resources.TransactionResource', 'transaction')
+    class Meta:
+        limit = 0
+        max_limit = 0
+        # fields = ['id', 'oper_date', 'currency_rate', 'exchange_income', 'amount', 'amount_e', 'exchange_amount', 'exchange_amount_e',
+        #     'payment_details', 'addinfo', 'status_id', 'handle_time', 'bankimport_id', 'cr_account_id', 'cr_client_id', 'currency_id',
+        #     'db_account_id', 'db_client_id', 'exchange_currency_id', 'parent_id', 'partition_id', 'pattern_id', 'user_id'];
+        queryset = TransactionDetail.objects.all()#.order_by('-id')
+        resource_name = 'transactiondetail'
+        filtering = {
+            'transaction_id': ALL
         }
         authorization = Authorization()
 
@@ -125,5 +140,3 @@ class CurrencyResource(ModelResource):
         queryset = Currency.objects.all().order_by('name')
         resource_name = 'currency'
         authorization = Authorization()
-
-

@@ -207,6 +207,140 @@ $(function(){
                     valueExpr: "id"
                   }
         }],
+        masterDetail: {
+            enabled: true,
+            template: function(container, options) {
+                var currentTransData = options.data;
+
+                $("<div>")
+                    .addClass("master-detail-caption")
+                     .text(formatMessage("transaction_detail") + currentTransData.id + ':')
+                    .appendTo(container);
+
+                $("<div>")
+                    .dxDataGrid({
+                        columnAutoWidth: true,
+                        showBorders: true,
+                        columns: [{
+                          dataField: "id",
+                        }, {
+                          dataField: "transaction_id",
+                          visible: false,
+                          caption: formatMessage("transaction_id"),
+                        }, {
+                          dataField: "order_id",
+                          caption: formatMessage("order_id"),
+                        }, {
+                          dataField: "partition_id",
+                          caption: formatMessage("partition_id"),
+                        }, {
+                          dataField: "db_client_id",
+                          caption: formatMessage("db_client_id"),
+                          lookup: {
+                            dataSource: client,
+                            displayExpr: "name",
+                            valueExpr: "resource_uri"
+                          }
+                        }, {
+                          dataField: "db_account_id",
+                          caption: formatMessage("db_account_id"),
+                          // lookup: {
+                          //   dataSource: client,
+                          //   displayExpr: "name",
+                          //   valueExpr: "resource_uri"
+                          // }
+                        }, {
+                          dataField: "cr_client_id",
+                          caption: formatMessage("cr_client_id"),
+                          lookup: {
+                              dataSource: client,
+                              displayExpr: "name",
+                              valueExpr: "resource_uri"
+                            }
+                        }, {
+                          dataField: "cr_account_id",
+                          caption: formatMessage("cr_account_id"),
+                          // lookup: {
+                          //   dataSource: client,
+                          //   displayExpr: "name",
+                          //   valueExpr: "resource_uri"
+                          // }
+                        }, {
+                          dataField: "amount",
+                          caption: formatMessage("amount"),
+                          alignment: 'right',
+                          dataType: "number",
+                          format: "#,##0.00"
+                        }, {
+                          dataField: "currency_id",
+                          caption: formatMessage("currency_id"),
+                          lookup: {
+                            dataSource: currency,
+                            displayExpr: "ISO_char",
+                            valueExpr: "resource_uri"
+                          }
+                        }, {
+                          dataField: "amount_e",
+                          caption: formatMessage("amount_e"),
+                          alignment: 'right',
+                          dataType: "number",
+                          format: "#,##0.00"
+                        }, {
+                          dataField: "handle_time",
+                          editorOptions: {
+                              disabled: true
+                          },
+                          dataType: "datetime",
+                          caption: formatMessage("handle_time"),
+                          width: 50,
+                        }, {
+                          dataField: "user_id",
+                          editorOptions: {
+                              disabled: true
+                          },
+                          caption: formatMessage("user_id"),
+                          lookup: {
+                            dataSource: user_,
+                            displayExpr: "username",
+                            valueExpr: "resource_uri"
+                          }
+                        }, {
+                          dataField: "status_id",
+                          caption: formatMessage("status_id"),
+                          lookup: {
+                              dataSource: [{
+                                  "id": 1,
+                                  "name": formatMessage("posted")
+                              }, {
+                                  "id": 2,
+                                  "name": formatMessage("postponed")
+                              }, {
+                                  "id": 3,
+                                  "name": formatMessage("reversed")
+                              }],
+                            displayExpr: "name",
+                            valueExpr: "id"
+                          }
+                        }],
+                        dataSource: {
+                             store: new DevExpress.data.CustomStore({
+                                 key: "id",
+                                 loadMode: "raw",
+                                 load: function() {
+                                          var d = $.Deferred();
+                                          $.getJSON('../api/transactiondetail/?transaction_id=' + currentTransData.id).done(function(result) {
+                                                      d.resolve(result["objects"]);
+                                                      // console.log(result["objects"][0])
+                                                  }
+                                          );
+                                          return d.promise();
+                                       }
+                             }),
+                             filter: ["resource_uri", "=", currentTransData.transaction_id]
+                        }
+                    }).appendTo(container);
+            }
+        },
         onToolbarPreparing: function(e) {
             var dataGrid = e.component;
 
@@ -533,4 +667,3 @@ $(function(){
       }
     });
 });
-

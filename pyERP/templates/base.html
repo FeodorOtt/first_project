@@ -88,10 +88,13 @@
         </select>
     </form>
 
+    {% if user.is_authenticated %}
+    {# {% if #gridContainer %} #}
     <div class="option">
       <label for="selectThemeInput" id="idTheme">Theme</label>
       <div id="selectThemeBox"></div>
     </div>
+    {% endif %}
 
     <div class="option">
       <label for="selectLangInput" id="idLang">Language</label>

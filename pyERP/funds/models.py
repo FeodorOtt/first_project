@@ -101,25 +101,41 @@ class AccountType(models.Model):
     name = models.CharField(max_length=30)
     note = models.CharField(max_length=100, blank=True, null=True)
 
+class AccountTypeLocale(models.Model):
+    locale = models.CharField(max_length=2)
+    account_type = models.ForeignKey('AccountType', on_delete=models.CASCADE)
+    name = models.CharField(max_length=30)
+    note = models.CharField(max_length=100, blank=True, null=True)
+    class Meta:
+        unique_together = (('locale', 'account_type'),)
+
 class AccountCategory(models.Model):
     name = models.CharField(max_length=30)
     inner_name = models.CharField(max_length=100, blank=True, null=True)
 
+class AccountCategoryLocale(models.Model):
+    locale = models.CharField(max_length=2)
+    account_category = models.ForeignKey('AccountCategory', on_delete=models.CASCADE)
+    name = models.CharField(max_length=30)
+    inner_name = models.CharField(max_length=100, blank=True, null=True)
+    class Meta:
+        unique_together = (('locale', 'account_category'),)
+
 class Account(models.Model):
     number = models.CharField(max_length=300)
     client = models.ForeignKey('Client', on_delete=models.CASCADE)
-    balance_account = models.IntegerField()
+    balance_account = models.ForeignKey('BalanceAccount', on_delete=models.PROTECT)
     index = models.SmallIntegerField()
-    saldo_type = models.ForeignKey('AccountSaldoType', on_delete=models.CASCADE)
-    type = models.ForeignKey('AccountType', on_delete=models.CASCADE)
-    category = models.SmallIntegerField(blank=True, null=True)
-    bank = models.ForeignKey('Bank', on_delete=models.CASCADE)
+    saldo_type = models.ForeignKey('AccountSaldoType', on_delete=models.PROTECT)
+    type = models.ForeignKey('AccountType', on_delete=models.PROTECT)
+    category = models.ForeignKey('AccountCategory', on_delete=models.SET_NULL, blank=True, null=True)
+    bank = models.ForeignKey('Bank', on_delete=models.SET_NULL, blank=True, null=True)
     assignment = models.CharField(max_length=300, blank=True, null=True)
     begin_date = models.DateField()
     end_date = models.DateField(blank=True, null=True)
-    parent_client = models.ForeignKey('Client', related_name='parent_client', on_delete=models.CASCADE)
-    sync_partition_flag = models.BooleanField(blank=True, null=True)
-    status_id = models.SmallIntegerField()
+    parent_client = models.ForeignKey('Client', related_name='parent_client', on_delete=models.SET_NULL, blank=True, null=True)
+    sync_partition_flag = models.BooleanField(blank=True, null=True, default=True)
+    status_id = models.SmallIntegerField(default=1)
     user = models.ForeignKey('auth.User', on_delete=models.SET_NULL, blank=True, null=True)
     handle_time = models.DateTimeField(auto_now=True)
 
