@@ -124,6 +124,13 @@ class TransactionResource(ModelResource):
 
 class TransactionDetailResource(ModelResource):
     transaction_id = fields.ForeignKey('funds.resources.TransactionResource', 'transaction')
+    partition_id = fields.ForeignKey('funds.resources.PartitionResource', 'partition')
+    currency_id = fields.ForeignKey('funds.resources.CurrencyResource', 'currency')
+    db_client_id = fields.ForeignKey('funds.resources.ClientResource', 'db_client')
+    db_account_id = fields.ForeignKey('funds.resources.AccountResource', 'db_account')
+    cr_client_id = fields.ForeignKey('funds.resources.ClientResource', 'cr_client')
+    cr_account_id = fields.ForeignKey('funds.resources.AccountResource', 'cr_account')
+    user_id = fields.ForeignKey('funds.resources.UserResource', 'user', null=True)
     class Meta:
         limit = 0
         max_limit = 0
@@ -180,7 +187,14 @@ class AccountCategoryLocaleResource(ModelResource):
         authorization = Authorization()
 
 class AccountResource(ModelResource):
+    client_id = fields.ForeignKey('funds.resources.ClientResource', 'client')
     balance_account_id = fields.ForeignKey('funds.resources.BalanceAccountResource', 'balance_account', null=True)
+    saldo_type_id = fields.ForeignKey('funds.resources.AccountSaldoTypeResource', 'saldo_type')
+    type_id = fields.ForeignKey('funds.resources.AccountTypeResource', 'type')
+    category_id = fields.ForeignKey('funds.resources.AccountCategoryResource', 'category', null=True)
+    bank_id = fields.ForeignKey('funds.resources.BankResource', 'bank', null=True)
+    parent_client_id = fields.ForeignKey('funds.resources.ClientResource', 'parent_client', null=True)
+    user_id = fields.ForeignKey('funds.resources.UserResource', 'user', null=True)
     class Meta:
         limit = 0
         max_limit = 0

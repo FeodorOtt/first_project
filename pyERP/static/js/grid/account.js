@@ -90,7 +90,7 @@ $(function(){
                   lookup: {
                     dataSource: acc_type,
                     displayExpr: "name",
-                    valueExpr: "resource_uri"
+                    valueExpr: "account_type_id"
                   }
                 }, {
                   dataField: "category_id",
@@ -99,7 +99,7 @@ $(function(){
                   lookup: {
                     dataSource: acc_category,
                     displayExpr: "name",
-                    valueExpr: "resource_uri"
+                    valueExpr: "account_category_id"
                   }
                 }, {
                   dataField: "bank_id",
@@ -158,13 +158,13 @@ $(function(){
                   lookup: {
                       dataSource: [{
                           "id": 1,
-                          "name": formatMessage("active")
+                          "name": formatMessage("opened")
                       }, {
                           "id": 2,
-                          "name": formatMessage("closed")
+                          "name": formatMessage("active")
                       }, {
                           "id": 3,
-                          "name": formatMessage("blocked")
+                          "name": formatMessage("closed")
                       }],
                     displayExpr: "name",
                     valueExpr: "id"
@@ -172,6 +172,7 @@ $(function(){
         }],
         masterDetail: {
             enabled: true,
+            // showBorders: true,
             template: function(container, options) {
                 var currentAccData = options.data;
 
@@ -255,7 +256,7 @@ $(function(){
                           },
                           dataType: "datetime",
                           caption: formatMessage("handle_time"),
-                          width: 50,
+                          // re
                         }, {
                           dataField: "user_id",
                           editorOptions: {
@@ -346,39 +347,39 @@ $(function(){
               onShowing: function(e){
                   e.component.option("title", "Тип транзакции: -----");
               },
-              items: [{
-                dataField: "number",
-              }, {
-                dataField: "client_id",
-              }, {
-                dataField: "balance_account_id",
-              }, {
-                dataField: "index",
-              }, {
-                dataField: "saldo_type_id",
-              }, {
-                dataField: "type_id",
-              }, {
-                dataField: "category_id",
-              }, {
-                dataField: "bank_id",
-              }, {
-                dataField: "assignment",
-              }, {
-                dataField: "begin_date",
-              }, {
-                dataField: "end_date",
-              }, {
-                dataField: "parent_client_id",
-              }, {
-                dataField: "sync_partition_flag",
-              }, {
-                dataField: "handle_time",
-              }, {
-                dataField: "user_id",
-              }, {
-                dataField: "status_id",
-              }]
+              // items: [{
+              //   dataField: "number",
+              // }, {
+              //   dataField: "client_id",
+              // }, {
+              //   dataField: "balance_account_id",
+              // }, {
+              //   dataField: "index",
+              // }, {
+              //   dataField: "saldo_type_id",
+              // }, {
+              //   dataField: "type_id",
+              // }, {
+              //   dataField: "category_id",
+              // }, {
+              //   dataField: "bank_id",
+              // }, {
+              //   dataField: "assignment",
+              // }, {
+              //   dataField: "begin_date",
+              // }, {
+              //   dataField: "end_date",
+              // }, {
+              //   dataField: "parent_client_id",
+              // }, {
+              //   dataField: "sync_partition_flag",
+              // }, {
+              //   dataField: "handle_time",
+              // }, {
+              //   dataField: "user_id",
+              // }, {
+              //   dataField: "status_id",
+              // }]
           }
       },
       filterRow: {

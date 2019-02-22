@@ -1,3 +1,6 @@
+// var expandedKeys = [];
+// var needExpand = false;
+
 $(function(){
     var initDate = new Date(Date.now());
     var firstDay = new Date(initDate.getFullYear(), initDate.getMonth(), 1);
@@ -8,6 +11,7 @@ $(function(){
 
     var user_ = json_read('../api/user/');
     var client = json_read('../api/client/');
+    var account = json_read('../api/account/');
     var partition = json_read('../api/partition/');
     var currency = json_read('../api/currency/', 'ISO_char');
 
@@ -79,11 +83,11 @@ $(function(){
                   dataField: "db_account_id",
                   caption: formatMessage("db_account_id"),
                   width: 125,
-                  // lookup: {
-                  //   dataSource: client,
-                  //   displayExpr: "name",
-                  //   valueExpr: "resource_uri"
-                  // }
+                  lookup: {
+                    dataSource: account,
+                    displayExpr: "number",
+                    valueExpr: "resource_uri"
+                  }
                 }, {
                   dataField: "cr_client_id",
                   caption: formatMessage("cr_client_id"),
@@ -97,18 +101,18 @@ $(function(){
                   dataField: "cr_account_id",
                   caption: formatMessage("cr_account_id"),
                   width: 125,
-                  // lookup: {
-                  //   dataSource: client,
-                  //   displayExpr: "name",
-                  //   valueExpr: "resource_uri"
-                  // }
+                  lookup: {
+                    dataSource: account,
+                    displayExpr: "number",
+                    valueExpr: "resource_uri"
+                  }
                 }, {
                   dataField: "amount",
                   // cssClass: 'transactionAmount',
-                  editorOptions: {
-                      // disabled: true,
-                      width: "30%"
-                  },
+                  // editorOptions: {
+                  //     // disabled: true,
+                  //     width: "30%"
+                  // },
                   caption: formatMessage("amount"),
                   alignment: 'right',
                   dataType: "number",
@@ -209,6 +213,7 @@ $(function(){
         }],
         masterDetail: {
             enabled: true,
+            allowColumnResizing: true,
             template: function(container, options) {
                 var currentTransData = options.data;
 
@@ -222,8 +227,8 @@ $(function(){
                         columnAutoWidth: true,
                         showBorders: true,
                         columns: [{
-                          dataField: "id",
-                        }, {
+                        //   dataField: "id",
+                        // }, {
                           dataField: "transaction_id",
                           visible: false,
                           caption: formatMessage("transaction_id"),
@@ -233,6 +238,12 @@ $(function(){
                         }, {
                           dataField: "partition_id",
                           caption: formatMessage("partition_id"),
+                          visible: false,
+                          lookup: {
+                            dataSource: partition,
+                            displayExpr: "name",
+                            valueExpr: "resource_uri"
+                          }
                         }, {
                           dataField: "db_client_id",
                           caption: formatMessage("db_client_id"),
@@ -244,11 +255,11 @@ $(function(){
                         }, {
                           dataField: "db_account_id",
                           caption: formatMessage("db_account_id"),
-                          // lookup: {
-                          //   dataSource: client,
-                          //   displayExpr: "name",
-                          //   valueExpr: "resource_uri"
-                          // }
+                          lookup: {
+                            dataSource: account,
+                            displayExpr: "number",
+                            valueExpr: "resource_uri"
+                          }
                         }, {
                           dataField: "cr_client_id",
                           caption: formatMessage("cr_client_id"),
@@ -260,11 +271,11 @@ $(function(){
                         }, {
                           dataField: "cr_account_id",
                           caption: formatMessage("cr_account_id"),
-                          // lookup: {
-                          //   dataSource: client,
-                          //   displayExpr: "name",
-                          //   valueExpr: "resource_uri"
-                          // }
+                          lookup: {
+                            dataSource: account,
+                            displayExpr: "number",
+                            valueExpr: "resource_uri"
+                          }
                         }, {
                           dataField: "amount",
                           caption: formatMessage("amount"),
@@ -292,7 +303,7 @@ $(function(){
                           },
                           dataType: "datetime",
                           caption: formatMessage("handle_time"),
-                          width: 50,
+                          // width: 50,
                         }, {
                           dataField: "user_id",
                           editorOptions: {
@@ -398,6 +409,7 @@ $(function(){
                     icon: "refresh",
                     hint: formatMessage("refresh"),
                     onClick: function() {
+                        needExpand = true;
                         dataGrid.refresh();
                     }
                 }
@@ -601,7 +613,21 @@ $(function(){
         //   selectRowsByIndexes([1]);
         //   console.log(e.component);
         // },
-      onContentReady: function() {
+      onRowExpanded: function(e) {
+          if (expandedKeys.indexOf(e.key) >= 0)
+              return;
+          expandedKeys.push(e.key);
+          localStorage.setItem("expandedKeys", expandedKeys);
+          console.log(expandedKeys);
+      },
+      onContentReady: function(e) {
+        // if (needExpand) {
+        //     needExpand = false;
+        //     console.log(expandedKeys);
+        //     // expandedKeys = localStorage.getItem("expandedKeys");
+        //     for (var i = 0; i < expandedKeys.length; i++)
+        //         e.component.expandRow(expandedKeys[i]);
+        // }
             var ColName = formatMessage("dxDataGrid-ariaColumn") + ' ' + formatMessage("amount");
             var ci = $("[aria-label='" + ColName + "']").attr("aria-colindex");
             var cid = $("[aria-label='" + ColName + "']").attr("id");

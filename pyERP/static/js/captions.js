@@ -61,6 +61,9 @@
             'reversed': 'reversed',
             'transaction_detail': 'Details of Transaction #',
 
+            //TransactionDetail
+            'order_id': 'Order ID',
+
             //Client
             'name': 'Name',
             'type': 'Type',
@@ -97,6 +100,7 @@
             'assignment': 'Assignment',
             'parent_client_id': 'Parent Client',
             'sync_partition_flag': 'Synchro',
+            'opened': 'opened',
         },
         'de': {
             //Welcome page and Nave bar
@@ -159,6 +163,9 @@
             'reversed': 'storniert',
             'transaction_detail': 'Details der Transaktion #',
 
+            //TransactionDetail
+            'order_id': 'Auftrags-ID',
+
             //Client
             'name': 'Name',
             'type': 'Type',
@@ -195,6 +202,7 @@
             'assignment': 'Zuordnung',
             'parent_client_id': 'Parent Client',
             'sync_partition_flag': 'Synchro',
+            'opened': 'geöffnet',
         },
         'ru': {
             //Welcome page and Nave bar
@@ -257,6 +265,9 @@
             'reversed': 'сторно',
             'transaction_detail': 'Детали транзакции №',
 
+            //TransactionDetail
+            'order_id': 'Порядковый №',
+
             //Client
             'name': 'Название (Имя)',
             'type': 'Тип',
@@ -293,6 +304,7 @@
             'assignment': 'Описание',
             'parent_client_id': 'Принадлежность',
             'sync_partition_flag': 'Синхро',
+            'opened': 'открыт',
         },
         'uk': {
             //Welcome page and Nave bar
@@ -358,6 +370,9 @@
             'reversed': 'сторно',
             'transaction_detail': 'Деталі транзакції №',
 
+            //TransactionDetail
+            'order_id': 'Порядковий №',
+
             //Client
             'name': "Назва (Ім'я)",
             'type': 'Тип',
@@ -394,7 +409,8 @@
             'bank_id': 'Банк',
             'assignment': 'Опис',
             'parent_client_id': 'Належність',
-            'sync_partition_flag': 'Синхро'
+            'sync_partition_flag': 'Синхро',
+            'opened': 'відкрито'
         }
       };
 

@@ -7,7 +7,7 @@ function json_crud(json_url, url_search_params=['', '']){
             // $.getJSON(json_url).done(function(result) {
             $.getJSON(json_url+'?'+url_search_params[0]+url_search_params[1]).done(function (result) {
                         d.resolve(result["objects"]);
-                        // console.log(result["objects"][0])
+                        // console.log(result["objects"]);
                     }
             );
             return d.promise();
@@ -24,8 +24,10 @@ function json_crud(json_url, url_search_params=['', '']){
                 method: "POST",
                 contentType: 'application/json',
                 data: JSON.stringify(values)
-            }).done(function () {
-                      d.resolve(values)
+            })
+            .done(function () {
+                      // console.console.log(values);
+                      d.resolve(values);
                     })
             return d.promise();
         },
