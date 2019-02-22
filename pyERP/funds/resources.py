@@ -2,7 +2,8 @@ from tastypie.resources import ModelResource, ALL
 from tastypie.authentication import BasicAuthentication
 from tastypie import fields
 from .models import Currency, Client, Transaction, TransactionDetail, User, Partition, ClientType, ClientTypeLocale, \
-    ClientCategory, ClientCategoryLocale, Bank, Country
+    ClientCategory, ClientCategoryLocale, Bank, Country, AccountType, AccountTypeLocale, AccountCategory, AccountCategoryLocale, Account, \
+    BalanceAccount, AccountSaldoType
 from tastypie.authorization import Authorization
 from tastypie.constants import ALL
 # from django.contrib.auth.models import User
@@ -88,6 +89,8 @@ class ClientResource(ModelResource):
     user_id = fields.ForeignKey('funds.resources.UserResource', 'user', null=True)
     class Meta:
         # allowed_methods = ['get']
+        limit = 0
+        max_limit = 0
         queryset = Client.objects.all().order_by('name')
         resource_name = 'client'
         authorization = Authorization()
@@ -115,6 +118,7 @@ class TransactionResource(ModelResource):
         filtering = {
             'oper_date': ALL,
             'db_client_id': ALL,
+            'cr_client_id': ALL,
         }
         authorization = Authorization()
 
@@ -129,7 +133,9 @@ class TransactionDetailResource(ModelResource):
         queryset = TransactionDetail.objects.all()#.order_by('-id')
         resource_name = 'transactiondetail'
         filtering = {
-            'transaction_id': ALL
+            'transaction_id': ALL,
+            'db_account_id': ALL,
+            'cr_account_id': ALL,
         }
         authorization = Authorization()
 
@@ -139,4 +145,61 @@ class CurrencyResource(ModelResource):
         # fields = ['id', 'name']
         queryset = Currency.objects.all().order_by('name')
         resource_name = 'currency'
+        authorization = Authorization()
+
+class AccountTypeResource(ModelResource):
+    class Meta:
+        queryset = AccountType.objects.all()
+        resource_name = 'accounttype'
+        authorization = Authorization()
+
+class AccountTypeLocaleResource(ModelResource):
+    account_type_id = fields.ForeignKey('funds.resources.AccountTypeResource', 'account_type', null=True)
+    class Meta:
+        queryset = AccountTypeLocale.objects.select_related('account_type').all()
+        resource_name = 'accounttypelocale'
+        filtering = {
+            'locale': ALL,
+        }
+        authorization = Authorization()
+
+class AccountCategoryResource(ModelResource):
+    class Meta:
+        queryset = AccountCategory.objects.all()
+        resource_name = 'accountcategory'
+        authorization = Authorization()
+
+class AccountCategoryLocaleResource(ModelResource):
+    account_category_id = fields.ForeignKey('funds.resources.AccountCategoryResource', 'account_category', null=True)
+    class Meta:
+        queryset = AccountCategoryLocale.objects.select_related('account_category').all()
+        resource_name = 'accountcategorylocale'
+        filtering = {
+            'locale': ALL,
+        }
+        authorization = Authorization()
+
+class AccountResource(ModelResource):
+    balance_account_id = fields.ForeignKey('funds.resources.BalanceAccountResource', 'balance_account', null=True)
+    class Meta:
+        limit = 0
+        max_limit = 0
+        queryset = Account.objects.all()
+        resource_name = 'account'
+        authorization = Authorization()
+
+class AccountSaldoTypeResource(ModelResource):
+    class Meta:
+        limit = 0
+        max_limit = 0
+        queryset = AccountSaldoType.objects.all()
+        resource_name = 'accountsaldotype'
+        authorization = Authorization()
+
+class BalanceAccountResource(ModelResource):
+    class Meta:
+        limit = 0
+        max_limit = 0
+        queryset = BalanceAccount.objects.all()
+        resource_name = 'balanceaccount'
         authorization = Authorization()

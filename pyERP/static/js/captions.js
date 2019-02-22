@@ -5,6 +5,7 @@
             'idTransaction': 'Transactions',
             'idClient': 'Clients',
             'idCurrency': 'Currency',
+            'idAccount': 'Accounts',
             'idBank': 'Banks',
             'idLogout': 'Logout',
             'idAbout': 'About',
@@ -24,6 +25,9 @@
             'refresh': 'Refresh',
             'begin_date': 'Begin Date',
             'end_date': 'End Date',
+            'status_id': 'Status',
+            'handle_time': 'Exact Time',
+            'user_id': 'User',
 
             //Bank
             'text_id': 'BankID (MFO, SWIFT)',
@@ -52,9 +56,6 @@
             'payment_details': 'Details',
             'addinfo': 'Info',
             'pattern_id': 'Pattern',
-            'status_id': 'Status',
-            'handle_time': 'Exact Time',
-            'user_id': 'User',
             'posted': 'posted',
             'postponed': 'postponed',
             'reversed': 'reversed',
@@ -84,7 +85,18 @@
             'latin_name': "Latin Name",
             'ISO_digit': 'ISO digit',
             'ISO_char': 'ISO char',
-            'status_id': 'Status'
+
+            //Account
+            'account_mov': 'Movements of the Account #',
+            'number': 'Account #',
+            'client_id': 'Client',
+            'balance_account_id': 'Balance Account',
+            'index': 'Index',
+            'saldo_type_id': 'Saldo Type',
+            'bank_id': 'Bank',
+            'assignment': 'Assignment',
+            'parent_client_id': 'Parent Client',
+            'sync_partition_flag': 'Synchro',
         },
         'de': {
             //Welcome page and Nave bar
@@ -92,6 +104,7 @@
             'idTransaction': 'Transaktionen',
             'idClient': 'Kunden',
             'idCurrency': 'Währung',
+            'idAccount': 'Konten',
             'idBank': 'Banken',
             'idLogout': 'Ausloggen',
             'idSignUp': 'Registrieren',
@@ -110,6 +123,9 @@
             'refresh': 'Aktualisierung',
             'begin_date': 'Beginndatum',
             'end_date': 'Enddatum',
+            'status_id': 'Status',
+            'handle_time': 'Genaue Zeit',
+            'user_id': 'Nutzer',
 
             //Bank
             'text_id': 'BankID (MFO, SWIFT)',
@@ -138,9 +154,6 @@
             'payment_details': 'Zahlungszweck',
             'addinfo': 'Info',
             'pattern_id': 'Bewegungsart',
-            'status_id': 'Status',
-            'handle_time': 'Genaue Zeit',
-            'user_id': 'Nutzer',
             'posted': 'gemacht',
             'postponed': 'verschoben',
             'reversed': 'storniert',
@@ -170,7 +183,18 @@
             'latin_name': "Lateinischer Name",
             'ISO_digit': 'ISO Digit',
             'ISO_char': 'ISO Zeichen',
-            'status_id': 'Status'
+
+            //Account
+            'account_mov': 'Bewegungen des Kontos #',
+            'number': 'Konto #',
+            'client_id': 'Kunde',
+            'balance_account_id': 'Balance Konto',
+            'index': 'Index',
+            'saldo_type_id': 'Saldo-Typ',
+            'bank_id': 'Bank',
+            'assignment': 'Zuordnung',
+            'parent_client_id': 'Parent Client',
+            'sync_partition_flag': 'Synchro',
         },
         'ru': {
             //Welcome page and Nave bar
@@ -178,6 +202,7 @@
             'idTransaction': 'Транзакции',
             'idClient': 'Клиенты',
             'idCurrency': 'Валюта',
+            'idAccount': 'Счета',
             'idBank': 'Банки',
             'idLogout': 'Выйти',
             'idAbout': 'О...',
@@ -196,6 +221,9 @@
             'refresh': 'Обновить',
             'begin_date': 'Начальная дата',
             'end_date': 'Конечная дата',
+            'status_id': 'Статус',
+            'handle_time': 'Точное время',
+            'user_id': 'Пользователь',
 
             //Bank
             'text_id': 'Код (МФО, SWIFT)',
@@ -224,9 +252,6 @@
             'payment_details': 'Примечание',
             'addinfo': 'Информация',
             'pattern_id': 'Тип транзакции',
-            'status_id': 'Статус',
-            'handle_time': 'Точное время',
-            'user_id': 'Пользователь',
             'posted': 'проведено',
             'postponed': 'отложено',
             'reversed': 'сторно',
@@ -256,7 +281,18 @@
             'latin_name': "Латинское название(имя)",
             'ISO_digit': 'ISO цифр.',
             'ISO_char': 'ISO симв.',
-            'status_id': 'Статус'
+
+            //Account
+            'account_mov': 'Движения по счету №',
+            'number': 'Счет №',
+            'client_id': 'Клиент',
+            'balance_account_id': 'Балансовый №',
+            'index': 'Индекс',
+            'saldo_type_id': 'Тип сальдо',
+            'bank_id': 'Банк',
+            'assignment': 'Описание',
+            'parent_client_id': 'Принадлежность',
+            'sync_partition_flag': 'Синхро',
         },
         'uk': {
             //Welcome page and Nave bar
@@ -264,6 +300,7 @@
             'idTransaction': 'Транзакції',
             'idClient': 'Клієнти',
             'idCurrency': 'Валюта',
+            'idAccount': 'Рахунки',
             'idBank': 'Банки',
             'idLogout': 'Вийти',
             'idAbout': 'Про...',
@@ -282,6 +319,9 @@
             'refresh': 'Оновити',
             'begin_date': 'Початкова дата',
             'end_date': 'Кінцева дата',
+            'status_id': 'Статус',
+            'handle_time': 'Точний час',
+            'user_id': 'Користувач',
 
             //Bank
             'text_id': 'Код (МФО, SWIFT)',
@@ -343,7 +383,18 @@
             'latin_name': "Латинська назва(им'я)",
             'ISO_digit': 'ISO цифр.',
             'ISO_char': 'ISO симв.',
-            'status_id': 'Статус'
+
+            //Account
+            'account_mov': 'Рух за рахунком №',
+            'number': 'Рахунок №',
+            'client_id': 'Клієнт',
+            'balance_account_id': 'Балансовий №',
+            'index': 'Індекс',
+            'saldo_type_id': 'Тип сальдо',
+            'bank_id': 'Банк',
+            'assignment': 'Опис',
+            'parent_client_id': 'Належність',
+            'sync_partition_flag': 'Синхро'
         }
       };
 
@@ -358,6 +409,7 @@
     $('#idClient').text(formatMessage('idClient'));
     $('#idCurrency').text(formatMessage('idCurrency'));
     $('#idBank').text(formatMessage('idBank'));
+    $('#idAccount').text(formatMessage('idAccount'));
     $('.idLogin').text(formatMessage('idLogin'));
     $('.idLogin').attr('value', formatMessage('idLogin'));
     $('.idSignUp').text(formatMessage('idSignUp'));

@@ -27,7 +27,6 @@ def index_view(request, *args, **kwargs): # *args, **kwargs
 def about_view(request, *args, **kwargs):
     return render(request, "about.html", {})
 
-
 @login_required
 def currency_list_view(request, *args, **kwargs):
     return render(request, 'funds/currency_list.html', {})
@@ -36,15 +35,18 @@ def currency_list_view(request, *args, **kwargs):
 def bank_list_view(request, *args, **kwargs):
     return render(request, 'funds/bank_list.html', {})
 
-
 @login_required
 def client_list_view(request, *args, **kwargs):
     return render(request, 'funds/client_list.html', {})
 
-
 @login_required
 def transaction_list_view(request, *args, **kwargs):
     return render(request, 'funds/transaction_list.html', {})
+
+@login_required
+def account_list_view(request, *args, **kwargs):
+    return render(request, 'funds/account_list.html', {})
+
 
 
 # class TransactionListView(LoginRequiredMixin, ListView):
@@ -66,5 +68,3 @@ def transaction_list_view(request, *args, **kwargs):
 #             serializer.save()
 #             return JsonResponse(serializer.data)
 #         return JsonResponse(serializer.errors, status=400)
-
-

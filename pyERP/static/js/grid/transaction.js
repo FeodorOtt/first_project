@@ -336,7 +336,7 @@ $(function(){
                                           return d.promise();
                                        }
                              }),
-                             filter: ["resource_uri", "=", currentTransData.transaction_id]
+                             // filter: ["resource_uri", "=", currentTransData.transaction_id]
                         }
                     }).appendTo(container);
             }
