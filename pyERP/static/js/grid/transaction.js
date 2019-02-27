@@ -2,6 +2,8 @@
 // var needExpand = false;
 
 $(function(){
+    var isOrderShown = false;
+
     var initDate = new Date(Date.now());
     var firstDay = new Date(initDate.getFullYear(), initDate.getMonth(), 1);
 
@@ -507,6 +509,9 @@ $(function(){
                   }
                 }, {
                   dataField: "id",
+                  label: {
+                    text: "Финоперация"
+                  }
                 // }, {
                 //   dataField: "parent_id"
                 }, {
@@ -566,8 +571,41 @@ $(function(){
                   dataField: "partition_id",
                 }, {
                   dataField: "status_id",
+                }, {
+                  name: "show-order",
+                  label: {
+                      text: "Show the order"
+                  },
+                  template: function (data, $itemElement) {
+                      $("<div>").appendTo($itemElement).dxCheckBox({
+                          value: isOrderShown,
+                          onValueChanged: function(e) {
+                              isOrderShown = e.value;
+                              // form.itemOption("order", "visible", isOrderShown);
+                          }
+                      });
+                  }
+                }, {
+                  name: "order",
+                  // visible: isOrderShown,
+                  visible: true,
+                  template: function (data, $itemElement) {
+                      $("<div id='dataGrid'>")
+                          .appendTo($itemElement)
+                          .dxDataGrid({
+                              dataSource: [{
+                                  productName: "DesktopLCD 19",
+                                  cost: 68,
+                                  salePrice: 110
+                              }, {
+                                  productName: "DesktopLCD 21",
+                                  cost: 75,
+                                  salePrice: 120
+                              }]
+                          });
+                  }
                 }
-               ]
+              ]
           }
       },
       onEditorPreparing: function (e) {
