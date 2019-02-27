@@ -478,14 +478,6 @@ $(function(){
                 }
             });
         },
-      // onContentReady: function(e){
-      //     formInstance = e.component;
-      // },
-      // onShown: function(e){
-      //     setTimeout(function(){
-      //         e.component.getEditor('amount').focus();
-      //       }, 100);
-      // },
 
       editing: {
           allowAdding: true,
@@ -499,26 +491,39 @@ $(function(){
               colCount: 2,
               focusStateEnabled: true,
               showTitle: true,
+              onContentReady: function(e) {
+                // console.log($('.transactionAmount'));
+                $('.transactionAmount').attr("style","-webkit-text-fill-color: red;");
+                $('.transactionCurrency').attr("style","-webkit-text-fill-color: red;");
+                // $('.transactionAmount').css("font-size", "10px");
+              },
               onShowing: function(e){
                   e.component.option("title", "Тип транзакции: -----");
               },
               items: [{
+                  dataField: "pattern_id",
+                  label: {
+                    text: "Финоперация"
+                  }
+                }, {
                   dataField: "id",
                 // }, {
                 //   dataField: "parent_id"
                 }, {
-                  dataField: "pattern_id"
-                }, {
                   dataField: "oper_date",
                   dataType: "date"
                 }, {
-                  dataField: "currency_rate",
+                  itemType: "empty",
+                }, {
+                  itemType: "empty",
+                }, {
+                  itemType: "empty",
                 }, {
                   dataField: "db_client_id",
                 }, {
-                  dataField: "db_account_id",
-                }, {
                   dataField: "cr_client_id",
+                }, {
+                  dataField: "db_account_id",
                 }, {
                   dataField: "cr_account_id",
                 }, {
@@ -530,12 +535,15 @@ $(function(){
                   cssClass: 'transactionAmount'
                 }, {
                   dataField: "currency_id",
+                  cssClass: 'transactionCurrency'
                 }, {
                   itemType: "empty",
                 }, {
                   itemType: "empty",
                 }, {
-                  dataField: "amount_e",
+                //   dataField: "amount_e",
+                // }, {
+                  dataField: "currency_rate",
                 }, {
                   dataField: "exchange_income",
                 }, {
@@ -543,12 +551,10 @@ $(function(){
                 }, {
                   dataField: "exchange_currency",
                 }, {
-                  dataField: "exchange_amount_e",
-                }, {
-                  dataField: "partition_id",
-                }, {
-                  dataField: "bankimport_id",
-                }, {
+                //   dataField: "exchange_amount_e",
+                // }, {
+                //   dataField: "bankimport_id",
+                // }, {
                   dataField: "payment_details",
                 }, {
                   dataField: "addinfo",
@@ -556,6 +562,8 @@ $(function(){
                   dataField: "handle_time",
                 }, {
                   dataField: "user_id",
+                }, {
+                  dataField: "partition_id",
                 }, {
                   dataField: "status_id",
                 }

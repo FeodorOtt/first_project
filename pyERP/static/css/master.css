@@ -36,7 +36,8 @@
     /*background-color: #0964E4;*/
 }
 
-.transactionAmount.{
+/* .transactionAmount.{
     font-weight: bold;
-    /*background-color: red;*/
-}
+    -webkit-text-fill-color: red;
+    background-color: red;
+} */
