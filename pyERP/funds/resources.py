@@ -3,7 +3,7 @@ from tastypie.authentication import BasicAuthentication
 from tastypie import fields
 from .models import Currency, Client, Transaction, TransactionDetail, User, Partition, ClientType, ClientTypeLocale, \
     ClientCategory, ClientCategoryLocale, Bank, Country, AccountType, AccountTypeLocale, AccountCategory, AccountCategoryLocale, Account, \
-    BalanceAccount, AccountSaldoType
+    BalanceAccount, AccountSaldoType, AccountPartition
 from tastypie.authorization import Authorization
 from tastypie.constants import ALL
 # from django.contrib.auth.models import User
@@ -195,11 +195,23 @@ class AccountResource(ModelResource):
     bank_id = fields.ForeignKey('funds.resources.BankResource', 'bank', null=True)
     parent_client_id = fields.ForeignKey('funds.resources.ClientResource', 'parent_client', null=True)
     user_id = fields.ForeignKey('funds.resources.UserResource', 'user', null=True)
+    partitions = fields.ToManyField(PartitionResource, attribute=lambda bundle: AccountPartition.objects.all())
     class Meta:
         limit = 0
         max_limit = 0
         queryset = Account.objects.all()
         resource_name = 'account'
+        authorization = Authorization()
+
+class AccountPartitionResource(ModelResource):
+    account_id = fields.ForeignKey('funds.resources.AccountResource', 'account')
+    partition_id = fields. ForeignKey('funds.resources.PartitionResource', 'partition')
+    class Meta:
+        queryset = AccountPartition.objects.all()
+        resource_name = 'accountpartition'
+        filtering = {
+            'account_id': ALL,
+        }
         authorization = Authorization()
 
 class AccountSaldoTypeResource(ModelResource):

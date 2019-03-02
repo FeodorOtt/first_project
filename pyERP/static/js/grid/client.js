@@ -150,8 +150,7 @@ $("#gridContainer").dxDataGrid({
                     .dxDataGrid({
                         columnAutoWidth: true,
                         showBorders: true,
-                        columns: [
-                        {
+                        columns: [{
                           dataField: "cr_client_id",
                           caption: formatMessage("cr_client_id"),
                           width: 125,
@@ -160,15 +159,13 @@ $("#gridContainer").dxDataGrid({
                               displayExpr: "name",
                               valueExpr: "resource_uri"
                             }
-                          },
-                        {
+                        }, {
                           dataField: "amount",
                           caption: formatMessage("amount"),
                           alignment: 'right',
                           dataType: "number",
                           format: "#,##0.00"
-                        },
-                        {
+                        }, {
                           dataField: "currency_id",
                           caption: formatMessage("currency_id"),
                           lookup: {
@@ -176,12 +173,10 @@ $("#gridContainer").dxDataGrid({
                             displayExpr: "ISO_char",
                             valueExpr: "resource_uri"
                           }
-                        },
-                        {
+                        }, {
                           dataField: "payment_details",
                           caption: formatMessage("payment_details"),
-                        },
-                        ],
+                        }],
                         dataSource: {
                              store: new DevExpress.data.CustomStore({
                                  key: "id",

@@ -6,8 +6,10 @@ $(function(){
 
     var balance_account = json_read('../api/balanceaccount/');
     var saldo_type = json_read('../api/accountsaldotype/');
+    var partition = json_read('../api/partition/');
     var acc_type = json_read('../api/accounttypelocale/?locale='+locale);
     var acc_category = json_read('../api/accountcategorylocale/?locale='+locale);
+    var acc_partition = json_crud('../api/accountpartition/', ['account_id=6','']);
     var client = json_read('../api/client/');
     var bank = json_read('../api/bank/');
     var currency = json_read('../api/currency/', 'ISO_char');
@@ -347,41 +349,85 @@ $(function(){
               onShowing: function(e){
                   e.component.option("title", "Тип транзакции: -----");
               },
-              // items: [{
-              //   dataField: "number",
-              // }, {
-              //   dataField: "client_id",
-              // }, {
-              //   dataField: "balance_account_id",
-              // }, {
-              //   dataField: "index",
-              // }, {
-              //   dataField: "saldo_type_id",
-              // }, {
-              //   dataField: "type_id",
-              // }, {
-              //   dataField: "category_id",
-              // }, {
-              //   dataField: "bank_id",
-              // }, {
-              //   dataField: "assignment",
-              // }, {
-              //   dataField: "begin_date",
-              // }, {
-              //   dataField: "end_date",
-              // }, {
-              //   dataField: "parent_client_id",
-              // }, {
-              //   dataField: "sync_partition_flag",
-              // }, {
-              //   dataField: "handle_time",
-              // }, {
-              //   dataField: "user_id",
-              // }, {
-              //   dataField: "status_id",
-              // }]
+              items: [{
+                dataField: "number",
+              }, {
+                dataField: "client_id",
+              }, {
+                dataField: "balance_account_id",
+              }, {
+                dataField: "index",
+              }, {
+                dataField: "saldo_type_id",
+              }, {
+                dataField: "type_id",
+              }, {
+                dataField: "category_id",
+              }, {
+                dataField: "bank_id",
+              }, {
+                dataField: "assignment",
+              }, {
+                dataField: "begin_date",
+              }, {
+                dataField: "end_date",
+              }, {
+                dataField: "parent_client_id",
+              }, {
+                dataField: "sync_partition_flag",
+              }, {
+                dataField: "handle_time",
+              }, {
+                dataField: "user_id",
+              }, {
+                dataField: "status_id",
+              }, {
+                // name: "partition_id",
+                dataField: "partitions",
+                label: {
+                    text: formatMessage("partition_id")
+                },
+                // visible: isOrderShown,
+                visible: true,
+                template: function (data, $itemElement) {
+                    $("<div id='dataGrid'>")
+                        .appendTo($itemElement)
+                        .dxDataGrid({
+                            dataSource: acc_partition,
+                            editing: {
+                                mode: "batch",
+                                allowAdding: true,
+                                allowUpdating: true,
+                                allowDeleting: true,
+                                useIcons: true
+                            },
+                            selection: {
+                                mode: "multiple",
+                                allowSelectAll: true
+                            },
+                            columns: [{
+                              dataField: "account_id",
+                              visible: false
+                            }, {
+                              dataField: "is_primary"
+                            }, {
+                            dataField: "partition_id",
+                            caption: formatMessage("partition_id"),
+                              lookup: {
+                                dataSource: partition,
+                                displayExpr: "name",
+                                valueExpr: "resource_uri"
+                              }
+                            }]
+                        });
+                }
+              }]
           }
       },
+      // onEditorPreparing: function (e) {
+      //       if (e.dataField == "partitions")
+      //       e.editorName = "dxTagBox";
+      // },
       filterRow: {
           filterEnabled: true,
           visible: true
