@@ -1,14 +1,12 @@
 // var expandedKeys = [];
 // var needExpand = false;
+var isShown = false;
+
+var initDate = new Date(Date.now());
+var firstDay = new Date(initDate.getFullYear(), initDate.getMonth(), 1);
+var url_search_params = ['&oper_date__gte=' + moment(firstDay).format('YYYY-MM-DD'), '&oper_date__lte=' + moment(Date.now()).format('YYYY-MM-DD')];
 
 $(function(){
-    var isOrderShown = false;
-
-    var initDate = new Date(Date.now());
-    var firstDay = new Date(initDate.getFullYear(), initDate.getMonth(), 1);
-
-    var url_search_params = ['&oper_date__gte=' + moment(firstDay).format('YYYY-MM-DD'), '&oper_date__lte=' + moment(Date.now()).format('YYYY-MM-DD')];
-
     var transaction = json_crud('../api/transaction/', url_search_params);
 
     var user_ = json_read('../api/user/');
@@ -489,6 +487,10 @@ $(function(){
           mode: "popup",
           // activeStateEnabled: true,
           form: {
+              elementAttr: {
+                id: "TransEditId",
+                // class: "class-name"
+              },
               minColWidth: 50,
               colCount: 2,
               focusStateEnabled: true,
@@ -572,23 +574,25 @@ $(function(){
                 }, {
                   dataField: "status_id",
                 }, {
-                  name: "show-order",
+                  name: "is_shown",
                   label: {
-                      text: "Show the order"
+                      text: formatMessage("taxes")
                   },
                   template: function (data, $itemElement) {
                       $("<div>").appendTo($itemElement).dxCheckBox({
-                          value: isOrderShown,
+                          value: isShown,
                           onValueChanged: function(e) {
-                              isOrderShown = e.value;
-                              // form.itemOption("order", "visible", isOrderShown);
+                              isShown = e.value;
+                              var element = document.getElementById("TransEditId");
+                              var form = DevExpress.ui.dxForm.getInstance(element);
+                              form.itemOption("taxes", "visible", isShown);
                           }
                       });
                   }
                 }, {
-                  name: "order",
-                  // visible: isOrderShown,
-                  visible: true,
+                  name: "taxes",
+                  visible: isShown,
+                  // visible: true,
                   template: function (data, $itemElement) {
                       $("<div id='dataGrid'>")
                           .appendTo($itemElement)

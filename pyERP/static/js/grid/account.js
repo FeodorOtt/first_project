@@ -1,3 +1,5 @@
+var isShown = false;
+
 $(function(){
     // var initDate = new Date(Date.now());
     // var url_search_params = ['&oper_date__gte=' + moment(firstDay).format('YYYY-MM-DD'), '&oper_date__lte=' + moment(Date.now()).format('YYYY-MM-DD')];
@@ -294,7 +296,7 @@ $(function(){
                                  loadMode: "raw",
                                  load: function() {
                                           var d = $.Deferred();
-                                          $.getJSON('../api/transactiondetail/?db_account_id=' + currentTransData.id).done(function(result) {
+                                          $.getJSON('../api/transactiondetail/?db_account_id=' + currentAccData.id).done(function(result) {
                                                       d.resolve(result["objects"]);
                                                       // console.log(result["objects"][0])
                                                   }
@@ -302,7 +304,7 @@ $(function(){
                                           return d.promise();
                                        }
                              }),
-                             filter: ["resource_uri", "=", currentTransData.transaction_id]
+                             // filter: ["resource_uri", "=", currentAccData.transaction_id]
                         }
                     }).appendTo(container);
             }
@@ -342,6 +344,10 @@ $(function(){
           mode: "popup",
           // activeStateEnabled: true,
           form: {
+              elementAttr: {
+                id: "AccEditId",
+                // class: "class-name"
+              },
               minColWidth: 50,
               colCount: 2,
               focusStateEnabled: true,
@@ -382,14 +388,30 @@ $(function(){
               }, {
                 dataField: "status_id",
               }, {
-                // name: "partition_id",
-                dataField: "partitions",
+                name: "is_shown",
                 label: {
                     text: formatMessage("partition_id")
                 },
-                // visible: isOrderShown,
-                visible: true,
                 template: function (data, $itemElement) {
+                    $("<div>").appendTo($itemElement).dxCheckBox({
+                        value: isShown,
+                        onValueChanged: function(e) {
+                            isShown = e.value;
+                            var element = document.getElementById("AccEditId");
+                            var form = DevExpress.ui.dxForm.getInstance(element);
+                            form.itemOption("partitions", "visible", isShown);
+                        }
+                    });
+                }
+              }, {
+                name: "partitions",
+                // dataField: "partitions",
+                visible: isShown,
+                // visible: true,
+                template: function (data, $itemElement) {
+                    // var currentAccData = data.;
+                    // console.log(currentAccData);
+                    // acc_partition = json_crud('../api/accountpartition/', ['account_id='+currentAccData.id,'']);
                     $("<div id='dataGrid'>")
                         .appendTo($itemElement)
                         .dxDataGrid({
