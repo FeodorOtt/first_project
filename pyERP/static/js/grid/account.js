@@ -1,4 +1,5 @@
 var isShown = false;
+var ID = null;
 
 $(function(){
     // var initDate = new Date(Date.now());
@@ -11,7 +12,7 @@ $(function(){
     var partition = json_read('../api/partition/');
     var acc_type = json_read('../api/accounttypelocale/?locale='+locale);
     var acc_category = json_read('../api/accountcategorylocale/?locale='+locale);
-    var acc_partition = json_crud('../api/accountpartition/', ['account_id=6','']);
+    // var acc_partition = json_crud('../api/accountpartition/', ['account_id=6','']);
     var client = json_read('../api/client/');
     var bank = json_read('../api/bank/');
     var currency = json_read('../api/currency/', 'ISO_char');
@@ -336,6 +337,10 @@ $(function(){
                 }
             });
         },
+      onEditingStart: function(e) {
+          ID = e.data.id;
+          // console.log(ID);
+      },
       editing: {
           allowAdding: true,
           allowUpdating: true,
@@ -343,6 +348,13 @@ $(function(){
           useIcons: true,
           mode: "popup",
           // activeStateEnabled: true,
+          popup: {
+              showTitle: true,
+              // title: "Row in the editing state",
+              onShowing: function(e){
+                  e.component.option("title", "Тип транзакции: -----");
+              }
+          },
           form: {
               elementAttr: {
                 id: "AccEditId",
@@ -351,10 +363,6 @@ $(function(){
               minColWidth: 50,
               colCount: 2,
               focusStateEnabled: true,
-              showTitle: true,
-              onShowing: function(e){
-                  e.component.option("title", "Тип транзакции: -----");
-              },
               items: [{
                 dataField: "number",
               }, {
@@ -409,9 +417,7 @@ $(function(){
                 visible: isShown,
                 // visible: true,
                 template: function (data, $itemElement) {
-                    // var currentAccData = data.;
-                    // console.log(currentAccData);
-                    // acc_partition = json_crud('../api/accountpartition/', ['account_id='+currentAccData.id,'']);
+                    var acc_partition = json_crud('../api/accountpartition/', ['account_id='+ID,'']);
                     $("<div id='dataGrid'>")
                         .appendTo($itemElement)
                         .dxDataGrid({
