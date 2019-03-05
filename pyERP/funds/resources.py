@@ -6,6 +6,7 @@ from .models import Currency, Client, Transaction, TransactionDetail, User, Part
     BalanceAccount, AccountSaldoType, AccountPartition
 from tastypie.authorization import Authorization
 from tastypie.constants import ALL
+from django.db.models import Q
 # from django.contrib.auth.models import User
 
 
@@ -131,6 +132,26 @@ class TransactionDetailResource(ModelResource):
     cr_client_id = fields.ForeignKey('funds.resources.ClientResource', 'cr_client')
     cr_account_id = fields.ForeignKey('funds.resources.AccountResource', 'cr_account')
     user_id = fields.ForeignKey('funds.resources.UserResource', 'user', null=True)
+
+    def build_filters(self, filters=None):
+        if filters is None:
+            filters = {}
+        orm_filters = super(TransactionDetailResource, self).build_filters(filters)
+
+        if 'query' in filters:
+            query = filters['query']
+            qset = (
+                    Q(db_account_id=query) |
+                    Q(cr_account_id=query)
+                    )
+            orm_filters.update({None: qset}) # None is used as the key to specify that these are non-keyword filters
+
+        return orm_filters
+
+    def apply_filters(self, request, applicable_filters):
+        return self.get_object_list(request).filter(*applicable_filters.pop(None, []), **applicable_filters)
+        # Taking the non-keyword filters out of applicable_filters (if any) and applying them as positional arguments to filter()
+
     class Meta:
         limit = 0
         max_limit = 0
@@ -143,6 +164,7 @@ class TransactionDetailResource(ModelResource):
             'transaction_id': ALL,
             'db_account_id': ALL,
             'cr_account_id': ALL,
+            # 'query': ALL,
         }
         authorization = Authorization()
 
