@@ -123,7 +123,39 @@ class TransactionResource(ModelResource):
         }
         authorization = Authorization()
 
-class TransactionDetailResource(ModelResource):
+class TransactionClientResource(ModelResource):
+    partition_id = fields.ForeignKey('funds.resources.PartitionResource', 'partition')
+    currency_id = fields.ForeignKey('funds.resources.CurrencyResource', 'currency')
+    db_client_id = fields.ForeignKey('funds.resources.ClientResource', 'db_client')
+    cr_client_id = fields.ForeignKey('funds.resources.ClientResource', 'cr_client')
+    user_id = fields.ForeignKey('funds.resources.UserResource', 'user', null=True)
+
+    def build_filters(self, filters=None):
+        if filters is None:
+            filters = {}
+        orm_filters = super(TransactionClientResource, self).build_filters(filters)
+
+        if 'client_id' in filters:
+            client_id = filters['client_id']
+            qset = (
+                    Q(db_client_id=client_id) |
+                    Q(cr_client_id=client_id)
+                    )
+            orm_filters.update({None: qset}) # None is used as the key to specify that these are non-keyword filters
+
+        return orm_filters
+
+    def apply_filters(self, request, applicable_filters):
+        return self.get_object_list(request).filter(applicable_filters.pop(None, []), **applicable_filters)
+
+    class Meta:
+        limit = 0
+        max_limit = 0
+        queryset = Transaction.objects.all().order_by('-id')
+        resource_name = 'transactionclient'
+        authorization = Authorization()
+
+class TransactionDetailAccResource(ModelResource):
     transaction_id = fields.ForeignKey('funds.resources.TransactionResource', 'transaction')
     partition_id = fields.ForeignKey('funds.resources.PartitionResource', 'partition')
     currency_id = fields.ForeignKey('funds.resources.CurrencyResource', 'currency')
@@ -133,24 +165,45 @@ class TransactionDetailResource(ModelResource):
     cr_account_id = fields.ForeignKey('funds.resources.AccountResource', 'cr_account')
     user_id = fields.ForeignKey('funds.resources.UserResource', 'user', null=True)
 
+    # def __init__(self, *args, **kwargs):
+    #     super(TransactionDetailAccResource, self).__init__(*args, **kwargs)
+    #     self.q_filters = []
+
     def build_filters(self, filters=None):
         if filters is None:
             filters = {}
-        orm_filters = super(TransactionDetailResource, self).build_filters(filters)
+        orm_filters = super(TransactionDetailAccResource, self).build_filters(filters)
 
-        if 'query' in filters:
-            query = filters['query']
+        if 'account_id' in filters:
+            account_id = filters['account_id']
             qset = (
-                    Q(db_account_id=query) |
-                    Q(cr_account_id=query)
+                    Q(db_account_id=account_id) |
+                    Q(cr_account_id=account_id)
                     )
             orm_filters.update({None: qset}) # None is used as the key to specify that these are non-keyword filters
 
         return orm_filters
 
     def apply_filters(self, request, applicable_filters):
-        return self.get_object_list(request).filter(*applicable_filters.pop(None, []), **applicable_filters)
+        return self.get_object_list(request).filter(applicable_filters.pop(None, []), **applicable_filters)
         # Taking the non-keyword filters out of applicable_filters (if any) and applying them as positional arguments to filter()
+
+    class Meta:
+        limit = 0
+        max_limit = 0
+        queryset = TransactionDetail.objects.all()#.order_by('-id')
+        resource_name = 'transactiondetailacc'
+        authorization = Authorization()
+
+class TransactionDetailResource(ModelResource):
+    transaction_id = fields.ForeignKey('funds.resources.TransactionResource', 'transaction')
+    partition_id = fields.ForeignKey('funds.resources.PartitionResource', 'partition')
+    currency_id = fields.ForeignKey('funds.resources.CurrencyResource', 'currency')
+    db_client_id = fields.ForeignKey('funds.resources.ClientResource', 'db_client')
+    db_account_id = fields.ForeignKey('funds.resources.AccountResource', 'db_account')
+    cr_client_id = fields.ForeignKey('funds.resources.ClientResource', 'cr_client')
+    cr_account_id = fields.ForeignKey('funds.resources.AccountResource', 'cr_account')
+    user_id = fields.ForeignKey('funds.resources.UserResource', 'user', null=True)
 
     class Meta:
         limit = 0
@@ -164,7 +217,6 @@ class TransactionDetailResource(ModelResource):
             'transaction_id': ALL,
             'db_account_id': ALL,
             'cr_account_id': ALL,
-            # 'query': ALL,
         }
         authorization = Authorization()
 
@@ -217,7 +269,6 @@ class AccountResource(ModelResource):
     bank_id = fields.ForeignKey('funds.resources.BankResource', 'bank', null=True)
     parent_client_id = fields.ForeignKey('funds.resources.ClientResource', 'parent_client', null=True)
     user_id = fields.ForeignKey('funds.resources.UserResource', 'user', null=True)
-    partitions = fields.ToManyField(PartitionResource, attribute=lambda bundle: AccountPartition.objects.all())
     class Meta:
         limit = 0
         max_limit = 0

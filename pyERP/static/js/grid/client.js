@@ -148,12 +148,20 @@ $("#gridContainer").dxDataGrid({
 
                 $("<div>")
                     .dxDataGrid({
+                        allowColumnResizing: true,
                         columnAutoWidth: true,
                         showBorders: true,
                         columns: [{
+                          dataField: "db_client_id",
+                          caption: formatMessage("db_client_id"),
+                          lookup: {
+                              dataSource: client,
+                              displayExpr: "name",
+                              valueExpr: "resource_uri"
+                            }
+                        }, {
                           dataField: "cr_client_id",
                           caption: formatMessage("cr_client_id"),
-                          width: 125,
                           lookup: {
                               dataSource: client,
                               displayExpr: "name",
@@ -163,6 +171,15 @@ $("#gridContainer").dxDataGrid({
                           dataField: "amount",
                           caption: formatMessage("amount"),
                           alignment: 'right',
+                          // calculateDisplayValue: function (rowData) {
+                          //     console.log(rowData.cr_client_id + "   -" + rowData.amount);
+                          //     if (rowData.cr_client_id = "/funds/api/client/4/") {
+                          //       return "-" + rowData.amount
+                          //     }
+                          //     else {
+                          //       return rowData.amount
+                          //     }
+                          // },
                           dataType: "number",
                           format: "#,##0.00"
                         }, {
@@ -174,6 +191,12 @@ $("#gridContainer").dxDataGrid({
                             valueExpr: "resource_uri"
                           }
                         }, {
+                          dataField: "amount_e",
+                          caption: formatMessage("amount_e"),
+                          alignment: 'right',
+                          dataType: "number",
+                          format: "#,##0.00"
+                        }, {
                           dataField: "payment_details",
                           caption: formatMessage("payment_details"),
                         }],
@@ -183,7 +206,7 @@ $("#gridContainer").dxDataGrid({
                                  loadMode: "raw",
                                  load: function() {
                                           var d = $.Deferred();
-                                          $.getJSON('../api/transaction/?db_client_id=' + currentClientData.id).done(function(result) {
+                                          $.getJSON('../api/transactionclient/?client_id=' + currentClientData.id).done(function(result) {
                                                       d.resolve(result["objects"]);
                                                       // console.log(result["objects"][0])
                                                   }

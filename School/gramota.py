@@ -1,10 +1,7 @@
-# print(111)
 name = input('Як тебе звати? ')
 city = input('З якого ти міста? ')
 school = input('Номер твоєї школи? ')
 class_ = input('В якому класі ти навчаєшся? ')
-
-# text_ = 'Грамота'
 
 print()
 print()

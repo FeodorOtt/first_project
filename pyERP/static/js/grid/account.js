@@ -14,6 +14,7 @@ $(function(){
     var acc_category = json_read('../api/accountcategorylocale/?locale='+locale);
     // var acc_partition = json_crud('../api/accountpartition/', ['account_id=6','']);
     var client = json_read('../api/client/');
+    var transaction = json_read('../api/transaction/');
     var bank = json_read('../api/bank/');
     var currency = json_read('../api/currency/', 'ISO_char');
     var user_ = json_read('../api/user/');
@@ -191,17 +192,27 @@ $(function(){
                         columnAutoWidth: true,
                         showBorders: true,
                         columns: [{
-                          dataField: "id",
-                        }, {
+                        //   dataField: "id",
+                        // }, {
                           dataField: "transaction_id",
-                          visible: false,
+                          // visible: false,
                           caption: formatMessage("transaction_id"),
+                          lookup: {
+                            dataSource: transaction,
+                            displayExpr: "id",
+                            valueExpr: "resource_uri"
+                          }
                         }, {
-                          dataField: "order_id",
-                          caption: formatMessage("order_id"),
-                        }, {
+                        //   dataField: "order_id",
+                        //   caption: formatMessage("order_id"),
+                        // }, {
                           dataField: "partition_id",
                           caption: formatMessage("partition_id"),
+                          lookup: {
+                            dataSource: partition,
+                            displayExpr: "name",
+                            valueExpr: "resource_uri"
+                          }
                         }, {
                           dataField: "db_client_id",
                           caption: formatMessage("db_client_id"),
@@ -213,11 +224,11 @@ $(function(){
                         }, {
                           dataField: "db_account_id",
                           caption: formatMessage("db_account_id"),
-                          // lookup: {
-                          //   dataSource: client,
-                          //   displayExpr: "name",
-                          //   valueExpr: "resource_uri"
-                          // }
+                          lookup: {
+                            dataSource: account,
+                            displayExpr: "number",
+                            valueExpr: "resource_uri"
+                          }
                         }, {
                           dataField: "cr_client_id",
                           caption: formatMessage("cr_client_id"),
@@ -229,13 +240,14 @@ $(function(){
                         }, {
                           dataField: "cr_account_id",
                           caption: formatMessage("cr_account_id"),
-                          // lookup: {
-                          //   dataSource: client,
-                          //   displayExpr: "name",
-                          //   valueExpr: "resource_uri"
-                          // }
+                          lookup: {
+                            dataSource: account,
+                            displayExpr: "number",
+                            valueExpr: "resource_uri"
+                          }
                         }, {
                           dataField: "amount",
+                          // value: -value,
                           caption: formatMessage("amount"),
                           alignment: 'right',
                           dataType: "number",
@@ -297,7 +309,7 @@ $(function(){
                                  loadMode: "raw",
                                  load: function() {
                                           var d = $.Deferred();
-                                          $.getJSON('../api/transactiondetail/?db_account_id=' + currentAccData.id).done(function(result) {
+                                          $.getJSON('../api/transactiondetailacc/?account_id=' + currentAccData.id).done(function(result) {
                                                       d.resolve(result["objects"]);
                                                       // console.log(result["objects"][0])
                                                   }

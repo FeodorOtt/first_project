@@ -663,13 +663,13 @@ $(function(){
         //   selectRowsByIndexes([1]);
         //   console.log(e.component);
         // },
-      onRowExpanded: function(e) {
-          if (expandedKeys.indexOf(e.key) >= 0)
-              return;
-          expandedKeys.push(e.key);
-          localStorage.setItem("expandedKeys", expandedKeys);
-          console.log(expandedKeys);
-      },
+      // onRowExpanded: function(e) {
+      //     if (expandedKeys.indexOf(e.key) >= 0)
+      //         return;
+      //     expandedKeys.push(e.key);
+      //     localStorage.setItem("expandedKeys", expandedKeys);
+      //     console.log(expandedKeys);
+      // },
       onContentReady: function(e) {
         // if (needExpand) {
         //     needExpand = false;
