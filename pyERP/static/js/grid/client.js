@@ -27,7 +27,7 @@ $("#gridContainer").dxDataGrid({
       stateStoring: {
           enabled: true,
           type: "localStorage",
-          storageKey: "client"
+          storageKey: "client66"
       },
       loadPanel: {
         shading: true,
@@ -107,7 +107,6 @@ $("#gridContainer").dxDataGrid({
                   }
                 }, {
                   dataField: "handle_time",
-                  dataType: "datetime",
                   caption: formatMessage("handle_time"),
                   width: 50,
                 }, {

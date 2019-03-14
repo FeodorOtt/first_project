@@ -101,4 +101,3 @@ function setTheme(theme) {
 }
 
 $("#selectThemeBox").dxSelectBox(selectThemeBoxOptions);
-
