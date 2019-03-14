@@ -1,3 +1,13 @@
+$(function () {
+    $('li a').each(function () {
+        var location = window.location.href;
+        var link = this.href;
+        if(location == link) {
+            $(this).addClass('active');
+        }
+    });
+});
+
 function json_crud(json_url, url_search_params=['', '']){
     return new DevExpress.data.CustomStore({
         key: "id",
