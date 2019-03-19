@@ -1,4 +1,5 @@
 $(function(){
+    document.title = formatMessage('idCurrency');
     var currency = json_crud('../api/currency/');
 
     $("#gridContainer").dxDataGrid({

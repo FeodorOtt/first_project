@@ -421,7 +421,8 @@
     $('#idMain').text(formatMessage('idMain'));
     $('#idSystem').text(formatMessage('idSystem'));
     $('#idSystemText').text(formatMessage('idSystemText'));
-    $('#idTransaction').text(formatMessage('idTransaction'));
+    $('.idTransaction').text(formatMessage('idTransaction'));
+    $('.idTransaction').attr('value', formatMessage('idTransaction'));
     $('#idClient').text(formatMessage('idClient'));
     $('#idCurrency').text(formatMessage('idCurrency'));
     $('#idBank').text(formatMessage('idBank'));

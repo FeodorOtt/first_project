@@ -5,6 +5,7 @@ $(function(){
     // var initDate = new Date(Date.now());
     // var url_search_params = ['&oper_date__gte=' + moment(firstDay).format('YYYY-MM-DD'), '&oper_date__lte=' + moment(Date.now()).format('YYYY-MM-DD')];
 
+    document.title = formatMessage('idAccount');
     var account = json_crud('../api/account/');
 
     var balance_account = json_read('../api/balanceaccount/');
@@ -429,7 +430,8 @@ $(function(){
                 visible: isShown,
                 // visible: true,
                 template: function (data, $itemElement) {
-                    var acc_partition = json_crud('../api/accountpartition/', ['account_id='+ID,'']);
+                  var acc_partition = json_crud('../api/accountpartition/', ['account_id='+ID,'']);
+                  // var acc_partition = json_cart('../api/accountpartition/', '../api/accountpartitioncart/', ['account_id='+ID,'']);
                     $("<div id='dataGrid'>")
                         .appendTo($itemElement)
                         .dxDataGrid({
@@ -495,7 +497,7 @@ $(function(){
       //     showInfo: true,
       //     showNavigationButtons: true
       // },
-      width: 1200,
+      // width: 1200,
       height: 600,
       showBorders: true,
       selection: {

@@ -3,10 +3,12 @@
 var isShown = false;
 
 var initDate = new Date(Date.now());
-var firstDay = new Date(initDate.getFullYear(), initDate.getMonth(), 1);
+// var firstDay = new Date(initDate.getFullYear(), initDate.getMonth(), 1);
+var firstDay = '2000-01-01';
 var url_search_params = ['&oper_date__gte=' + moment(firstDay).format('YYYY-MM-DD'), '&oper_date__lte=' + moment(Date.now()).format('YYYY-MM-DD')];
 
 $(function(){
+    document.title = formatMessage('idTransaction');
     var transaction = json_crud('../api/transaction/', url_search_params);
 
     var user_ = json_read('../api/user/');
@@ -418,14 +420,15 @@ $(function(){
                 widget: "dxDateBox",
                 options: {
                     // icon: "refresh",
-                    value: firstDay,
+                    // value: firstDay,
+                    value: null,
                     hint: formatMessage("begin_date"),
                     showClearButton: true,
                     type: 'date',
                     pickerType: 'calendar',
                     onValueChanged: function(e) {
                         // console.log(Date.now());
-                        // console.log(firstDay);
+                        // console.log(e.value);
                         try{
                             if (!e.value) {
                                 url_search_params[0] = '';
@@ -439,7 +442,7 @@ $(function(){
                         }
                         finally {
                             dataGrid.refresh();
-                            console.log(url_search_params);
+                            // console.log(url_search_params);
                         }
                     }
                 }
@@ -643,7 +646,7 @@ $(function(){
       //     showInfo: true,
       //     showNavigationButtons: true
       // },
-      width: 1200,
+      // width: 1200,
       height: 600,
       showBorders: true,
       selection: {

@@ -150,6 +150,15 @@ class AccountPartition(models.Model):
     class Meta:
         unique_together = (('account', 'partition'),)
 
+class AccountPartitionCart(models.Model):
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    account = models.ForeignKey('Account', on_delete=models.CASCADE)
+    partition = models.ForeignKey('Partition', on_delete=models.CASCADE)
+    is_primary = models.BooleanField(blank=True, null=True)
+
+    class Meta:
+        unique_together = (('user', 'account', 'partition'),)
+
 class BalanceAccount(models.Model):
     balance_number = models.CharField(unique=True, max_length=4)
     assignment = models.CharField(max_length=500, blank=True, null=True)

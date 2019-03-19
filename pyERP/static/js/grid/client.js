@@ -1,4 +1,5 @@
 $(function(){
+  document.title = formatMessage('idClient');
   var client = json_crud('../api/client/');
 
   var client_lu = json_read('../api/client/');

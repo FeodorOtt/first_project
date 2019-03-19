@@ -7,7 +7,7 @@ from tastypie.api import Api
 from funds.resources import CurrencyResource, ClientResource, TransactionResource, TransactionClientResource, TransactionDetailResource, TransactionDetailAccResource, \
     UserResource, PartitionResource, ClientCategoryResource, ClientCategoryLocaleResource, ClientTypeLocaleResource, ClientTypeResource, BankResource, \
     CountryResource, AccountResource, AccountTypeResource, AccountTypeLocaleResource, AccountCategoryResource, AccountCategoryLocaleResource, BalanceAccountResource, \
-    AccountSaldoTypeResource, AccountPartitionResource
+    AccountSaldoTypeResource, AccountPartitionResource, AccountPartitionCartResource
 
 funds_api = Api(api_name='funds/api')
 funds_api.register(UserResource())
@@ -31,6 +31,7 @@ funds_api.register(AccountTypeLocaleResource())
 funds_api.register(AccountCategoryResource())
 funds_api.register(AccountCategoryLocaleResource())
 funds_api.register(AccountPartitionResource())
+funds_api.register(AccountPartitionCartResource())
 funds_api.register(BalanceAccountResource())
 
 urlpatterns = [

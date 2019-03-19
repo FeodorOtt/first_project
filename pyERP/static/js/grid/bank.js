@@ -1,4 +1,5 @@
 $(function(){
+    document.title = formatMessage('idBank');
     var bank = json_crud('../api/bank/');
     var country = json_read('../api/country/');
     var user_ = json_read('../api/user/');
@@ -112,7 +113,7 @@ $("#gridContainer").dxDataGrid({
       //     showInfo: true,
       //     showNavigationButtons: true
       // },
-      width: 1200,
+      // width: 1200,
       height: 600,
       showBorders: true,
       selection: {

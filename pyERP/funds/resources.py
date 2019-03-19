@@ -3,7 +3,7 @@ from tastypie.authentication import BasicAuthentication
 from tastypie import fields
 from .models import Currency, Client, Transaction, TransactionDetail, User, Partition, ClientType, ClientTypeLocale, \
     ClientCategory, ClientCategoryLocale, Bank, Country, AccountType, AccountTypeLocale, AccountCategory, AccountCategoryLocale, Account, \
-    BalanceAccount, AccountSaldoType, AccountPartition
+    BalanceAccount, AccountSaldoType, AccountPartition, AccountPartitionCart
 from tastypie.authorization import Authorization
 from tastypie.constants import ALL
 from django.db.models import Q
@@ -277,12 +277,26 @@ class AccountResource(ModelResource):
         authorization = Authorization()
 
 class AccountPartitionResource(ModelResource):
+    user_id = fields.ForeignKey('funds.resources.UserResource', 'user', null=True)
     account_id = fields.ForeignKey('funds.resources.AccountResource', 'account')
     partition_id = fields. ForeignKey('funds.resources.PartitionResource', 'partition')
     class Meta:
         queryset = AccountPartition.objects.all()
         resource_name = 'accountpartition'
         filtering = {
+            'account_id': ALL,
+        }
+        authorization = Authorization()
+
+class AccountPartitionCartResource(ModelResource):
+    user_id = fields.ForeignKey('funds.resources.UserResource', 'user', null=True)
+    account_id = fields.ForeignKey('funds.resources.AccountResource', 'account')
+    partition_id = fields. ForeignKey('funds.resources.PartitionResource', 'partition')
+    class Meta:
+        queryset = AccountPartitionCart.objects.all()
+        resource_name = 'accountpartitioncart'
+        filtering = {
+            'user_id': ALL,
             'account_id': ALL,
         }
         authorization = Authorization()

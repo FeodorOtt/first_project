@@ -46,7 +46,8 @@
     <!-- Some settings -->
     <script src={% static 'js/master.js' %}></script>
     <link rel="stylesheet" type="text/css" href={% static 'css/master.css'%}>
-    <link rel="shortcut icon" href="#" />
+    {# <link rel="shortcut icon" href="#" /> #}
+    <link rel="shortcut icon" href="{%  static 'favicon.ico' %}">
   </head>
 
   <body>
@@ -58,7 +59,7 @@
     			<ul class="nav navbar-nav navbar-right">
     				{% if user.is_authenticated %}
                       <li><a href="{% url 'funds:index' %}" class="btn btn-simple" id="idMain">Main</a></li>
-                      <li><a href="{% url 'funds:transaction' %}" class="btn btn-simple" id="idTransaction">Transactions</a></li>
+                      <li><a href="{% url 'funds:transaction' %}" class="btn btn-simple idTransaction">Transactions</a></li>
                       <li><a href="{% url 'funds:client' %}" class="btn btn-simple" id="idClient">Clients</a></li>
                       <li><a href="{% url 'funds:currency' %}" class="btn btn-simple" id="idCurrency">Currency</a></li>
                       <li><a href="{% url 'funds:account' %}" class="btn btn-simple" id="idAccount">Account</a></li>
