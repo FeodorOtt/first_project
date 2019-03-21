@@ -430,8 +430,8 @@ $(function(){
                 visible: isShown,
                 // visible: true,
                 template: function (data, $itemElement) {
-                  var acc_partition = json_crud('../api/accountpartition/', ['account_id='+ID,'']);
-                  // var acc_partition = json_cart('../api/accountpartition/', '../api/accountpartitioncart/', ['account_id='+ID,'']);
+                  // var acc_partition = json_crud('../api/accountpartition/', ['account_id='+ID,'']);
+                  var acc_partition = json_cart('../api/accountpartition/', '../api/accountpartitioncart/', ['account_id='+ID,'']);
                     $("<div id='dataGrid'>")
                         .appendTo($itemElement)
                         .dxDataGrid({
@@ -449,7 +449,7 @@ $(function(){
                             },
                             columns: [{
                               dataField: "account_id",
-                              visible: false
+                              // visible: false
                             }, {
                               dataField: "is_primary"
                             }, {

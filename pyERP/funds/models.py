@@ -151,7 +151,7 @@ class AccountPartition(models.Model):
         unique_together = (('account', 'partition'),)
 
 class AccountPartitionCart(models.Model):
-    user = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    user = models.ForeignKey('auth.User', on_delete=models.CASCADE, blank=True, null=True)
     account = models.ForeignKey('Account', on_delete=models.CASCADE)
     partition = models.ForeignKey('Partition', on_delete=models.CASCADE)
     is_primary = models.BooleanField(blank=True, null=True)

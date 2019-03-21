@@ -106,13 +106,22 @@ function json_cart(read_url, cart_url, url_search_params=['', '']){
         update: function(key, values) {
             var d = $.Deferred()
             $.ajax({
-                url: cart_url + encodeURIComponent(key) + '/',
-                method: "PUT",
+                url: cart_url,
+                method: "POST",
                 contentType: 'application/json',
                 data: JSON.stringify(values)
-            }).done(function () {
-                      d.resolve(key)
-                    });;
+            })
+            .done(function () {
+                      d.resolve(values);
+                    })
+            // $.ajax({
+            //     url: cart_url + encodeURIComponent(key) + '/',
+            //     method: "PUT",
+            //     contentType: 'application/json',
+            //     data: JSON.stringify(values)
+            // }).done(function () {
+            //           d.resolve(key)
+            //         });
             return d.promise();
         },
 
