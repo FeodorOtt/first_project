@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>pyERP</title>
+    <!-- jQuery -->
+{#    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>#}
+    <script src={% static 'js/lib/jquery-3.3.1.min.js' %} integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified CSS -->
+{#  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">#}
+    <link rel="stylesheet" href={% static 'css/bootstrap.min.css' %} integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+{#    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">#}
+    <link rel="stylesheet" href={% static 'css/bootstrap-theme.min.css' %} integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+{#    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>#}
+    <script src={% static 'js/lib/bootstrap.min.js' %} integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- A CDN link -->
+{#    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>#}
+    <script type="text/javascript" src={% static 'js/lib/jszip.min.js' %}></script>
+{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>#}
+    <script src={% static 'js/lib/jquery.cookie.min.js' %}></script>
+{#    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>#}
+    <script src={% static 'js/lib/js.cookie.min.js' %}></script>
+{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>#}
+    <script src={% static 'js/lib/moment.min.js' %}></script>
+
+    <!-- DevExtreme themes -->
+{#    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/18.2.5/css/dx.common.css">#}
+    <link rel="stylesheet" type="text/css" href={% static 'css/theme/dx.common.css' %}>
+    {% include "dx-themes-links.html" %}
+
+     <!-- DevExtreme library -->
+{#    <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/18.2.5/js/dx.all.js"></script>#}
+    <script type="text/javascript" src={% static 'js/lib/dx.all.js' %}></script>
+    <!-- DevExtreme-Intl module -->
+{#    <script src="https://unpkg.com/devextreme-intl@18.2/dist/devextreme-intl.min.js"></script>#}
+    <script src={% static 'js/lib/devextreme-intl.min.js' %}></script>
+
+{#    <script src="https://cdn3.devexpress.com/jslib/18.2.5/js/localization/dx.messages.ru.js"></script>#}
+    <script src={% static 'js/dx.messages.ru.js' %}></script>
+{#    <script src="https://cdn3.devexpress.com/jslib/18.2.5/js/localization/dx.messages.de.js"></script>#}
+    <script src={% static 'js/dx.messages.de.js' %}></script>
+    <script src={% static 'js/dx.messages.uk.js' %}></script>
+    <!-- Some settings -->
+    <script src={% static 'js/master.js' %}></script>
+    <link rel="stylesheet" type="text/css" href={% static 'css/master.css'%}>
+    {# <link rel="shortcut icon" href="#" /> #}
+    <link rel="shortcut icon" href="{%  static 'favicon.ico' %}">
+  </head>
+
+  <body>
+    <!-- <script>DevExpress.localization.locale('ru' || 'ru')</script> -->
+
+    <nav class="navbar  mynav" role="navigation" id="navbar">
+        <div class="container">
+            <a class="navbar-brand mynav" href="{% url 'index' %}">pyERP</a>
+    			<ul class="nav navbar-nav navbar-right">
+    				{% if user.is_authenticated %}
+                      <li><a href="{% url 'funds:index' %}" class="btn btn-simple" id="idMain">Main</a></li>
+                      <li><a href="{% url 'funds:transaction' %}" class="btn btn-simple idTransaction">Transactions</a></li>
+                      <li><a href="{% url 'funds:client' %}" class="btn btn-simple" id="idClient">Clients</a></li>
+                      <li><a href="{% url 'funds:currency' %}" class="btn btn-simple" id="idCurrency">Currency</a></li>
+                      <li><a href="{% url 'funds:account' %}" class="btn btn-simple" id="idAccount">Account</a></li>
+                      <li><a href="{% url 'funds:bank' %}" class="btn btn-simple" id="idBank">Banks</a></li>
+                      <li><a href="{% url 'logout' %}" class="btn btn-simple" id="idLogout">Logout</a></li>
+    				{% else %}
+    			      <li><a href="{% url 'about' %}" class="btn btn-simple" id="idAbout">About</a></li>
+                      <li><a href="{% url 'accounts:login' %}" class="btn btn-simple idLogin">Login</a></li>
+                      <li><a href="{% url 'accounts:signup' %}" class="btn btn-simple idSignUp">SignUp</a></li>
+    				{% endif %}
+    			</ul>
+
+    	</div>
+	</nav>
+{#       <div class="dx-viewport">#}
+    <div class="container mycontent">
+
+    {% block content %}
+    {% endblock %}
+
+    <form id="langForm" action="{% url 'set_language' %}" method="post" style="display:none;">
+        {% csrf_token %}
+        <select name="language">
+            <option value="en">English</option>
+            <option value="de">Deutsch</option>
+            <option value="ru">Русский</option>
+            <option value="uk">Українська</option>
+        </select>
+    </form>
+
+    {% if user.is_authenticated %}
+    {# {% if #gridContainer %} #}
+    <div class="option">
+      <label for="selectThemeInput" id="idTheme">Theme</label>
+      <div id="selectThemeBox"></div>
+    </div>
+    {% endif %}
+
+    <div class="option">
+      <label for="selectLangInput" id="idLang">Language</label>
+      <div id="selectLangBox"></div>
+    </div>
+
+    </div>
+
+    <script src="{% static "js/settings.js"%}"></script>
+
+    <script src={% static 'js/captions.js' %}></script>
+  </body>
+</html>

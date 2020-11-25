@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content %}
+    {# <h class="idTransaction">Transactions</h> #}
+    <div id="gridContainer"></div>
+    <div id="formContainer"></div>
+
+    <script src={% static 'js/grid/transaction.js' %}></script>
+{% endblock %}

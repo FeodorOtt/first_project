@@ -1,0 +1,43 @@
+.option {
+    padding: 10px;
+    background-color: rgba(191, 191, 191, 0.15);
+    margin-top: 10px;
+    float: right;
+}
+
+.caption {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.option > label {
+  margin-right: 10px;
+}
+
+
+.option > .dx-selectbox {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.master-detail-caption {
+    padding: 0 0 5px 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/*Column CSS (column.cssClass)*/
+/*.TransactionColumnsStyle{*/
+    /*font-size: 12px;*/
+    /*font-weight: bold;*/
+/*}*/
+.ClientName {
+    /*font-size: 17px;*/
+    /*background-color: #0964E4;*/
+}
+
+/* .transactionAmount.{
+    font-weight: bold;
+    -webkit-text-fill-color: red;
+    background-color: red;
+} */

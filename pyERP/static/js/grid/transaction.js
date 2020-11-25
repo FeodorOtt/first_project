@@ -1,0 +1,748 @@
+// var expandedKeys = [];
+// var needExpand = false;
+var isShown = false;
+
+var initDate = new Date(Date.now());
+// var firstDay = new Date(initDate.getFullYear(), initDate.getMonth(), 1);
+var firstDay = '2000-01-01';
+var url_search_params = ['&oper_date__gte=' + moment(firstDay).format('YYYY-MM-DD'), '&oper_date__lte=' + moment(Date.now()).format('YYYY-MM-DD')];
+
+$(function(){
+    document.title = formatMessage('idTransaction');
+    var transaction = json_crud('../api/transaction/', url_search_params);
+
+    var user_ = json_read('../api/user/');
+    var client = json_read('../api/client/');
+    var account = json_read('../api/account/');
+    var partition = json_read('../api/partition/');
+    var currency = json_read('../api/currency/', 'ISO_char');
+
+    $("#gridContainer").dxDataGrid({
+      dataSource: {
+          store: transaction
+      },
+      export: {
+          enabled: true,
+          fileName: "Transactions",
+          allowExportSelectedData: true
+      },
+      allowColumnResizing: true,
+      cacheEnabled: true,
+      // columnResizingMode: "nextColumn",
+      columnMinWidth: 50,
+      rowAlternationEnabled: true,
+      allowColumnReordering: true,
+      hoverStateEnabled: true,
+      stateStoring: {
+          enabled: true,
+          type: "localStorage",
+          storageKey: "transaction"
+      },
+      loadPanel: {
+        shading: true,
+        height: 120
+      },
+      columnChooser: {
+          enabled: true,
+          mode: "select"
+      },
+      columns: [{
+                  dataField: "id",
+                  editorOptions: {
+                      disabled: true
+                  },
+                  caption: formatMessage("transaction_id"),
+//                  cssClass: 'TransactionColumnsStyle',
+                  width: 100
+                }, {
+                  dataField: "parent_id",
+                  caption: formatMessage("parent_id"),
+                  width: 100
+                }, {
+                  dataField: "pattern_id",
+                  caption: formatMessage("pattern_id"),
+                  width: 100
+                }, {
+                  dataField: "oper_date",
+                  dataType: "date",
+                  caption: formatMessage("oper_date")
+                }, {
+                  dataField: "currency_rate",
+                  caption: formatMessage("currency_rate"),
+                  alignment: 'right',
+                  dataType: "number",
+                  format: "#,##0.00#"
+                }, {
+                  dataField: "db_client_id",
+                  caption: formatMessage("db_client_id"),
+                  width: 125,
+                  lookup: {
+                    dataSource: client,
+                    displayExpr: "name",
+                    valueExpr: "resource_uri"
+                  }
+                }, {
+                  dataField: "db_account_id",
+                  caption: formatMessage("db_account_id"),
+                  width: 125,
+                  lookup: {
+                    dataSource: account,
+                    displayExpr: "number",
+                    valueExpr: "resource_uri"
+                  }
+                }, {
+                  dataField: "cr_client_id",
+                  caption: formatMessage("cr_client_id"),
+                  width: 125,
+                  lookup: {
+                      dataSource: client,
+                      displayExpr: "name",
+                      valueExpr: "resource_uri"
+                    }
+                }, {
+                  dataField: "cr_account_id",
+                  caption: formatMessage("cr_account_id"),
+                  width: 125,
+                  lookup: {
+                    dataSource: account,
+                    displayExpr: "number",
+                    valueExpr: "resource_uri"
+                  }
+                }, {
+                  dataField: "amount",
+                  // cssClass: 'transactionAmount',
+                  // editorOptions: {
+                  //     // disabled: true,
+                  //     width: "30%"
+                  // },
+                  caption: formatMessage("amount"),
+                  alignment: 'right',
+                  dataType: "number",
+                  format: "#,##0.00"
+                }, {
+                  dataField: "currency_id",
+                  caption: formatMessage("currency_id"),
+                  lookup: {
+                    dataSource: currency,
+                    displayExpr: "ISO_char",
+                    valueExpr: "resource_uri"
+                  }
+                }, {
+                  dataField: "amount_e",
+                  caption: formatMessage("amount_e"),
+                  alignment: 'right',
+                  dataType: "number",
+                  format: "#,##0.00"
+                }, {
+                  dataField: "exchange_income",
+                  caption: formatMessage("exchange_income"),
+                  alignment: 'right',
+                  dataType: "number",
+                  format: "#,##0.00"
+                }, {
+                  dataField: "exchange_amount",
+                  caption: formatMessage("exchange_amount"),
+                  alignment: 'right',
+                  dataType: "number",
+                  format: "#,##0.00"
+                }, {
+                  dataField: "exchange_currency",
+                  caption: formatMessage("exchange_currency_id"),
+                  lookup: {
+                    dataSource: currency,
+                    displayExpr: "ISO_char",
+                    valueExpr: "resource_uri"
+                  }
+                }, {
+                  dataField: "exchange_amount_e",
+                  caption: formatMessage("exchange_amount_e"),
+                  alignment: 'right',
+                  dataType: "number",
+                  format: "#,##0.00"
+                }, {
+                  dataField: "partition_id",
+                  caption: formatMessage("partition_id"),
+                  lookup: {
+                    dataSource: partition,
+                    displayExpr: "name",
+                    valueExpr: "resource_uri"
+                  }
+                }, {
+                  dataField: "bankimport_id",
+                  caption: formatMessage("bankimport_id")
+                }, {
+                  dataField: "payment_details",
+                  caption: formatMessage("payment_details"),
+                }, {
+                  dataField: "addinfo",
+                  caption: formatMessage("addinfo"),
+                }, {
+                  dataField: "handle_time",
+                  editorOptions: {
+                      disabled: true
+                  },
+                  dataType: "datetime",
+                  caption: formatMessage("handle_time"),
+                  width: 50,
+                }, {
+                  dataField: "user_id",
+                  editorOptions: {
+                      disabled: true
+                  },
+                  caption: formatMessage("user_id"),
+                  lookup: {
+                    dataSource: user_,
+                    displayExpr: "username",
+                    valueExpr: "resource_uri"
+                  }
+                }, {
+                  dataField: "status_id",
+                  caption: formatMessage("status_id"),
+                  lookup: {
+                      dataSource: [{
+                          "id": 1,
+                          "name": formatMessage("posted")
+                      }, {
+                          "id": 2,
+                          "name": formatMessage("postponed")
+                      }, {
+                          "id": 3,
+                          "name": formatMessage("reversed")
+                      }],
+                    displayExpr: "name",
+                    valueExpr: "id"
+                  }
+        }],
+        masterDetail: {
+            enabled: true,
+            allowColumnResizing: true,
+            template: function(container, options) {
+                var currentTransData = options.data;
+
+                $("<div>")
+                    .addClass("master-detail-caption")
+                     .text(formatMessage("transaction_detail") + currentTransData.id + ':')
+                    .appendTo(container);
+
+                $("<div>")
+                    .dxDataGrid({
+                        columnAutoWidth: true,
+                        showBorders: true,
+                        columns: [{
+                        //   dataField: "id",
+                        // }, {
+                          dataField: "transaction_id",
+                          visible: false,
+                          caption: formatMessage("transaction_id"),
+                        }, {
+                          dataField: "order_id",
+                          caption: formatMessage("order_id"),
+                        }, {
+                          dataField: "partition_id",
+                          caption: formatMessage("partition_id"),
+                          visible: false,
+                          lookup: {
+                            dataSource: partition,
+                            displayExpr: "name",
+                            valueExpr: "resource_uri"
+                          }
+                        }, {
+                          dataField: "db_client_id",
+                          caption: formatMessage("db_client_id"),
+                          lookup: {
+                            dataSource: client,
+                            displayExpr: "name",
+                            valueExpr: "resource_uri"
+                          }
+                        }, {
+                          dataField: "db_account_id",
+                          caption: formatMessage("db_account_id"),
+                          lookup: {
+                            dataSource: account,
+                            displayExpr: "number",
+                            valueExpr: "resource_uri"
+                          }
+                        }, {
+                          dataField: "cr_client_id",
+                          caption: formatMessage("cr_client_id"),
+                          lookup: {
+                              dataSource: client,
+                              displayExpr: "name",
+                              valueExpr: "resource_uri"
+                            }
+                        }, {
+                          dataField: "cr_account_id",
+                          caption: formatMessage("cr_account_id"),
+                          lookup: {
+                            dataSource: account,
+                            displayExpr: "number",
+                            valueExpr: "resource_uri"
+                          }
+                        }, {
+                          dataField: "amount",
+                          caption: formatMessage("amount"),
+                          alignment: 'right',
+                          dataType: "number",
+                          format: "#,##0.00"
+                        }, {
+                          dataField: "currency_id",
+                          caption: formatMessage("currency_id"),
+                          lookup: {
+                            dataSource: currency,
+                            displayExpr: "ISO_char",
+                            valueExpr: "resource_uri"
+                          }
+                        }, {
+                          dataField: "amount_e",
+                          caption: formatMessage("amount_e"),
+                          alignment: 'right',
+                          dataType: "number",
+                          format: "#,##0.00"
+                        }, {
+                          dataField: "handle_time",
+                          editorOptions: {
+                              disabled: true
+                          },
+                          dataType: "datetime",
+                          caption: formatMessage("handle_time"),
+                          // width: 50,
+                        }, {
+                          dataField: "user_id",
+                          editorOptions: {
+                              disabled: true
+                          },
+                          caption: formatMessage("user_id"),
+                          lookup: {
+                            dataSource: user_,
+                            displayExpr: "username",
+                            valueExpr: "resource_uri"
+                          }
+                        }, {
+                          dataField: "status_id",
+                          caption: formatMessage("status_id"),
+                          lookup: {
+                              dataSource: [{
+                                  "id": 1,
+                                  "name": formatMessage("posted")
+                              }, {
+                                  "id": 2,
+                                  "name": formatMessage("postponed")
+                              }, {
+                                  "id": 3,
+                                  "name": formatMessage("reversed")
+                              }],
+                            displayExpr: "name",
+                            valueExpr: "id"
+                          }
+                        }],
+                        dataSource: {
+                             store: new DevExpress.data.CustomStore({
+                                 key: "id",
+                                 loadMode: "raw",
+                                 load: function() {
+                                          var d = $.Deferred();
+                                          $.getJSON('../api/transactiondetail/?transaction_id=' + currentTransData.id).done(function(result) {
+                                                      d.resolve(result["objects"]);
+                                                      // console.log(result["objects"][0])
+                                                  }
+                                          );
+                                          return d.promise();
+                                       }
+                             }),
+                             // filter: ["resource_uri", "=", currentTransData.transaction_id]
+                        }
+                    }).appendTo(container);
+            }
+        },
+        onToolbarPreparing: function(e) {
+            var dataGrid = e.component;
+
+            e.toolbarOptions.items.unshift({
+            //     location: "before",
+            //     template: function(){
+            //         return $("<div/>")
+            //             .addClass("informer")
+            //             .append(
+            //                $("<h2 />")
+            //                  .addClass("count")
+            //                  .text(getGroupCount("currency")),
+            //                $("<span />")
+            //                  .addClass("name")
+            //                  .text("Total Count")
+            //             );
+            //     }
+            // }, {
+            //     location: "before",
+            //     widget: "dxSelectBox",
+            //     options: {
+            //         width: 200,
+            //         items: [{
+            //             value: "currency",
+            //             text: "Grouping by Currency"
+            //         }, {
+            //             value: "db_client_id",
+            //             text: "Grouping by Db Client"
+            //         }],
+            //         displayExpr: "text",
+            //         valueExpr: "value",
+            //         value: "currency",
+            //         onValueChanged: function(e) {
+            //             dataGrid.clearGrouping();
+            //             dataGrid.columnOption(e.value, "groupIndex", 0);
+            //             $(".informer .count").text(getGroupCount(e.value));
+            //         }
+            //     }
+            // }, {
+                location: "before",
+                widget: "dxButton",
+                options: {
+                    text: formatMessage("collapse_all"),
+                    width: 100,
+                    onClick: function(e) {
+                        var expanding = e.component.option("text") === formatMessage("expand_all");
+                        dataGrid.option("grouping.autoExpandAll", expanding);
+                        e.component.option("text", expanding ? formatMessage("collapse_all") : formatMessage("expand_all"));
+                    }
+                }
+            }, {
+                location: "after",
+                widget: "dxButton",
+                options: {
+                    icon: "refresh",
+                    hint: formatMessage("refresh"),
+                    onClick: function() {
+                        needExpand = true;
+                        dataGrid.refresh();
+                    }
+                }
+            }, {
+                location: "after",
+                widget: "dxDateBox",
+                options: {
+                    // icon: "refresh",
+                    // value: firstDay,
+                    value: null,
+                    hint: formatMessage("begin_date"),
+                    showClearButton: true,
+                    type: 'date',
+                    pickerType: 'calendar',
+                    onValueChanged: function(e) {
+                        // console.log(Date.now());
+                        // console.log(e.value);
+                        try{
+                            if (!e.value) {
+                                url_search_params[0] = '';
+                            }
+                            else {
+                                url_search_params[0] = '&oper_date__gte=' + moment(e.value).format('YYYY-MM-DD');
+                            }
+                        }
+                        catch (e) {
+                            url_search_params[0] = '';
+                        }
+                        finally {
+                            dataGrid.refresh();
+                            // console.log(url_search_params);
+                        }
+                    }
+                }
+            }, {
+                location: "after",
+                widget: "dxDateBox",
+                options: {
+                    // icon: "refresh",
+                    value: Date.now(),
+                    hint: formatMessage("end_date"),
+                    showClearButton: true,
+                    type: 'date',
+                    pickerType: 'calendar',
+                    // onInitialized: function(e) {
+                    //     e.value = Date.now();
+                    // },
+                    onValueChanged: function(e) {
+                        // console.log(Date.now());
+                        // console.log(firstDay);
+                        try{
+                            if (!e.value) {
+                                url_search_params[1] = '';
+                            }
+                            else {
+                                url_search_params[1] = '&oper_date__lte=' + moment(e.value).format('YYYY-MM-DD');
+                            }
+                        }
+                        catch (e) {
+                            url_search_params[1] = '';
+                        }
+                        finally {
+                            dataGrid.refresh();
+                            console.log(url_search_params);
+                        }
+                    }
+                }
+            });
+        },
+
+      editing: {
+          allowAdding: true,
+          allowUpdating: true,
+          allowDeleting: true,
+          useIcons: true,
+          mode: "popup",
+          // activeStateEnabled: true,
+          form: {
+              elementAttr: {
+                id: "TransEditId",
+                // class: "class-name"
+              },
+              minColWidth: 50,
+              colCount: 2,
+              focusStateEnabled: true,
+              showTitle: true,
+              onContentReady: function(e) {
+                // console.log($('.transactionAmount'));
+                $('.transactionAmount').attr("style","-webkit-text-fill-color: red;");
+                $('.transactionCurrency').attr("style","-webkit-text-fill-color: red;");
+                // $('.transactionAmount').css("font-size", "10px");
+              },
+              onShowing: function(e){
+                  e.component.option("title", "Тип транзакции: -----");
+              },
+              items: [{
+                  dataField: "pattern_id",
+                  label: {
+                    text: "Финоперация"
+                  }
+                }, {
+                  dataField: "id",
+                  label: {
+                    text: "Финоперация"
+                  }
+                // }, {
+                //   dataField: "parent_id"
+                }, {
+                  dataField: "oper_date",
+                  dataType: "date"
+                }, {
+                  itemType: "empty",
+                }, {
+                  itemType: "empty",
+                }, {
+                  itemType: "empty",
+                }, {
+                  dataField: "db_client_id",
+                }, {
+                  dataField: "cr_client_id",
+                }, {
+                  dataField: "db_account_id",
+                }, {
+                  dataField: "cr_account_id",
+                }, {
+                  itemType: "empty",
+                }, {
+                  itemType: "empty",
+                }, {
+                  dataField: "amount",
+                  cssClass: 'transactionAmount'
+                }, {
+                  dataField: "currency_id",
+                  cssClass: 'transactionCurrency'
+                }, {
+                  itemType: "empty",
+                }, {
+                  itemType: "empty",
+                }, {
+                //   dataField: "amount_e",
+                // }, {
+                  dataField: "currency_rate",
+                }, {
+                  dataField: "exchange_income",
+                }, {
+                  dataField: "exchange_amount",
+                }, {
+                  dataField: "exchange_currency",
+                }, {
+                //   dataField: "exchange_amount_e",
+                // }, {
+                //   dataField: "bankimport_id",
+                // }, {
+                  dataField: "payment_details",
+                }, {
+                  dataField: "addinfo",
+                }, {
+                  dataField: "handle_time",
+                }, {
+                  dataField: "user_id",
+                }, {
+                  dataField: "partition_id",
+                }, {
+                  dataField: "status_id",
+                }, {
+                  name: "is_shown",
+                  label: {
+                      text: formatMessage("taxes")
+                  },
+                  template: function (data, $itemElement) {
+                      $("<div>").appendTo($itemElement).dxCheckBox({
+                          value: isShown,
+                          onValueChanged: function(e) {
+                              isShown = e.value;
+                              var element = document.getElementById("TransEditId");
+                              var form = DevExpress.ui.dxForm.getInstance(element);
+                              form.itemOption("taxes", "visible", isShown);
+                          }
+                      });
+                  }
+                }, {
+                  name: "taxes",
+                  visible: isShown,
+                  // visible: true,
+                  template: function (data, $itemElement) {
+                      $("<div id='dataGrid'>")
+                          .appendTo($itemElement)
+                          .dxDataGrid({
+                              dataSource: [{
+                                  productName: "DesktopLCD 19",
+                                  cost: 68,
+                                  salePrice: 110
+                              }, {
+                                  productName: "DesktopLCD 21",
+                                  cost: 75,
+                                  salePrice: 120
+                              }]
+                          });
+                  }
+                }
+              ]
+          }
+      },
+      onEditorPreparing: function (e) {
+            if (e.dataField == "amount"||e.dataField == "amount_e"||e.dataField == "exchange_amount"||e.dataField == "exchange_amount_e")
+            e.editorName = "dxNumberBox";
+      },
+      filterRow: {
+          filterEnabled: true,
+          visible: true
+      },
+      filterPanel: {
+          visible: true
+      },
+      headerFilter: {
+          visible: true,
+          allowSearch: true
+      },
+      scrolling: {
+          showScrollbar: "never"
+      //     scrollByThumb: true,
+      //      mode: "infinite"
+      //     useNative: false
+      },
+      paging: {
+          enabled: false
+          // pageSize: 5
+      },
+      // pager: {
+      //     showPageSizeSelector: true,
+      //     allowedPageSizes: [5, 10, 20],
+      //     showInfo: true,
+      //     showNavigationButtons: true
+      // },
+      // width: 1200,
+      height: 600,
+      showBorders: true,
+      selection: {
+          mode: "multiple",
+          allowSelectAll: true
+      },
+      groupPanel: {
+          visible: true,
+      },
+      grouping: {
+          allowCollapsing: true,
+          autoExpandAll: true,
+          expandMode: 'rowClick',
+          contextMenuEnabled: true,
+      },
+        // onRowInserted: function(e) {
+        //   selectRowsByIndexes([1]);
+        //   console.log(e.component);
+        // },
+      // onRowExpanded: function(e) {
+      //     if (expandedKeys.indexOf(e.key) >= 0)
+      //         return;
+      //     expandedKeys.push(e.key);
+      //     localStorage.setItem("expandedKeys", expandedKeys);
+      //     console.log(expandedKeys);
+      // },
+      onContentReady: function(e) {
+        // if (needExpand) {
+        //     needExpand = false;
+        //     console.log(expandedKeys);
+        //     // expandedKeys = localStorage.getItem("expandedKeys");
+        //     for (var i = 0; i < expandedKeys.length; i++)
+        //         e.component.expandRow(expandedKeys[i]);
+        // }
+            var ColName = formatMessage("dxDataGrid-ariaColumn") + ' ' + formatMessage("amount");
+            var ci = $("[aria-label='" + ColName + "']").attr("aria-colindex");
+            var cid = $("[aria-label='" + ColName + "']").attr("id");
+
+            // $('[role="columnheader"]').css("font-size", "10px");
+
+            $('[aria-colindex='+ci+'] .dx-datagrid-summary-item').css("color", "#c56363");
+            $('[aria-describedby='+cid+']').css("color", "#c56363");
+
+            ColName = formatMessage("dxDataGrid-ariaColumn") + ' ' + formatMessage("amount_e");
+            ci = $("[aria-label='" + ColName + "']").attr("aria-colindex");
+            cid = $("[aria-label='" + ColName + "']").attr("id");
+
+            $('[aria-colindex='+ci+'] .dx-datagrid-summary-item').css("color", "rgb(53, 62, 183)");
+            $('[aria-describedby='+cid+']').css("color", "rgb(53, 62, 183)");
+
+            // $('.dx-datagrid-rowsview .dx-row.dx-group-row').css({
+            //     'background-color': '#e7f4ff'
+            // });
+
+        },
+      summary: {
+          totalItems: [{
+                  column: "amount",
+                  summaryType: "sum",
+                  valueFormat: "#,##0.00",
+                  displayFormat: "{0}"
+              }, {
+                  column: "amount_e",
+                  summaryType: "sum",
+                  valueFormat: "#,##0.00",
+                  displayFormat: "{0}"
+              }, {
+                  column: "payment_details",
+                  summaryType: "count",
+                  // displayFormat: "Всего: {0}"
+              }
+            ],
+          groupItems: [{
+                  column: "amount",
+                  summaryType: "sum",
+                  valueFormat: "#,##0.00",
+                  displayFormat: "{0}",
+                  alignByColumn: true
+              }, {
+                  column: "amount_e",
+                  summaryType: "sum",
+                  valueFormat: "#,##0.00",
+                  displayFormat: "{0}",
+                  alignByColumn: true,
+                  // customizeText: function(cellInfo) {
+                  //     $(cellInfo).css('background-color','red')
+                  //     return cellInfo.value
+                  // }
+                },
+               {
+                  column: "payment_details",
+                  summaryType: "count",
+                  // displayFormat: "Всего: {0}",
+                  alignByColumn: true
+              }
+          ]
+      }
+    });
+});
